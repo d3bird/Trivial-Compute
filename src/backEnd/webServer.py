@@ -21,7 +21,7 @@ def index():
 #def about():
 #    return render_template('about.html')
 
-def get_post(post_id):
+def getQuestion(post_id):
     conn = sqlite3.connect("SQL/questionDatabase.db")
     conn.row_factory = sqlite3.Row
     post = conn.execute('SELECT * FROM posts WHERE id = ?',
@@ -33,7 +33,7 @@ def get_post(post_id):
 
 @app.route('/question/<int:post_id>')
 def post(post_id):
-    post = get_post(post_id)
+    post = getQuestion(post_id)
     return render_template('single_question.html', post=post)
 
 #this is for all the creation of the questions
@@ -72,7 +72,7 @@ def create():
 
 @app.route('/question/<int:id>/edit', methods=('GET', 'POST'))
 def edit(id):
-    post = get_post(id)
+    post = getQuestion(id)
 
     if request.method == 'POST':
         question = request.form['question']
@@ -91,3 +91,14 @@ def edit(id):
             return redirect(url_for('index'))
 
     return render_template('editQuestion.html', post=post)
+
+@app.route('/question/<int:id>/delete', methods=('POST',))
+def delete(id):
+    post = getQuestion(id)
+    conn = sqlite3.connect("SQL/questionDatabase.db")
+    conn.row_factory = sqlite3.Row
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted!'.format(post['title']))
+    return redirect(url_for('index'))
