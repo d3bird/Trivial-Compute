@@ -31,7 +31,7 @@ def get_post(post_id):
         abort(404)
     return post
 
-@app.route('/questions/<int:post_id>')
+@app.route('/question/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
     return render_template('single_question.html', post=post)
@@ -68,3 +68,26 @@ def create():
             return redirect(url_for('index'))
 
     return render_template('createQuestion.html')
+
+
+@app.route('/question/<int:id>/edit', methods=('GET', 'POST'))
+def edit(id):
+    post = get_post(id)
+
+    if request.method == 'POST':
+        question = request.form['question']
+        answer = request.form['answer']
+
+        if not question:
+            flash('question is required!')
+        else:
+            conn = sqlite3.connect("SQL/questionDatabase.db")
+            conn.row_factory = sqlite3.Row
+            conn.execute('UPDATE posts SET title = ?, content = ?'
+                         ' WHERE id = ?',
+                         (question, answer, id))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+    return render_template('editQuestion.html', post=post)
