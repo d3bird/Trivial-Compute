@@ -17,7 +17,12 @@ then
     port="5000"
 fi
 
+cd backEnd/SQL
+echo "creating the database"
+python -m init_db
+cd ../..
+
 echo "running the server on port : $port"
-cd backEnd/webServer
+cd backEnd/
 
 flask run -p $port
