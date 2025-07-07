@@ -22,9 +22,13 @@ def index():
     #this should be the lobby page
     return render_template('index.html')
 
-#@app.route('/about')
-#def about():
-#    return render_template('about.html')
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/howToPlay')
+def howToPlay():
+    return render_template('howToPlay.html')
 
 def getQuestion(post_id):
     conn = sqlite3.connect("SQL/questionDatabase.db")
@@ -45,7 +49,7 @@ def post(post_id):
 
 #the questions home page
 @app.route('/questions')
-def about():
+def questions():
 
     conn = sqlite3.connect("SQL/questionDatabase.db")
     conn.row_factory = sqlite3.Row
