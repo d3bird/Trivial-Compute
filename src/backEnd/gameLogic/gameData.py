@@ -1,21 +1,30 @@
 import random
 
-def createNewGame():
+def createNewGame(gameID, numPlayers =4 ):
     output = {}
-    players = {}
-    players['player1'] = createPlayer()
-    players['player2'] = createPlayer()
-    players['player3'] = createPlayer()
-    players['player4'] = createPlayer()
-
+    output['name'] = gameID
+    output['gameID'] = gameID
+    output['players'] = {}
     output['turnOrder'] = []
-    output['turnOrder'].append("player1")
-    output['turnOrder'].append("player2")
-    output['turnOrder'].append("player3")
-    output['turnOrder'].append("player4")
+
+    if numPlayers < 1:
+        numPlayers = 4
+
+    output['maxPlayers'] = numPlayers
+    output['connectedPlayers'] = 0
+    output['status'] = "pre-game"
+
+    counter = 0 
+    while counter < numPlayers:
+        playerID = "player" + str(counter)
+        output['players'][str(playerID)] = createPlayer()
+        output['turnOrder'].append(playerID)
+        counter +=1
     
     #random the turn order
     output['turnOrder'] = random.shuffle(output['turnOrder'])
+
+    output['started'] = False
 
     return output
 

@@ -7,8 +7,11 @@ from flask import redirect
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 import os
-import SQL.commonSQLfunctions
 import sqlite3
+
+from  gameLogic.gameManager import gameMaster
+
+gameMaster = gameMaster(10)
 
 UPLOAD_FOLDER = './uploadedFiles'
 ALLOWED_EXTENSIONS = {'txt', 'json', 'csv'}
@@ -17,11 +20,39 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'exampleSecretKey'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+#----------------------joining a game--------------------------------------------
 @app.route('/')
 def index():
-    #this should be the lobby page
-    return render_template('index.html')
 
+    #generate the inforamtion for the table headers
+    headers = ("name" ,"players", "max player", "status")
+    
+    #get the inforamtion from teh games
+    data = []
+    for game in gameMaster.get_game_list():
+        
+        name = str(game['name'])
+        connectedPlayers = str(game['connectedPlayers'])
+        maxPlayers = str(game['maxPlayers'])
+        status = "in lobby"
+        if game['started']:
+            status ="started"
+        gameData = [name, connectedPlayers, maxPlayers, status]
+        data.append(gameData)
+    
+    #to get the table to display correctly, needed to use the tuple data type
+    #there is probably better ways to do this but this will work for now
+    data = tuple(tuple(item) for item in data)
+    
+    return render_template('index.html', headers=headers, data=data )
+
+
+@app.route('/gameLobby/<int:id>/', methods=('GET', 'POST'))
+def join(gameID):
+
+    return render_template('gameLobby.html')
+
+#-----------------------misc pages----------------------------------------
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -29,6 +60,8 @@ def about():
 @app.route('/howToPlay')
 def howToPlay():
     return render_template('howToPlay.html')
+
+#--------------------------modifying questions----------------------------
 
 def getQuestion(post_id):
     conn = sqlite3.connect("SQL/questionDatabase.db")

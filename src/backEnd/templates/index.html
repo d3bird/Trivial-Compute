@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
-    <h1>{% block title %} Welcome to trivial-compute {% endblock %}</h1>
+  <table class="lobbyTable">
+    <tr class="lobbyTableHeader">
+      {% for header in headers %}
+      <th class="lobbyTableCell">{{ header }}</th>
+      {% endfor %}
+    </tr >
+    {% for row in data %}
+    <tr class="lobbyTableRow">
+      {% for cell in row %}
+      <th class="lobbyTableCell">{{ cell }}</th>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
+
