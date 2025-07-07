@@ -10,11 +10,18 @@ source .env/bin/activate
 export FLASK_APP=webServer
 export FLASK_ENV=development
 
-port=$1
+hostIP=$1
+port=$2
 
 if [ "$port" == "" ];
 then
     port="5000"
+fi
+
+#listening on quad 0s currently
+if [ "$hostIP" == "" ];
+then
+    hostIP="0.0.0.0"
 fi
 
 cd backEnd/SQL
@@ -25,4 +32,4 @@ cd ../..
 echo "running the server on port : $port"
 cd backEnd/
 
-flask run -p $port
+flask run -p $port -h $hostIP
