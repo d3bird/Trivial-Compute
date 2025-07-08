@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import random
 
 class questionDB:
     def __init__(self, location = "app/SQL/schema"):
@@ -68,10 +69,20 @@ class questionDB:
     def getAllQuestions(self):
         conn = sqlite3.connect(self.DBName)
         conn.row_factory = sqlite3.Row
-        posts = conn.execute('SELECT * FROM posts').fetchall()
+        questions = conn.execute('SELECT * FROM posts').fetchall()
         conn.close()
-        return posts
+        return questions
     
+    def getRandomQuestion(self):
+        conn = sqlite3.connect(self.DBName)
+        conn.row_factory = sqlite3.Row
+        questions = conn.execute('SELECT * FROM posts').fetchall()
+        conn.close()
+        start = 0
+        end = len(questions) -1
+        index = random.randint(start, end)
+        return questions[index]
+
     def createQuestion(self, question, answer):
         conn = sqlite3.connect(self.DBName)
         conn.row_factory = sqlite3.Row

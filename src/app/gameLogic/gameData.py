@@ -16,7 +16,9 @@ def createNewGame(gameID, numPlayers =4 ):
     output['maxPlayers'] = numPlayers
     output['connectedPlayers'] = 0
     output['status'] = "pre-game"
-
+    
+    output['need_newQuestion'] = False
+    
     counter = 0 
     while counter < numPlayers:
         playerID = "player" + str(counter)

@@ -10,6 +10,14 @@
       type="text/css"
     />
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
+
+<script>
+
+    function doFunction(name) {
+      const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send("new");
+    }
+
+</script>
 {% endblock %}
 
 
@@ -34,9 +42,10 @@
     {% endfor %}
   </table>
 
-  <div><p>question: <b class =quest>"None" </b> </p></div>
-  <div><p>answer 1: <b class =answ1>"None" </b> </p></div>
-  <div><p>answer 2: <b class =answ2>"None" </b> </p></div>
-  <div><p>answer 3: <b class =answ3>"None" </b> </p></div>
-
+  <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />
+  <div><p>question: <b id =quest>"None" </b> </p></div>
+  <div><p>answer 1: <b id =answ1>"None" </b> </p></div>
+  <div><p>answer 2: <b id =answ2>"None" </b> </p></div>
+  <div><p>answer 3: <b id =answ3>"None" </b> </p></div>
+  
 {% endblock %}

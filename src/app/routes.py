@@ -42,6 +42,15 @@ def echo(sock):
         data = sock.receive()
         sock.send(data)
 
+@sock.route('/requestNewQuestion')
+def requestNewQuestion(sock):
+    gameId = 0
+    print("getting new question, and sending it ")
+    allGames.getGameInfo(gameId)['need_newQuestion'] = True
+    while True:
+        data = sock.receive()
+        sock.send(data)
+
 #-------------------------------these are the functions for the constant comunication---------------------
 """
 Get current date time
@@ -68,7 +77,7 @@ def game_background_thread():
     gameId = 0
     while True:
         player_data = allGames.getGameInfo(gameId)['players']
-        need_new_question = False
+        need_new_question = allGames.getGameInfo(gameId)['need_newQuestion']
         print("sending player data")
         for player_key in player_data.keys():
             player = player_data[player_key]
@@ -81,13 +90,17 @@ def game_background_thread():
             socketio.emit('updatePlayerData', {'row_num': row_num, "username": username, "sql_id": sql_id,"right": right,"wrong": wrong})
 
         if need_new_question:
+            questionData = QuestionDB.getRandomQuestion()
+            answers =  str(questionData['content']).split(',')
+            print(str(questionData['content']))
             print("THEY NEED A NEW QUESTION")
-            question = "newQuestion?"
-            answer1 = "answer1?"
-            answer2 = "answer2?"
-            answer3 = "answer3?"
+            question = questionData['title']
+            #only doing the first 3 answers to show that the system is working
+            answer1 = answers[1]
+            answer2 = answers[2]
+            answer3 = answers[3]
             socketio.emit('newQuestion', {'question': question, "answer1": answer1, "answer2": answer2, "answer3": answer3})
-            need_new_question = False
+            allGames.getGameInfo(gameId)['need_newQuestion'] = False
 
 
         socketio.sleep(1)

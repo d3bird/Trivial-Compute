@@ -33,6 +33,10 @@
   socket.on("newQuestion", function (msg) {
     console.log("Received new question :: " + msg.question + " :: " + msg.answer1+ " :: " + msg.answer2+ " :: " + msg.answer3);
     
+    document.getElementById("quest").innerHTML = msg.question;
+    document.getElementById("answ1").innerHTML = msg.answer1;
+    document.getElementById("answ2").innerHTML = msg.answer2;
+    document.getElementById("answ3").innerHTML = msg.answer3;
 
   });
 });
