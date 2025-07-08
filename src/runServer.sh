@@ -27,4 +27,4 @@ echo "running the server on port : $port"
 #cd backEnd/
 #cd frontEnd/
 
-flask run -p $port
+flask run --host=0.0.0.0 -p $port
