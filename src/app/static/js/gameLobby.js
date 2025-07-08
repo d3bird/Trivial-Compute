@@ -11,6 +11,20 @@
   socket.on("updatePlayerData", function (msg) {
     console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
 
+    if (msg.row_num == "none") {
+        console.log("can not not update if row is none");
+        return;
+    }
+    let row = msg.row_num [msg.row_num .length - 1];
+
+    document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
+    document.getElementById("playersTable").rows[row].cells[1].innerHTML = msg.sql_id;
+    document.getElementById("playersTable").rows[row].cells[2].innerHTML = row;
+    document.getElementById("playersTable").rows[row].cells[3].innerHTML = msg.wrong;
+    document.getElementById("playersTable").rows[row].cells[4].innerHTML = msg.right;
+
+    //Received playyer Data :: none :: guest :: 0 :: 0
+    //Received playyer Data :: player3 :: zxc :: 0 :: 0
   });
   
   //recive a new question from the server
