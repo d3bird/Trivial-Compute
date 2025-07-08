@@ -13,7 +13,6 @@ class questionDB:
         print("creating new question DB")
         connection = sqlite3.connect(self.DBName)
 
-        print(str(os.getcwd()))
 
         schemaDir = self.location
 
@@ -44,6 +43,8 @@ class questionDB:
 
         connection.commit()
         connection.close()
+
+
 
     def getNameofDataBase(self):
         return self.DBName

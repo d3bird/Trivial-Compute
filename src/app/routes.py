@@ -445,9 +445,13 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            #chck to makesure teh output dir exists
+            if os.path.isdir(app.config['UPLOAD_FOLDER']) == False:
+                os.mkdir(app.config['UPLOAD_FOLDER'])
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('download_file', name=filename))
+            #return redirect(url_for('download_file', name=filename))
+            return redirect(url_for('questions'))
     return '''
     <!doctype html>
     <title>Upload new File</title>
