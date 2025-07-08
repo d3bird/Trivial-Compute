@@ -1,5 +1,46 @@
 {% extends 'base.html' %}
 
+{% block title %}How to Play Trivial Pursuit{% endblock %}
+
 {% block content %}
-    <h1>{% block title %} how to play{% endblock %}</h1>
+  <h1>How to Play Trivial Pursuit</h1>
+  <p><strong>Trivial Pursuit</strong> is a trivia game where players compete to answer questions and collect wedges in six different categories.</p>
+
+  <h2>Objective</h2>
+  <p>Be the first to collect all six category wedges and correctly answer a final question in the center of the board.</p>
+
+  <h2>Setup</h2>
+  <ul>
+    <li>Each player selects a piece and places it in the center of the board.</li>
+    <li>Shuffle the question cards and place them nearby.</li>
+    <li>Decide who goes first.</li>
+  </ul>
+
+  <h2>Categories</h2>
+  <ul>
+    <li><strong>Blue:</strong> Geography</li>
+    <li><strong>Pink:</strong> Entertainment</li>
+    <li><strong>Yellow:</strong> History</li>
+    <li><strong>Purple:</strong> Arts & Literature</li>
+    <li><strong>Green:</strong> Science & Nature</li>
+    <li><strong>Orange:</strong> Sports & Leisure</li>
+  </ul>
+
+  <h2>Taking a Turn</h2>
+  <ul>
+    <li>Roll the die and move that number of spaces in any direction.</li>
+    <li>Answer a question based on the color space you land on.</li>
+    <li>If correct, you get to roll again; if not, your turn ends.</li>
+    <li>If you land on a wedge space and answer correctly, you earn the wedge for that category.</li>
+  </ul>
+
+  <h2>Winning the Game</h2>
+  <ul>
+    <li>Once you have all six wedges, move back to the center hub.</li>
+    <li>You must land on the hub by exact roll.</li>
+    <li>Other players select the final question category.</li>
+    <li>If you answer correctly, you win!</li>
+  </ul>
+
+  <p><em>House rules may vary — some allow any roll into the center, or let you keep trying the final question until you succeed.</em></p>
 {% endblock %}
