@@ -51,6 +51,35 @@ def requestNewQuestion(sock):
         data = sock.receive()
         sock.send(data)
 
+
+#this needs to be a better solution than to have one for every question type
+@sock.route('/selectAnswer1')
+def selectAnswer1(sock):
+    gameId = 0
+    print("selecting answer1")
+    #allGames.getGameInfo(gameId)['need_newQuestion'] = True
+    while True:
+        data = sock.receive()
+        sock.send(data)
+
+@sock.route('/selectAnswer2')
+def selectAnswer2(sock):
+    gameId = 0
+    print("selecting answer2")
+    #allGames.getGameInfo(gameId)['need_newQuestion'] = True
+    while True:
+        data = sock.receive()
+        sock.send(data)
+
+@sock.route('/selectAnswer3')
+def selectAnswer3(sock):
+    gameId = 0
+    print("selecting answer3")
+    #allGames.getGameInfo(gameId)['need_newQuestion'] = True
+    while True:
+        data = sock.receive()
+        sock.send(data)
+
 #-------------------------------these are the functions for the constant comunication---------------------
 """
 Get current date time

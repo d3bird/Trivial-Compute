@@ -44,8 +44,18 @@
 
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />
   <div><p>question: <b id =quest>"None" </b> </p></div>
-  <div><p>answer 1: <b id =answ1>"None" </b> </p></div>
-  <div><p>answer 2: <b id =answ2>"None" </b> </p></div>
-  <div><p>answer 3: <b id =answ3>"None" </b> </p></div>
+  
+  <div>
+    <p>answer 1:</p>
+    <input id="answ1" type="button" value="" onclick="const socketAnsw1 = new WebSocket('ws://' + location.host + '/selectAnswer1');socketAnsw1.send(12);" />
+  </div>
+  <div>
+    <p>answer 2: </p>
+    <input id="answ2" type="button" value="" onclick="const socketAnsw2 = new WebSocket('ws://' + location.host + '/selectAnswer2');socketAnsw2.send(12);"/>
+  </div>
+  <div>
+    <p>answer 3: </p>
+    <input id="answ3" type="button" value="" onclick="const socketAnsw3 = new WebSocket('ws://' + location.host + '/selectAnswer3');socketAnsw3.send(12);"/>
+  </div>
   
 {% endblock %}
