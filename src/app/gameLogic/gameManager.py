@@ -34,6 +34,23 @@ class gameMaster:
     def reset_game(self, game_ID):
         self.games[str(game_ID)] = gameData.createNewGame()
 
+    def increasePlayerRight(self, gameID, playerData ):
+        player_data = self.getGameInfo(gameID)['players']
+        for player_key in player_data.keys():
+            player = player_data[player_key]
+            if str(player['name']) == str(playerData['name']):
+                print("setting user answer wrong")
+                self.getGameInfo(gameID)['players'][player_key]['questionGottenRight'] +=1
+
+    def increasePlayerWrong(self, gameID, playerData ):
+        player_data = self.getGameInfo(gameID)['players']
+        for player_key in player_data.keys():
+            player = player_data[player_key]
+            if str(player['name']) == str(playerData['name']):
+                print("setting user answer wrong")
+                self.getGameInfo(gameID)['players'][player_key]['questionGottenWrong'] +=1
+
+
     def playerJoinGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
 
@@ -64,3 +81,5 @@ class gameMaster:
                 if self.games[str(gameID)]['players'][player_key]['name'] == playerData['name']:
                     print("removing player from game")
                     self.games[str(gameID)]['players'][player_key] = gameData.createPlayer()
+
+    

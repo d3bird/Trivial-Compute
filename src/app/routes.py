@@ -56,7 +56,12 @@ def requestNewQuestion(sock):
 @sock.route('/selectAnswer1')
 def selectAnswer1(sock):
     gameId = 0
-    print("selecting answer1")
+    print("selecting answer1 (right)")
+
+    
+    current_player_data = create_current_player_data()
+    allGames.increasePlayerRight(gameId, current_player_data)
+
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
     while True:
         data = sock.receive()
@@ -65,7 +70,9 @@ def selectAnswer1(sock):
 @sock.route('/selectAnswer2')
 def selectAnswer2(sock):
     gameId = 0
-    print("selecting answer2")
+    print("selecting answer2 (wrong)")
+    current_player_data = create_current_player_data()
+    allGames.increasePlayerWrong(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
     while True:
         data = sock.receive()
@@ -74,7 +81,9 @@ def selectAnswer2(sock):
 @sock.route('/selectAnswer3')
 def selectAnswer3(sock):
     gameId = 0
-    print("selecting answer3")
+    print("selecting answer3 (wrong)")
+    current_player_data = create_current_player_data()
+    allGames.increasePlayerWrong(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
     while True:
         data = sock.receive()
