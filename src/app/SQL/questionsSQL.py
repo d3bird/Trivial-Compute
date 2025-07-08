@@ -20,14 +20,26 @@ class questionDB:
             connection.executescript(f.read())
 
         cur = connection.cursor()
+        
+        inputQuestionCsv = "../questionSets/basicquestions.csv"
+        with open(inputQuestionCsv, 'r') as file:
+            skipFirstLine = True
+            for line in file:
+                if skipFirstLine:
+                    skipFirstLine = False
+                else:
+                    rowData = line.split(',')
+                    questionString = rowData[2]
+                    answers = "catagory=" +rowData[1] 
+                    for elm in rowData[3:]:
+                        answers += ("," + elm)
+                    cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+                                (questionString, answers)
+                                )
 
-        cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-                    ('First Post', 'Content for the first post')
-                    )
-
-        cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-                    ('Second Post', 'Content for the second post')
-                    )
+                    #cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+                    #            ('Second Post', 'Content for the second post')
+                    #            )
 
         connection.commit()
         connection.close()
