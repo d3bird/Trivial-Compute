@@ -1,4 +1,4 @@
-import gameLogic.gameData as gameData
+import app.gameLogic.gameData as gameData
 
 class gameMaster:
     def __init__(self, numOfServers):

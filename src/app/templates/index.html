@@ -1,9 +1,14 @@
-{% extends 'base.html' %}
-
-
+{% extends "base.html" %}
 
 {% block content %}
-  <table class="lobbyTable">
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <div><p>you have played {{ game_count }} games </p></div>
+    <div><p>you have won {{ gamesWon_count }} games </p></div>
+    <div><p>you have gotten  {{ wrongAnswer_count }} questions wrong </p></div>
+    <div><p>you have gotten  {{ rightAnswer_count }} questions right </p></div>
+    <div><p>please join any of the open server games </p></div>
+    
+    <table class="lobbyTable">
     <tr class="lobbyTableHeader">
       {% for header in headers %}
       <th class="lobbyTableCell">{{ header }}</th>
@@ -21,8 +26,7 @@
         </form>
       </th>
     </tr>
-    
     {% endfor %}
   </table>
-{% endblock %}
 
+{% endblock %}

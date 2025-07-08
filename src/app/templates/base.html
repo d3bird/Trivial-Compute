@@ -19,12 +19,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+            {% if current_user.is_anonymous %}  
+            {% else %}
             <li class="nav-item active">
                 <a class="nav-link" href="/questions">questions</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/create">New question</a>
             </li>
+             {% endif %}
             <li class="nav-item active">
                 <a class="nav-link" href="/howToPlay">how to play</a>
             </li>
@@ -32,6 +35,14 @@
                 <a class="nav-link" href="/about">About</a>
             </li>
             </ul>
+        </div>
+        <div>
+            account:
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </div>
     </nav>
     <div class="container">
