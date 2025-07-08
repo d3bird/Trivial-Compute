@@ -45,9 +45,22 @@ class gameMaster:
         if openSpot == None:
             print("there are no open spots in this game, rejecting join")
             return False
+        
         playerData['playerID'] = openSpot
         self.games[str(gameID)]['players'][openSpot] = playerData
         return True
-    
-    def playerLeaveGame(self, playerID, gameID):
-        print("player : " + str(playerID) + " is leaving game " + str(gameID))
+
+    def discounectPlayerFromEveryGame(self, playerData):
+        print("disconnecting player from all games")
+        for key in self.games.keys():
+            self.playerLeaveGame(playerData, key)
+
+
+    def playerLeaveGame(self, playerData, gameID):
+        print("player : " + str(playerData['name']) + " is leaving game " + str(gameID))
+        for player_key in self.games[str(gameID)]['players'].keys():
+            if self.games[str(gameID)]['players'][player_key]['valid']:
+                print("current player names : " + str(self.games[str(gameID)]['players'][player_key]['name']))
+                if self.games[str(gameID)]['players'][player_key]['name'] == playerData['name']:
+                    print("removing player from game")
+                    self.games[str(gameID)]['players'][player_key] = gameData.createPlayer()

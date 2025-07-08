@@ -24,7 +24,12 @@ from app.forms import LoginForm
 thread = None
 thread_lock = Lock()
 
-
+def create_current_player_data():
+    output =gameData.createPlayer()
+    output['name'] = current_user.username
+    output['SQL_ID'] = current_user.id
+    output['valid'] = True
+    return output
 
 #-----------this is an example of an one time comunication between the sever and the client-------------
 @app.route('/echoPage')
@@ -113,6 +118,8 @@ Decorator for disconnect
 @socketio.on('disconnect')
 def disconnect():
     print('Client disconnected',  request.sid)
+    current_player_data = create_current_player_data()
+    allGames.discounectPlayerFromEveryGame(current_player_data)
 
 #---------------------------------------------------------------------------------------------------------------
 
@@ -206,12 +213,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-def create_current_player_data():
-    output =gameData.createPlayer()
-    output['name'] = current_user.username
-    output['SQL_ID'] = current_user.id
-    output['valid'] = True
-    return output
+
 
 @app.route('/gameLobby/<int:id>/', methods=('GET', 'POST'))
 def join(id):
@@ -340,7 +342,7 @@ def delete(id):
     #conn.execute('DELETE FROM posts WHERE id = ?', (id,))
     #conn.commit()
     #conn.close()
-    flash('"{}" was successfully deleted!'.format(post['title']))
+    #flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index'))
 
 
