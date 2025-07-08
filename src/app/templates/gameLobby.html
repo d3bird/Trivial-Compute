@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>welcome {{ current_user.username }} to gameID!</h1>
+    <div><p>gameID :  {{ game_count }} games </p></div>
+
+    <div><p>current players in lobby : </p></div>
+    
+    <table class="lobbyTable">
+    <tr class="lobbyTableHeader">
+      {% for header in headers %}
+      <th class="lobbyTableCell">{{ header }}</th>
+      {% endfor %}
+    </tr >
+    {% for row in data %}
+    <tr class="lobbyTableRow">
+      {% for cell in row %}
+      <th class="lobbyTableCell">{{ cell }}</th>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{% endblock %}

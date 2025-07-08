@@ -8,6 +8,7 @@ from flask_login import login_required
 from flask import request
 from urllib.parse import urlsplit
 from werkzeug.utils import secure_filename
+from werkzeug.exceptions import abort
 
 import os
 from app import app
@@ -106,9 +107,38 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @app.route('/gameLobby/<int:id>/', methods=('GET', 'POST'))
-def join(gameID):
+def join(id):
+    gameInfo = allGames.getGameInfo(id)
 
-    return render_template('gameLobby.html')
+    if gameInfo == None:
+        print("tried to join a game that did not exist")
+        abort(404)
+    
+    allGames.playerJoinGame(current_user.id, id)
+    gameInfo = allGames.getGameInfo(id)
+    #generate the inforamtion for the table headers
+    headers = ("username" ,"player ID", "player number")
+    
+    #get the inforamtion from the games
+    data = []
+    counter = 0
+    for player_key in gameInfo['players'].keys():
+        player = gameInfo['players'][player_key]
+        username = "empty_spot"
+        ID = "-1"
+
+        if player['valid']:
+            username = str(player['name'])
+            ID = str(player['SQL_ID'])
+        gameData = [username, ID, counter]
+        counter += 1
+        data.append(gameData)
+    
+    #to get the table to display correctly, needed to use the tuple data type
+    #there is probably better ways to do this but this will work for now
+    data = tuple(tuple(item) for item in data)
+    print(str(data))
+    return render_template('gameLobby.html', headers=headers, data=data)
 
 #-----------------------misc pages----------------------------------------
 @app.route('/about')
@@ -121,15 +151,6 @@ def howToPlay():
 
 #--------------------------modifying questions----------------------------
 
-#def getQuestion(post_id):
-#    conn = sqlite3.connect("SQL/questionDatabase.db")
-#    conn.row_factory = sqlite3.Row
-#    post = conn.execute('SELECT * FROM posts WHERE id = ?',
-#                        (post_id,)).fetchone()
-#    conn.close()
-#    if post is None:
-#        abort(404)
-#    return post
 
 @app.route('/question/<int:post_id>')
 def post(post_id):
@@ -172,7 +193,6 @@ def create():
             return redirect(url_for('questions'))
 
     return render_template('createQuestion.html')
-
 
 @app.route('/question/<int:id>/edit', methods=('GET', 'POST'))
 def edit(id):
