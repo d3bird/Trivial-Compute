@@ -9,6 +9,7 @@ from flask import request
 from urllib.parse import urlsplit
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import abort
+import app.gameLogic.gameData as gameData
 
 import os
 from app import app
@@ -106,6 +107,13 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+def create_current_player_data():
+    output =gameData.createPlayer()
+    output['name'] = current_user.username
+    output['SQL_ID'] = current_user.id
+    output['valid'] = True
+    return output
+
 @app.route('/gameLobby/<int:id>/', methods=('GET', 'POST'))
 def join(id):
     gameInfo = allGames.getGameInfo(id)
@@ -113,8 +121,11 @@ def join(id):
     if gameInfo == None:
         print("tried to join a game that did not exist")
         abort(404)
-    
-    allGames.playerJoinGame(current_user.id, id)
+    current_player_data = create_current_player_data()
+    joinWork = allGames.playerJoinGame(current_player_data, id)
+    if joinWork == False:
+        return redirect(url_for('index'))
+
     gameInfo = allGames.getGameInfo(id)
     #generate the inforamtion for the table headers
     headers = ("username" ,"player ID", "player number")

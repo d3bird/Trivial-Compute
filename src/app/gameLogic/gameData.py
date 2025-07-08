@@ -1,5 +1,6 @@
 import random
 
+
 def createNewGame(gameID, numPlayers =4 ):
     output = {}
     output['name'] = gameID
@@ -17,7 +18,7 @@ def createNewGame(gameID, numPlayers =4 ):
     counter = 0 
     while counter < numPlayers:
         playerID = "player" + str(counter)
-        output['players'][str(playerID)] = createPlayer()
+        output['players'][str(playerID)] = createPlayer(playerID)
         output['turnOrder'].append(playerID)
         counter +=1
     
@@ -29,13 +30,15 @@ def createNewGame(gameID, numPlayers =4 ):
     return output
 
 
-def createPlayer():
+def createPlayer( SQLID = None):
     output = {}
     output['valid'] = False
     output['name'] = "guest"
     output['color'] = "grey"
+    output['playerID'] = "none"
     output['SQL_ID'] = -1
     output['questionGottenRight'] = 0
     output['questionGottenWrong'] = 0
+
 
     return output

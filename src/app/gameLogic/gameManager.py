@@ -33,9 +33,20 @@ class gameMaster:
     def reset_game(self, game_ID):
         self.games[str(game_ID)] = gameData.createNewGame()
 
-    def playerJoinGame(self, playerID, gameID):
-        print("player : " + str(playerID) + " is joining game " + str(gameID))
+    def playerJoinGame(self, playerData, gameID):
+        print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
 
+        openSpot = None
+        for player_key in self.games[str(gameID)]['players'].keys():
+            if self.games[str(gameID)]['players'][player_key]['valid'] == False:
+                openSpot = player_key
+        
+        if openSpot == None:
+            print("there are no open spots in this game, rejecting join")
+            return False
+        playerData['playerID'] = openSpot
+        self.games[str(gameID)]['players'][openSpot] = playerData
+        return True
     
     def playerLeaveGame(self, playerID, gameID):
         print("player : " + str(playerID) + " is leaving game " + str(gameID))
