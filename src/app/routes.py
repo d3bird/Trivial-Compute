@@ -10,12 +10,29 @@ from urllib.parse import urlsplit
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import abort
 import app.gameLogic.gameData as gameData
+from flask_sock import Sock
 
 import os
-from app import app
+from app import app, sock
 from app import allGames,  UPLOAD_FOLDER, ALLOWED_EXTENSIONS, QuestionDB
 
 from app.forms import LoginForm
+
+
+#-----------this is an example of an one time comunication between the sever and the client-------------
+@app.route('/echoPage')
+def echopage():
+    return render_template('echo.html')
+
+@sock.route('/echo')
+def echo(sock):
+    while True:
+        data = sock.receive()
+        sock.send(data)
+#-------------------------------these are teh functions for the constant comunication---------------------
+
+
+
 
 @app.route('/')
 @app.route('/index')

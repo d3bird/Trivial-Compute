@@ -10,6 +10,7 @@ class gameMaster:
         counter = 0
         while counter < numOfServers:
             self.games[str(counter)] = gameData.createNewGame(counter, self.lobbySize )
+            self.games[str(counter)]['logicObject'].startThread()
             counter +=1
 
     def get_game_list(self):

@@ -1,10 +1,12 @@
 import random
+import app.gameLogic.gameLogic as gameLogic
 
 
 def createNewGame(gameID, numPlayers =4 ):
     output = {}
     output['name'] = gameID
     output['gameID'] = gameID
+    output['logicObject'] = gameLogic.gameLogic(gameID)
     output['players'] = {}
     output['turnOrder'] = []
 

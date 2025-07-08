@@ -6,3 +6,5 @@ pip3 install flask-login
 pip3 install flask_sqlalchemy
 pip3 install flask-wtf
 pip3 install flask_migrate
+pip3 install flask_socketio
+pip3 install flask-sock
