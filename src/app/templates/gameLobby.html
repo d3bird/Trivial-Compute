@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 
+{% block moreScripts %} 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <link
+      href="//mincss.com/entireframework.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
+{% endblock %}
+
+
 {% block content %}
     <h1>welcome {{ current_user.username }} to gameID!</h1>
     <div><p>gameID :  {{ game_count }} games </p></div>
@@ -21,5 +34,9 @@
     {% endfor %}
   </table>
 
+  <div><p>question: <b class =quest>"None" </b> </p></div>
+  <div><p>answer 1: <b class =answ1>"None" </b> </p></div>
+  <div><p>answer 2: <b class =answ2>"None" </b> </p></div>
+  <div><p>answer 3: <b class =answ3>"None" </b> </p></div>
 
 {% endblock %}

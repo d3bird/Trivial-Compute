@@ -11,12 +11,19 @@ from werkzeug.utils import secure_filename
 from werkzeug.exceptions import abort
 import app.gameLogic.gameData as gameData
 from flask_sock import Sock
-
+from flask_socketio import SocketIO, emit
+import random 
+from datetime import datetime
+from threading import Lock
 import os
-from app import app, sock
+from app import app, sock, socketio
 from app import allGames,  UPLOAD_FOLDER, ALLOWED_EXTENSIONS, QuestionDB
 
 from app.forms import LoginForm
+
+thread = None
+thread_lock = Lock()
+
 
 
 #-----------this is an example of an one time comunication between the sever and the client-------------
@@ -29,10 +36,85 @@ def echo(sock):
     while True:
         data = sock.receive()
         sock.send(data)
-#-------------------------------these are teh functions for the constant comunication---------------------
+
+#-------------------------------these are the functions for the constant comunication---------------------
+"""
+Get current date time
+"""
+def get_current_datetime():
+    now = datetime.now()
+    return now.strftime("%m/%d/%Y %H:%M:%S")
+
+"""
+Generate random sequence of dummy sensor values and send it to our clients
+"""
+def background_thread():
+    print("starting background thread to update clients when someone has joined")
+    while True:
+        dummy_sensor_value = round(random.random() * 100, 3)
+        socketio.emit('updateSensorData', {'value': dummy_sensor_value, "date": get_current_datetime()})
+
+        
+
+        socketio.sleep(1)
+
+def game_background_thread():
+    print("starting background thread to update clients when someone has joined")
+    gameId = 0
+    while True:
+        player_data = allGames.getGameInfo(gameId)['players']
+        need_new_question = False
+        print("sending player data")
+        for player_key in player_data.keys():
+            player = player_data[player_key]
+            row_num = player['playerID']
+            username = player['name']
+            sql_id = player['SQL_ID']
+            right = player['questionGottenRight']
+            wrong = player['questionGottenWrong']
+
+            socketio.emit('updatePlayerData', {'row_num': row_num, "username": username, "sql_id": sql_id,"right": right,"wrong": wrong})
+
+        if need_new_question:
+            print("THEY NEED A NEW QUESTION")
+            question = "newQuestion?"
+            answer1 = "answer1?"
+            answer2 = "answer2?"
+            answer3 = "answer3?"
+            socketio.emit('newQuestion', {'question': question, "answer1": answer1, "answer2": answer2, "answer3": answer3})
+            need_new_question = False
 
 
+        socketio.sleep(1)
 
+"""
+Serve root index file
+"""
+@app.route('/constRandom')
+def constRandom():
+    return render_template('constRandom.html')
+
+"""
+Decorator for connect
+"""
+@socketio.on('connect')
+def connect():
+    global thread
+    print('Client connected')
+
+    global thread
+    with thread_lock:
+        if thread is None:
+            thread = socketio.start_background_task(game_background_thread)
+
+"""
+Decorator for disconnect
+"""
+@socketio.on('disconnect')
+def disconnect():
+    print('Client disconnected',  request.sid)
+
+#---------------------------------------------------------------------------------------------------------------
 
 @app.route('/')
 @app.route('/index')
@@ -145,7 +227,7 @@ def join(id):
 
     gameInfo = allGames.getGameInfo(id)
     #generate the inforamtion for the table headers
-    headers = ("username" ,"player ID", "player number")
+    headers = ("username" ,"player ID", "player number", "questions wrong", "questions right")
     
     #get the inforamtion from the games
     data = []
@@ -154,11 +236,14 @@ def join(id):
         player = gameInfo['players'][player_key]
         username = "empty_spot"
         ID = "-1"
-
+        questions_wrong = -1
+        questions_right = -1
         if player['valid']:
             username = str(player['name'])
             ID = str(player['SQL_ID'])
-        gameData = [username, ID, counter]
+            questions_wrong = str(player['questionGottenWrong'])
+            questions_right = str(player['questionGottenRight'])
+        gameData = [username, ID, counter, questions_wrong, questions_right]
         counter += 1
         data.append(gameData)
     
