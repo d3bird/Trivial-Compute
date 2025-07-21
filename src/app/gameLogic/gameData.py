@@ -27,7 +27,7 @@ def createNewGame(gameID, numPlayers =4 ):
         counter +=1
     
     #random the turn order
-    output['turnOrder'] = random.shuffle(output['turnOrder'])
+    # output['turnOrder'] = random.shuffle(output['turnOrder'])
 
     output['started'] = False
 
