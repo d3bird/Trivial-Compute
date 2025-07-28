@@ -42,6 +42,26 @@
     {% endfor %}
   </table>
 
+  <div><p>select what colors match to what catagory: </p></div>
+
+  <table class="catagoryTable" id="catagorySelection">
+    <tr class="catagoryTableHeader">
+      {% for header in catagory_headers %}
+      <th class="catagoryTableCell">{{ header }}</th>
+      {% endfor %}
+    </tr >
+    {% for row in catagory_data %}
+    <tr class="catagoryTableRow">
+      {% for cell in row %}
+      <th class="catagoryTableCell">{{ cell }}</th>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+
+  <input id="start_game" type="button" value="start game!" onclick=""/>
+
+
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />
   <div><p>question: <b id =quest>"None" </b> </p></div>
   
