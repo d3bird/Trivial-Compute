@@ -1,4 +1,5 @@
 import app.gameLogic.gameData as gameData
+from app.gameLogic.game import Game
 
 class gameMaster:
     def __init__(self, numOfServers):
@@ -27,6 +28,7 @@ class gameMaster:
 
     def start_game(self, game_ID):
         self.games[str(game_ID)]['started'] = True
+        self.games[str(game_ID)]['logicObject'].game = Game(players=self.games[str(game_ID)]['players'].keys())
     
     def end_game(self, game_ID):
         self.games[str(game_ID)]['started'] = False

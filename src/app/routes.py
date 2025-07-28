@@ -306,6 +306,36 @@ def join(id):
     print(str(data))
     return render_template('gameLobby.html', headers=headers, data=data)
 
+#-----------------------game logic----------------------------------------
+#TODO: implement frontend socket to handle clicking dice, picking square, and answering question
+
+@socketio.on('roll_die')
+def roll_die(id):
+    game = allGames.getGameInfo(id)['logicObject'].game
+    roll = random.randint(1, 6)
+    emit('dice_rolled', {'roll': roll})
+    emit('moves', game.moves(roll))
+
+@socketio.on('pick_square')
+def move(id, sq):
+    game = allGames.getGameInfo(id)['logicObject'].game
+    game.move_to(sq)
+    cat = sq.category
+    #TODO: implement categories
+    emit('question', QuestionDB.getRandomQuestion())
+
+@socketio.on('answer')
+def answer(id, is_correct):
+    game = allGames.getGameInfo(id)['logicObject'].game
+    if is_correct:
+        winner = game.update_correct()
+        #TODO: game end logic
+        if winner:
+            allGames.end_game(id)
+    else:
+        game.next_turn()
+
+
 #-----------------------misc pages----------------------------------------
 @app.route('/about')
 def about():
