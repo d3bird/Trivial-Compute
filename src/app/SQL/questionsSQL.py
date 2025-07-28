@@ -8,6 +8,24 @@ class questionDB:
         self.location = location
         if self.doesDBExist() == False:
             self.createNewDataBase()
+        self.imported_questions = None
+
+    #I am not the best with SQL so I am going to cheat a bit and load the question into local mem
+    #thi si sonly needed for the catagory questions
+    #I will fix this latter
+    def import_questions_to_local_mem(self):
+        if self.imported_questions == None:
+            self.imported_questions = {}
+            allQuestions = self.getAllQuestions()
+            for quest in allQuestions:
+                breakApeart = quest['content'].split(',')
+                catagory = breakApeart[1]
+                if catagory in self.imported_questions.keys() == False:
+                    self.imported_questions[catagory] = []
+                self.imported_questions[catagory].append(quest)
+
+        print("all question split into catagories : \n " + str(self.imported_questions))
+
 
     def createNewDataBase(self):
         print("creating new question DB")
@@ -43,8 +61,6 @@ class questionDB:
 
         connection.commit()
         connection.close()
-
-
 
     def getNameofDataBase(self):
         return self.DBName
@@ -83,6 +99,19 @@ class questionDB:
         end = len(questions) -1
         index = random.randint(start, end)
         return questions[index]
+
+    def getRandomQuestion(self, catagory):
+        if self.imported_questions == None:
+            self.import_questions_to_local_mem()
+
+        if catagory in self.imported_questions.keys() == False:
+            print("this catagory does not exist : " + str(catagory))
+            return None
+        else:
+            questionsList = self.imported_questions[catagory]
+            index = random.randint(0, len(questionsList))
+            return questionsList[index]
+    
 
     def createQuestion(self, question, answer):
         conn = sqlite3.connect(self.DBName)
