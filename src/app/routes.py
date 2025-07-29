@@ -58,7 +58,6 @@ def selectAnswer1(sock):
     gameId = 0
     print("selecting answer1 (right)")
 
-    
     current_player_data = create_current_player_data()
     allGames.increasePlayerRight(gameId, current_player_data)
 
@@ -104,6 +103,14 @@ def rollDice(sock):
         data = sock.receive()
         sock.send(data)
 
+@socketio.on('message')
+def movePlayer(data):
+    gameId = 0
+    print("moving player, dir:  " + str(data))
+    current_player_data = create_current_player_data()
+    #allGames.movePlayer(gameId, current_player_data, dir)
+    print("")
+
 #-------------------------------these are the functions for the constant comunication---------------------
 
 #handles the updating of the game from the game data
@@ -125,6 +132,13 @@ def game_background_thread():
             right = player['questionGottenRight']
             wrong = player['questionGottenWrong']
             
+            if player['sendUpdateLoc']:
+                print("Sending new location for player : " + str(row_num))
+                x =player['xloc']
+                y =player['yloc']
+                player['sendUpdateLoc'] = False
+                socketio.emit('updatePlayerloc', {'player_num': row_num, "X": x, "Y": y})
+
             if player['wedgesUpdate']:
                 yellow = player['wedgesWon']['yellow']
                 blue = player['wedgesWon']['blue']
@@ -251,7 +265,6 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -274,8 +287,6 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
-
-
 
 @app.route('/gameLobby/<int:id>/', methods=('GET', 'POST'))
 def join(id):
@@ -364,7 +375,7 @@ def answer(id, is_correct):
 
 @app.route('/game', methods=('GET', 'POST'))
 def gamePage():
-    print("player loaded game page")
+    print("player loaded game test page")
     return render_template('game.html')
 
 #-----------------------misc pages----------------------------------------

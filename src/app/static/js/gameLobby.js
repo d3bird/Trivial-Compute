@@ -24,8 +24,8 @@ blue_wedge_p1 = false;
 red_wedge_p1 = false; 
 green_wedge_p1 = false; 
 yellow_wedge_p1 = false; 
-let playerXLoc_p1 = 0;
-let playerYLoc_p1 = 0;
+let playerXLoc_p1 = 4;
+let playerYLoc_p1 = 4;
 let PlayerColor_p1 = purple
 
 playerName_p2="player 2"
@@ -33,8 +33,8 @@ blue_wedge_p2 = false;
 red_wedge_p2 = false; 
 green_wedge_p2 = false; 
 yellow_wedge_p2 = false; 
-let playerXLoc_p2 = 0;
-let playerYLoc_p2 = 0;
+let playerXLoc_p2 = 4;
+let playerYLoc_p2 = 4;
 let PlayerColor_p2 = pink
 
 playerName_p3="player 3"
@@ -42,8 +42,8 @@ blue_wedge_p3 = false;
 red_wedge_p3 = false; 
 green_wedge_p3 = false; 
 yellow_wedge_p3 = false; 
-let playerXLoc_p3 = 0;
-let playerYLoc_p3 = 0;
+let playerXLoc_p3 = 4;
+let playerYLoc_p3 = 4;
 let PlayerColor_p3 = light_red
 
 playerName_p4="player 4"
@@ -51,8 +51,8 @@ blue_wedge_p4 = false;
 red_wedge_p4 = false; 
 green_wedge_p4 = false; 
 yellow_wedge_p4 = false; 
-let playerXLoc_p4 = 0;
-let playerYLoc_p4 = 0;
+let playerXLoc_p4 = 4;
+let playerYLoc_p4 = 4;
 let PlayerColor_p4 = iron
 
 
@@ -101,6 +101,36 @@ let PlayerColor_p4 = iron
     //Received playyer Data :: player3 :: zxc :: 0 :: 0
   });
   
+  socket.on("updatePlayerloc", function (msg) {
+    //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
+
+    if (msg.player_num == "none") {
+       // console.log("can not not update if row is none");
+        return;
+    }
+
+    if (msg.player_num  == 1){
+      playerXLoc_p1 = msg.X;
+      playerYLoc_p1 = msg.Y;
+      refresh_board();
+    } else if (msg.player_num  == 2){
+      layerXLoc_p2 = msg.X;
+      playerYLoc_p2 = msg.Y;
+      refresh_board();
+    }else if (msg.player_num  == 3){
+      layerXLoc_p3 = msg.X;
+      playerYLoc_p3 = msg.Y;
+      refresh_board();
+    }else if (msg.player_num  == 4){
+      layerXLoc_p4 = msg.X;
+      playerYLoc_p4 = msg.Y;
+      refresh_board();
+    }
+
+    //Received playyer Data :: none :: guest :: 0 :: 0
+    //Received playyer Data :: player3 :: zxc :: 0 :: 0
+  });
+
   socket.on("updatePlayerwedges", function (msg) {
     console.log("recived wedge data");
     if (msg.player_num == 1){
@@ -157,7 +187,10 @@ function refresh_board(){
   draw_score_text(2);
   draw_score_text(3);
   draw_score_text(4);
-  drawPlayers();
+  drawPlayers(playerXLoc_p1, playerYLoc_p1, PlayerColor_p1);
+  drawPlayers(playerXLoc_p2, playerYLoc_p2, PlayerColor_p2);
+  drawPlayers(playerXLoc_p3, playerYLoc_p3, PlayerColor_p3);
+  drawPlayers(playerXLoc_p4, playerYLoc_p4, PlayerColor_p4);
 }
 
 function drawBoard() {
@@ -387,60 +420,166 @@ function movePlayer(username, direction){
 
   console.log("moving "+ username)
 
-  if (direction == 0 ){
-    console.log("north");
-    if (playerYLoc_p1 <= 0){
-      playerYLoc_p1 = 0;
-    }else{
-      playerYLoc_p1 -=1;
-    }
-  }else if (direction == 1 ){
-    console.log("west");
-    if (playerXLoc_p1 <= 0){
-      playerXLoc_p1 = 0;
-    }else{
-      playerXLoc_p1 -=1;
-    }
-  }else if (direction == 2 ){
-    console.log("east");
-    if (playerXLoc_p1 > 7){
-      playerXLoc_p1 = 8;
-    }else{
-      playerXLoc_p1+=1;
-    }
-  }else if (direction == 3 ){
-    console.log("south");
-    if (playerYLoc_p1 > 7){
-      playerYLoc_p1 = 8;
-    }else{
-      playerYLoc_p1+=1;
-    }
-  }
-  
-  console.log("x cord = " + playerXLoc_p1);
-  console.log("y cord = " + playerYLoc_p1);
+  xloc = -1
+  yloc = -1
 
-  
+  if (username  == 1) {
+    if (direction == 0 ){
+      console.log("north");
+      if (playerYLoc_p1 <= 0){
+        playerYLoc_p1 = 0;
+      }else{
+        playerYLoc_p1 -=1;
+      }
+    }else if (direction == 1 ){
+      console.log("west");
+      if (playerXLoc_p1 <= 0){
+        playerXLoc_p1 = 0;
+      }else{
+        playerXLoc_p1 -=1;
+      }
+    }else if (direction == 2 ){
+      console.log("east");
+      if (playerXLoc_p1 > 7){
+        playerXLoc_p1 = 8;
+      }else{
+        playerXLoc_p1+=1;
+      }
+    }else if (direction == 3 ){
+      console.log("south");
+      if (playerYLoc_p1 > 7){
+        playerYLoc_p1 = 8;
+      }else{
+        playerYLoc_p1+=1;
+      }
+    }
+    xloc = playerXLoc_p1
+    yloc = playerYLoc_p1
+  }else if (username == 2){
+    if (direction == 0 ){
+      console.log("north");
+      if (playerYLoc_p2 <= 0){
+        playerYLoc_p2 = 0;
+      }else{
+        playerYLoc_p2 -=1;
+      }
+    }else if (direction == 1 ){
+      console.log("west");
+      if (playerXLoc_p2 <= 0){
+        playerXLoc_p2 = 0;
+      }else{
+        playerXLoc_p2 -=1;
+      }
+    }else if (direction == 2 ){
+      console.log("east");
+      if (playerXLoc_p2 > 7){
+        playerXLoc_p2 = 8;
+      }else{
+        playerXLoc_p2+=1;
+      }
+    }else if (direction == 3 ){
+      console.log("south");
+      if (playerYLoc_p2 > 7){
+        playerYLoc_p2 = 8;
+      }else{
+        playerYLoc_p2+=1;
+      }
+    }
+    xloc = playerXLoc_p2
+    yloc = playerYLoc_p2
+
+  }else if (username == 3){
+    if (direction == 0 ){
+      console.log("north");
+      if (playerYLoc_p3 <= 0){
+        playerYLoc_p3 = 0;
+      }else{
+        playerYLoc_p3 -=1;
+      }
+    }else if (direction == 1 ){
+      console.log("west");
+      if (playerXLoc_p3 <= 0){
+        playerXLoc_p3 = 0;
+      }else{
+        playerXLoc_p3 -=1;
+      }
+    }else if (direction == 2 ){
+      console.log("east");
+      if (playerXLoc_p3 > 7){
+        playerXLoc_p3 = 8;
+      }else{
+        playerXLoc_p3+=1;
+      }
+    }else if (direction == 3 ){
+      console.log("south");
+      if (playerYLoc_p3 > 7){
+        playerYLoc_p3 = 8;
+      }else{
+        playerYLoc_p3+=1;
+      }
+    }
+    xloc = playerXLoc_p3
+    yloc = playerYLoc_p3
+
+  }else if (username ==4){
+    if (direction == 0 ){
+      console.log("north");
+      if (playerYLoc_p4 <= 0){
+        playerYLoc_p4 = 0;
+      }else{
+        playerYLoc_p4 -=1;
+      }
+    }else if (direction == 1 ){
+      console.log("west");
+      if (playerXLoc_p4 <= 0){
+        playerXLoc_p4 = 0;
+      }else{
+        playerXLoc_p4 -=1;
+      }
+    }else if (direction == 2 ){
+      console.log("east");
+      if (playerXLoc_p4 > 7){
+        playerXLoc_p4 = 8;
+      }else{
+        playerXLoc_p4+=1;
+      }
+    }else if (direction == 3 ){
+      console.log("south");
+      if (playerYLoc_p4 > 7){
+        playerYLoc_p4 = 8;
+      }else{
+        playerYLoc_p4+=1;
+      }
+    }
+    xloc = playerXLoc_p4
+    yloc = playerYLoc_p4
+
+  }
+
+  console.log("x cord = " + xloc);
+  console.log("y cord = " + yloc);
+
   refresh_board();
+
+  output = xloc + "," + yloc
+  return output
 }
 
-function drawPlayers(){
+function drawPlayers(playerX, playerY,PlayerColor){
   const canvas = document.querySelector("#gl-canvas");
   // Initialize the GL context
   const context = canvas.getContext("2d");
 
-
-
   context.beginPath();
   const endAngle = Math.PI + (Math.PI * 3) / 2
 
-  x = (playerXLoc_p1 * width) + 25  ; // x coordinate
-  y = (playerYLoc_p1 *height) + 25 ; // y coordinate
+  x = (playerX * width) + 25  ; // x coordinate
+  y = (playerY *height) + 25 ; // y coordinate
   const radius = 10; // Arc radius
   const startAngle = 0; // Starting point on circle
   const counterclockwise =0
   context.arc(x, y, radius, startAngle, endAngle, counterclockwise);
-  context.fillStyle = PlayerColor_p1;
+  context.fillStyle = PlayerColor;
   context.fill();
   context.stroke();
 }

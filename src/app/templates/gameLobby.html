@@ -62,8 +62,14 @@
 
   <canvas id="gl-canvas" width="640" height="480"></canvas>
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
   <input id="roll" type="button" value="roll dice" onclick="const rollDice = new WebSocket('ws://' + location.host + '/rollDice');rollDice.send(12);" />
-  <input id="left_dir" type="button" value="go left" onclick="movePlayer(current_user_id  ,1)" />
+  <input id="left_dir" type="button" value="go left" onclick="
+  var socket = io();
+    socket.on('connect', function() {
+        socket.emit('message', {data:  movePlayer(current_user_id ,1)});
+    }); " />
   <input id="right_dir" type="button" value="go right" onclick="movePlayer(current_user_id ,2)" />
   <input id="up_dir" type="button" value="go up" onclick="movePlayer(current_user_id,0)" />
   <input id="down_dir" type="button" value="go down" onclick="movePlayer(current_user_id ,3)" />

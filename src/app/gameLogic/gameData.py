@@ -47,6 +47,11 @@ def createPlayer( SQLID = None):
 
     output['square_currently_on'] = -1
     output['square_came_from'] = -1
+
+    output['sendUpdateLoc'] = False;
+    output['xloc'] = 4
+    output['yloc'] = 4
+    
     output['current_turn'] = False
 
     output['wedgesWon'] = {}
