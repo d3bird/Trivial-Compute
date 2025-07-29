@@ -72,6 +72,9 @@ class gameMaster:
                 tmp = locdata['data'].split(',')
                 x = tmp[0]
                 y = tmp[1]
+                if x == '-1' or y == '-1':
+                    print("bad cords was given")
+                    return 
                 self.getGameInfo(gameID)['players'][player_key]['xloc'] =x
                 self.getGameInfo(gameID)['players'][player_key]['yloc'] =y
                 self.getGameInfo(gameID)['players'][player_key]['sendUpdateLoc'] =True

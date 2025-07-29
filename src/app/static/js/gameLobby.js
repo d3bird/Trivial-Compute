@@ -121,7 +121,7 @@ let PlayerColor_p4 = iron
       playerXLoc_p3 = msg.X;
       playerYLoc_p3 = msg.Y;
       refresh_board();
-    }else if (String(msg.player)  == String(playerName_p4)){
+    }else {//if (String(msg.player)  == String(playerName_p4)){
       console.log("p4 updated")
       playerXLoc_p4 = msg.X;
       playerYLoc_p4 = msg.Y;
@@ -522,7 +522,7 @@ function movePlayer(username, direction){
     xloc = playerXLoc_p3
     yloc = playerYLoc_p3
 
-  }else if (username ==4){
+  }else {//if (username ==4){
     if (direction == 0 ){
       console.log("north");
       if (playerYLoc_p4 <= 0){
@@ -566,7 +566,7 @@ function movePlayer(username, direction){
   return output
 }
 
-function drawPlayers(playerX, playerY,PlayerColor){
+function drawPlayers(playerX, playerY, PlayerColor){
   const canvas = document.querySelector("#gl-canvas");
   // Initialize the GL context
   const context = canvas.getContext("2d");
