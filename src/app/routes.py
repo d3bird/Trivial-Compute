@@ -336,6 +336,11 @@ def answer(id, is_correct):
         game.next_turn()
 
 
+@app.route('/game', methods=('GET', 'POST'))
+def gamePage():
+    print("player loaded game page")
+    return render_template('game.html')
+
 #-----------------------misc pages----------------------------------------
 @app.route('/about')
 def about():
