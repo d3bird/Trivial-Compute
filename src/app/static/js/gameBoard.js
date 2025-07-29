@@ -12,7 +12,7 @@ const height = 50
   green = "rgb(9 200 0)";//green
   blue = "rgb(0 0 200)";//blue
   yellow = "rgb(255 255 0)";//yellow
-  black = "rgb(255 255 255)";//black
+  white = "rgb(255 255 255)";//white
 
 //player colors
   pink = "rgb(255 0 255)";//red
@@ -78,6 +78,11 @@ function drawBoard() {
   const canvas = document.querySelector("#gl-canvas");
   const context = canvas.getContext("2d");
 
+  roll_text="roll again"
+  center_text="center"
+  hq_text="HQ"
+
+
 
   let x = 0
   let y = 0
@@ -85,8 +90,10 @@ function drawBoard() {
   midx = 4* width
   lastx = 8* width
   //row 1
-  context.fillStyle = black;
+  context.fillStyle = white;
   context.fillRect(x, y, width, height);
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(roll_text,x+ (width/8),y +(height/2))
   x+=width
 
   context.fillStyle = yellow;
@@ -103,6 +110,8 @@ function drawBoard() {
 
   context.fillStyle = red;
   context.fillRect(x, y, width, height);
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(hq_text,x+ (width/4),y +(height/2))
   x+=width
 
   context.fillStyle = yellow;
@@ -117,9 +126,12 @@ function drawBoard() {
   context.fillRect(x, y, width, height);
   x+=width
 
-  context.fillStyle = black;
+  context.fillStyle = white;
   context.fillRect(x, y, width, height);
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(roll_text,x+ (width/8),y +(height/2))
   x+=width
+  
 
   //row 2
   y+=height
@@ -160,6 +172,8 @@ function drawBoard() {
   y+=height
   context.fillStyle = yellow;
   context.fillRect(x, y, width, height);
+    context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(hq_text,x+ (width/4),y +(height/2))
   x+=width
 
   context.fillStyle = blue;
@@ -174,8 +188,11 @@ function drawBoard() {
   context.fillRect(x, y, width, height);
   x+=width
 
-  context.fillStyle = black;
+  context.fillStyle = white;
   context.fillRect(x, y, width, height);
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(center_text,x+ (width/8),y +(height/2))
+
   x+=width
 
   context.fillStyle = blue;
@@ -192,6 +209,8 @@ function drawBoard() {
 
   context.fillStyle = green;
   context.fillRect(x, y, width, height);
+    context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(hq_text,x+ (width/4),y +(height/2))
   x+=width
 
    //row 6
@@ -231,8 +250,11 @@ function drawBoard() {
 
   //row 9
   y+=height
-  context.fillStyle = black;
+  context.fillStyle = white;
   context.fillRect(x, y, width, height);
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(roll_text,x+ (width/8),y +(height/2))
+
   x+=width
 
   context.fillStyle = yellow;
@@ -249,6 +271,8 @@ function drawBoard() {
 
   context.fillStyle = blue;
   context.fillRect(x, y, width, height);
+    context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(hq_text,x+ (width/4),y +(height/2))
   x+=width
 
   context.fillStyle = yellow;
@@ -263,9 +287,10 @@ function drawBoard() {
   context.fillRect(x, y, width, height);
   x+=width
 
-  context.fillStyle = black;
+  context.fillStyle = white;
   context.fillRect(x, y, width, height);
-
+  context.fillStyle = "rgb(0 0 0 )";
+  context.fillText(roll_text,x+ (width/8),y +(height/2))
   drawPlayers();
 }
 
