@@ -1,9 +1,5 @@
 import app.gameLogic.gameData as gameData
-<<<<<<< HEAD
 from app.gameLogic.game import Game
-=======
-import random
->>>>>>> c6e8b73 (added work on the gameplay logic to get it hooked into the website)
 
 class gameMaster:
     def __init__(self, numOfServers):
