@@ -1,5 +1,9 @@
 import app.gameLogic.gameData as gameData
+<<<<<<< HEAD
 from app.gameLogic.game import Game
+=======
+import random
+>>>>>>> c6e8b73 (added work on the gameplay logic to get it hooked into the website)
 
 class gameMaster:
     def __init__(self, numOfServers):
@@ -36,6 +40,17 @@ class gameMaster:
     def reset_game(self, game_ID):
         self.games[str(game_ID)] = gameData.createNewGame()
 
+    def rollDice(self, gameID, playerData ):
+        roll = random.randint(1,6) +random.randint(1,6)
+        print("rolling dice for player, they got " + str(roll))
+        player_data = self.getGameInfo(gameID)['players']
+
+        for player_key in player_data.keys():
+            player = player_data[player_key]
+            if str(player['name']) == str(playerData['name']):
+                print("setting user answer wrong")
+                self.getGameInfo(gameID)['players'][player_key]['questionGottenRight'] +=1
+
     def increasePlayerRight(self, gameID, playerData ):
         player_data = self.getGameInfo(gameID)['players']
         for player_key in player_data.keys():
@@ -51,7 +66,6 @@ class gameMaster:
             if str(player['name']) == str(playerData['name']):
                 print("setting user answer wrong")
                 self.getGameInfo(gameID)['players'][player_key]['questionGottenWrong'] +=1
-
 
     def playerJoinGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
@@ -73,7 +87,6 @@ class gameMaster:
         print("disconnecting player from all games")
         for key in self.games.keys():
             self.playerLeaveGame(playerData, key)
-
 
     def playerLeaveGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is leaving game " + str(gameID))

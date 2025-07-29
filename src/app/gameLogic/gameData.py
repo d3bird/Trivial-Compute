@@ -6,7 +6,6 @@ def createNewGame(gameID, numPlayers =4 ):
     output = {}
     output['name'] = gameID
     output['gameID'] = gameID
-    output['logicObject'] = gameLogic.gameLogic(gameID)
     output['players'] = {}
     output['turnOrder'] = []
 
@@ -26,6 +25,8 @@ def createNewGame(gameID, numPlayers =4 ):
         output['turnOrder'].append(playerID)
         counter +=1
     
+    output['logicObject'] = gameLogic.gameLogic(gameID, output['players'])
+
     #random the turn order
     # output['turnOrder'] = random.shuffle(output['turnOrder'])
 
@@ -44,5 +45,13 @@ def createPlayer( SQLID = None):
     output['questionGottenRight'] = 0
     output['questionGottenWrong'] = 0
 
+    output['square_currently_on'] = -1
+    output['current_turn'] = False
+
+    output['wedgesWon'] = {}
+    output['wedgesWon']['yellow'] = False
+    output['wedgesWon']['blue'] = False
+    output['wedgesWon']['red'] = False
+    output['wedgesWon']['green'] = False
 
     return output

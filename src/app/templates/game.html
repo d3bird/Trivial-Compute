@@ -21,7 +21,22 @@
 
 {% block content %}
 
+<h1>it is currnetly {{ current_user.username }}'s turn</h1>
+
 <canvas id="gl-canvas" width="640" height="480"></canvas>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameBoard.js') }}" type="module"></script>
+  
+
+  <div>
+    <p>roll dice and move</p>
+    <input id="roll" type="button" value="roll dice" onclick="const rollDice = new WebSocket('ws://' + location.host + '/rollDice');rollDice.send(12);" />
+    <input id="left_dir" type="button" value="go left" onclick="" />
+    <input id="right_dir" type="button" value="go right" onclick="" />
+    <input id="up_dir" type="button" value="go up" onclick="" />
+    <input id="down_dir" type="button" value="go down" onclick="" />
+
+  </div>
+
+
   
 {% endblock %}

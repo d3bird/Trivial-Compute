@@ -89,6 +89,21 @@ def selectAnswer3(sock):
         data = sock.receive()
         sock.send(data)
 
+@sock.route('/rollDice')
+def rollDice(sock):
+    gameId = 0
+    print("selecting answer1 (right)")
+
+    
+    current_player_data = create_current_player_data()
+    allGames.rollDice(gameId, current_player_data)
+    #allGames.getGameInfo(gameId)['need_newQuestion'] = True
+
+    #allGames.getGameInfo(gameId)['need_newQuestion'] = True
+    while True:
+        data = sock.receive()
+        sock.send(data)
+
 #-------------------------------these are the functions for the constant comunication---------------------
 """
 Get current date time
