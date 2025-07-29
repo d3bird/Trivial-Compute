@@ -102,27 +102,28 @@ let PlayerColor_p4 = iron
   });
   
   socket.on("updatePlayerloc", function (msg) {
-    //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
+    console.log("Received playyer Data :: " + msg.player + " :: " + msg.X+ " :: " + msg.Y);
 
-    if (msg.player_num == "none") {
-       // console.log("can not not update if row is none");
-        return;
-    }
 
-    if (msg.player_num  == 1){
+
+    if (String(msg.player)  == String(playerName_p1)){
+      console.log("p1 updated")
       playerXLoc_p1 = msg.X;
       playerYLoc_p1 = msg.Y;
       refresh_board();
-    } else if (msg.player_num  == 2){
-      layerXLoc_p2 = msg.X;
+    } else if (String(msg.player)  == String(playerName_p2)){
+      console.log("p2 updated")
+      playerXLoc_p2 = msg.X;
       playerYLoc_p2 = msg.Y;
       refresh_board();
-    }else if (msg.player_num  == 3){
-      layerXLoc_p3 = msg.X;
+    }else if (String(msg.player)  == String(playerName_p3)){
+      console.log("p3 updated")
+      playerXLoc_p3 = msg.X;
       playerYLoc_p3 = msg.Y;
       refresh_board();
-    }else if (msg.player_num  == 4){
-      layerXLoc_p4 = msg.X;
+    }else if (String(msg.player)  == String(playerName_p4)){
+      console.log("p4 updated")
+      playerXLoc_p4 = msg.X;
       playerYLoc_p4 = msg.Y;
       refresh_board();
     }

@@ -70,9 +70,21 @@
     socket.on('connect', function() {
         socket.emit('message', {data:  movePlayer(current_user_id ,1)});
     }); " />
-  <input id="right_dir" type="button" value="go right" onclick="movePlayer(current_user_id ,2)" />
-  <input id="up_dir" type="button" value="go up" onclick="movePlayer(current_user_id,0)" />
-  <input id="down_dir" type="button" value="go down" onclick="movePlayer(current_user_id ,3)" />
+  <input id="right_dir" type="button" value="go right" onclick="
+  var socket = io();
+    socket.on('connect', function() {
+        socket.emit('message', {data:  movePlayer(current_user_id ,2)});
+    });" />
+  <input id="up_dir" type="button" value="go up" onclick="
+  var socket = io();
+    socket.on('connect', function() {
+        socket.emit('message', {data:  movePlayer(current_user_id ,0)});
+    });" />
+  <input id="down_dir" type="button" value="go down" onclick="
+  var socket = io();
+    socket.on('connect', function() {
+        socket.emit('message', {data:  movePlayer(current_user_id ,3)});
+    });" />
 
 
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />

@@ -106,9 +106,9 @@ def rollDice(sock):
 @socketio.on('message')
 def movePlayer(data):
     gameId = 0
-    print("moving player, dir:  " + str(data))
+    print("moving player:  " + str(data))
     current_player_data = create_current_player_data()
-    #allGames.movePlayer(gameId, current_player_data, dir)
+    allGames.movePlayer(gameId, current_player_data, data)
     print("")
 
 #-------------------------------these are the functions for the constant comunication---------------------
@@ -137,7 +137,7 @@ def game_background_thread():
                 x =player['xloc']
                 y =player['yloc']
                 player['sendUpdateLoc'] = False
-                socketio.emit('updatePlayerloc', {'player_num': row_num, "X": x, "Y": y})
+                socketio.emit('updatePlayerloc', {'player': username, "X": x, "Y": y})
 
             if player['wedgesUpdate']:
                 yellow = player['wedgesWon']['yellow']

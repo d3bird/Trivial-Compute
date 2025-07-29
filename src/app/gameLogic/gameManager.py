@@ -63,6 +63,20 @@ class gameMaster:
                 print("setting user answer wrong")
                 self.getGameInfo(gameID)['players'][player_key]['questionGottenWrong'] +=1
 
+    def movePlayer(self, gameID, playerData, locdata ):
+        player_data = self.getGameInfo(gameID)['players']
+        for player_key in player_data.keys():
+            player = player_data[player_key]
+            if str(player['name']) == str(playerData['name']):
+                print("moving player to new loc")
+                tmp = locdata['data'].split(',')
+                x = tmp[0]
+                y = tmp[1]
+                self.getGameInfo(gameID)['players'][player_key]['xloc'] =x
+                self.getGameInfo(gameID)['players'][player_key]['yloc'] =y
+                self.getGameInfo(gameID)['players'][player_key]['sendUpdateLoc'] =True
+
+
     def playerJoinGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
 
