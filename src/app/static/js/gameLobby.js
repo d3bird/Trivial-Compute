@@ -1,3 +1,60 @@
+//set all the vars for the players 
+
+//the size of each board square
+//needed to caluculate possition to move the player
+const width = 50
+const height = 50
+
+//the base colors of the board
+red = "rgb(200 0 0)";//red
+green = "rgb(9 200 0)";//green
+blue = "rgb(0 0 200)";//blue
+yellow = "rgb(255 255 0)";//yellow
+white = "rgb(255 255 255)";//white
+
+//player colors
+pink = "rgb(255 0 255)";//red
+purple = "rgb(75 0 130)";//green
+light_red = "rgba(189 90 107)";//light red
+iron = "rgba(59 54 50 1)";//iron
+
+//thses are the player inforamtion to control the graphics objetcs
+playerName_p1="player 1"
+blue_wedge_p1 = false; 
+red_wedge_p1 = false; 
+green_wedge_p1 = false; 
+yellow_wedge_p1 = false; 
+let playerXLoc_p1 = 0;
+let playerYLoc_p1 = 0;
+let PlayerColor_p1 = purple
+
+playerName_p2="player 2"
+blue_wedge_p2 = false; 
+red_wedge_p2 = false; 
+green_wedge_p2 = false; 
+yellow_wedge_p2 = false; 
+let playerXLoc_p2 = 0;
+let playerYLoc_p2 = 0;
+let PlayerColor_p2 = pink
+
+playerName_p3="player 3"
+blue_wedge_p3 = false; 
+red_wedge_p3 = false; 
+green_wedge_p3 = false; 
+yellow_wedge_p3 = false; 
+let playerXLoc_p3 = 0;
+let playerYLoc_p3 = 0;
+let PlayerColor_p3 = light_red
+
+playerName_p4="player 4"
+blue_wedge_p4 = false; 
+red_wedge_p4 = false; 
+green_wedge_p4 = false; 
+yellow_wedge_p4 = false; 
+let playerXLoc_p4 = 0;
+let playerYLoc_p4 = 0;
+let PlayerColor_p4 = iron
+
 
 //this handles all of the connections
   $(document).ready(function () {
@@ -26,6 +83,20 @@
     document.getElementById("playersTable").rows[row].cells[3].innerHTML = msg.wrong;
     document.getElementById("playersTable").rows[row].cells[4].innerHTML = msg.right;
 
+    if (row == 1){
+      playerName_p1 = msg.username;
+      refresh_board();
+    } else if (row == 2){
+      playerName_p2 = msg.username;
+      refresh_board();
+    }else if (row == 3){
+      playerName_p3 = msg.username;
+      refresh_board();
+    }else if (row == 4){
+      playerName_p4 = msg.username;
+      refresh_board();
+    }
+
     //Received playyer Data :: none :: guest :: 0 :: 0
     //Received playyer Data :: player3 :: zxc :: 0 :: 0
   });
@@ -43,60 +114,7 @@
 });
 
 
-//the size of each board square
-//needed to caluculate possition to move the player
-const width = 50
-const height = 50
 
-//the base colors of the board
-  red = "rgb(200 0 0)";//red
-  green = "rgb(9 200 0)";//green
-  blue = "rgb(0 0 200)";//blue
-  yellow = "rgb(255 255 0)";//yellow
-  white = "rgb(255 255 255)";//white
-
-//player colors
-  pink = "rgb(255 0 255)";//red
-  purple = "rgb(75 0 130)";//green
-  light_red = "rgba(189 90 107)";//light red
-  iron = "rgb(165 156 148)";//iron
-
-//thses are the player inforamtion to control the graphics objetcs
-playerName_p1="player 1"
-blue_wedge_p1 = true; 
-red_wedge_p1 = true; 
-green_wedge_p1 = true; 
-yellow_wedge_p1 = true; 
-let playerXLoc_p1 = 0;
-let playerYLoc_p1 = 0;
-let PlayerColor_p1 = purple
-
-playerName_p2="player 2"
-blue_wedge_p2 = true; 
-red_wedge_p2 = true; 
-green_wedge_p2 = true; 
-yellow_wedge_p2 = true; 
-let playerXLoc_p2 = 0;
-let playerYLoc_p2 = 0;
-let PlayerColor_p2 = pink
-
-playerName_p3="player 3"
-blue_wedge_p3 = true; 
-red_wedge_p3 = true; 
-green_wedge_p3 = true; 
-yellow_wedge_p3 = true; 
-let playerXLoc_p3 = 0;
-let playerYLoc_p3 = 0;
-let PlayerColor_p3 = light_red
-
-playerName_p4="player 4"
-blue_wedge_p4 = true; 
-red_wedge_p4 = true; 
-green_wedge_p4 = true; 
-yellow_wedge_p4 = true; 
-let playerXLoc_p4 = 0;
-let playerYLoc_p4 = 0;
-let PlayerColor_p4 = iron
 
 
 refresh_board();
@@ -454,7 +472,7 @@ function draw_score_text(player_num){
       context.fillRect(p1x, p1y, width_score, height_score);
   }
   p1x += width_score;
-  if (red_wedge_p1) ;{
+  if (red_wedge) {
     context.fillStyle = red;
     context.fillRect(p1x, p1y, width_score, height_score);
   }
