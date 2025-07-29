@@ -46,6 +46,7 @@ def createPlayer( SQLID = None):
     output['questionGottenWrong'] = 0
 
     output['square_currently_on'] = -1
+    output['square_came_from'] = -1
     output['current_turn'] = False
 
     output['wedgesWon'] = {}

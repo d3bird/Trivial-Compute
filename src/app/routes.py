@@ -296,6 +296,21 @@ def join(id):
     gameInfo = allGames.getGameInfo(id)
     #generate the inforamtion for the table headers
     headers = ("username" ,"player ID", "player number", "questions wrong", "questions right")
+
+    catagory_headers = ("color" ,"catagory number", "catagory name")
+    
+    catagory_data = []
+    red_data    = ("red" ,"0", "none given")
+    catagory_data.append(red_data)
+
+    green_data  = ("green" ,"1", "none given")
+    catagory_data.append(green_data)
+
+    blue_data   = ("blue" ,"2", "none given")
+    catagory_data.append(blue_data)
+
+    yellow_data = ("yello" ,"3", "none given")
+    catagory_data.append(yellow_data)
     
     #get the inforamtion from the games
     data = []
@@ -319,7 +334,7 @@ def join(id):
     #there is probably better ways to do this but this will work for now
     data = tuple(tuple(item) for item in data)
     print(str(data))
-    return render_template('gameLobby.html', headers=headers, data=data)
+    return render_template('gameLobby.html', headers=headers, data=data, catagory_headers=catagory_headers, catagory_data=catagory_data)
 
 #-----------------------game logic----------------------------------------
 #TODO: implement frontend socket to handle clicking dice, picking square, and answering question

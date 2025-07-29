@@ -112,7 +112,11 @@ class questionDB:
             index = random.randint(0, len(questionsList))
             return questionsList[index]
     
-
+    def get_number_catagories(self):
+        if self.imported_questions == None:
+            self.import_questions_to_local_mem()
+        return len(self.imported_questions.keys())
+    
     def createQuestion(self, question, answer):
         conn = sqlite3.connect(self.DBName)
         conn.row_factory = sqlite3.Row
