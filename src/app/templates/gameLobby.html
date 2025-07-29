@@ -9,7 +9,6 @@
       rel="stylesheet"
       type="text/css"
     />
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
 
 <script>
 
@@ -59,8 +58,11 @@
     {% endfor %}
   </table>
 
-  <input id="start_game" type="button" value="start game!" onclick=""/>
 
+  <canvas id="gl-canvas" width="640" height="480"></canvas>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
+
+  
 
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />
   <div><p>question: <b id =quest>"None" </b> </p></div>
@@ -78,4 +80,6 @@
     <input id="answ3" type="button" value="" onclick="const socketAnsw3 = new WebSocket('ws://' + location.host + '/selectAnswer3');socketAnsw3.send(12);"/>
   </div>
   
+
+
 {% endblock %}

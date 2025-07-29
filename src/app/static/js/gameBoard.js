@@ -1,6 +1,5 @@
-
-
-
+//this file is teh game board with out any connections to falsk website engine
+// this file is integrated into the game loby page
 
 //the size of each board square
 //needed to caluculate possition to move the player

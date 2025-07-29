@@ -100,7 +100,7 @@ class questionDB:
         index = random.randint(start, end)
         return questions[index]
 
-    def getRandomQuestion(self, catagory):
+    def getRandomQuestionCatagory(self, catagory):
         if self.imported_questions == None:
             self.import_questions_to_local_mem()
 
