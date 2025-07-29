@@ -67,16 +67,16 @@ let PlayerColor_p4 = iron
 
     //receive player details from server
   socket.on("updatePlayerData", function (msg) {
-    console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
+    //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
 
     if (msg.row_num == "none") {
-        console.log("can not not update if row is none");
+       // console.log("can not not update if row is none");
         return;
     }
     let row = msg.row_num [msg.row_num .length - 1];
     row = Number(row) + Number(1)
-    console.log("# of row elms : "+ document.getElementById("playersTable").rows.length)
-    console.log("# of cel elms : " +document.getElementById("playersTable").rows[row].cells.length)
+   // console.log("# of row elms : "+ document.getElementById("playersTable").rows.length)
+    //console.log("# of cel elms : " +document.getElementById("playersTable").rows[row].cells.length)
     document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
     document.getElementById("playersTable").rows[row].cells[1].innerHTML = msg.sql_id;
     document.getElementById("playersTable").rows[row].cells[2].innerHTML = row;
@@ -133,7 +133,7 @@ let PlayerColor_p4 = iron
 
   //recive a new question from the server
   socket.on("newQuestion", function (msg) {
-    console.log("Received new question :: " + msg.question + " :: " + msg.answer1+ " :: " + msg.answer2+ " :: " + msg.answer3);
+   // console.log("Received new question :: " + msg.question + " :: " + msg.answer1+ " :: " + msg.answer2+ " :: " + msg.answer3);
     
     document.getElementById("quest").innerHTML = msg.question;
     document.getElementById("answ1").value = msg.answer1;
@@ -142,9 +142,6 @@ let PlayerColor_p4 = iron
 
   });
 });
-
-
-
 
 
 refresh_board();
@@ -170,7 +167,6 @@ function drawBoard() {
   roll_text="roll again"
   center_text="center"
   hq_text="HQ"
-
 
 
   let x = 0
@@ -383,12 +379,14 @@ function drawBoard() {
   drawPlayers();
 }
 
-function movePlayer(direction){
+function movePlayer(username, direction){
   // 0 =                north
   // 1 =                west
   // 2 =                east
   // 3 =                south
-  console.log("moving player");
+
+  console.log("moving "+ username)
+
   if (direction == 0 ){
     console.log("north");
     if (playerYLoc_p1 <= 0){

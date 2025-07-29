@@ -11,6 +11,7 @@
     />
 
 <script>
+   var current_user_id = "{{ current_user.id }}";
 
     function doFunction(name) {
       const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send("new");
@@ -61,8 +62,12 @@
 
   <canvas id="gl-canvas" width="640" height="480"></canvas>
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
+  <input id="roll" type="button" value="roll dice" onclick="const rollDice = new WebSocket('ws://' + location.host + '/rollDice');rollDice.send(12);" />
+  <input id="left_dir" type="button" value="go left" onclick="movePlayer(current_user_id  ,1)" />
+  <input id="right_dir" type="button" value="go right" onclick="movePlayer(current_user_id ,2)" />
+  <input id="up_dir" type="button" value="go up" onclick="movePlayer(current_user_id,0)" />
+  <input id="down_dir" type="button" value="go down" onclick="movePlayer(current_user_id ,3)" />
 
-  
 
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />
   <div><p>question: <b id =quest>"None" </b> </p></div>

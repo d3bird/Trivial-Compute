@@ -121,8 +121,6 @@ def background_thread():
         dummy_sensor_value = round(random.random() * 100, 3)
         socketio.emit('updateSensorData', {'value': dummy_sensor_value, "date": get_current_datetime()})
 
-        
-
         socketio.sleep(1)
 
 #handles the updating of the game from the game data
@@ -134,7 +132,7 @@ def game_background_thread():
         need_new_question = allGames.getGameInfo(gameId)['need_newQuestion']
 
         need_dice_roll = False
-        update_wedge = False
+
         #print("sending player data")
         for player_key in player_data.keys():
             player = player_data[player_key]
@@ -150,7 +148,6 @@ def game_background_thread():
                 red = player['wedgesWon']['red']
                 green = player['wedgesWon']['green']
                 socketio.emit('updatePlayerwedges', {'player_num': row_num, "yellow": yellow, "blue": blue,"red": red,"green": green})
-
 
             socketio.emit('updatePlayerData', {'row_num': row_num, "username": username, "sql_id": sql_id,"right": right,"wrong": wrong})
 
