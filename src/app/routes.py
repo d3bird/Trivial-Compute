@@ -125,13 +125,17 @@ def background_thread():
 
         socketio.sleep(1)
 
+#handles the updating of the game from the game data
 def game_background_thread():
     print("starting background thread to update clients when someone has joined")
     gameId = 0
     while True:
         player_data = allGames.getGameInfo(gameId)['players']
         need_new_question = allGames.getGameInfo(gameId)['need_newQuestion']
-        print("sending player data")
+
+        need_dice_roll = False
+        update_wedge = False
+        #print("sending player data")
         for player_key in player_data.keys():
             player = player_data[player_key]
             row_num = player['playerID']
@@ -139,6 +143,14 @@ def game_background_thread():
             sql_id = player['SQL_ID']
             right = player['questionGottenRight']
             wrong = player['questionGottenWrong']
+            
+            if player['wedgesUpdate']:
+                yellow = player['wedgesWon']['yellow']
+                blue = player['wedgesWon']['blue']
+                red = player['wedgesWon']['red']
+                green = player['wedgesWon']['green']
+                socketio.emit('updatePlayerwedges', {'player_num': row_num, "yellow": yellow, "blue": blue,"red": red,"green": green})
+
 
             socketio.emit('updatePlayerData', {'row_num': row_num, "username": username, "sql_id": sql_id,"right": right,"wrong": wrong})
 
@@ -154,6 +166,10 @@ def game_background_thread():
             answer3 = answers[3]
             socketio.emit('newQuestion', {'question': question, "answer1": answer1, "answer2": answer2, "answer3": answer3})
             allGames.getGameInfo(gameId)['need_newQuestion'] = False
+
+        if need_dice_roll:
+            print("send dice roll results")
+
 
 
         socketio.sleep(1)
@@ -309,7 +325,7 @@ def join(id):
     blue_data   = ("blue" ,"2", "none given")
     catagory_data.append(blue_data)
 
-    yellow_data = ("yello" ,"3", "none given")
+    yellow_data = ("yellow" ,"3", "none given")
     catagory_data.append(yellow_data)
     
     #get the inforamtion from the games

@@ -55,4 +55,6 @@ def createPlayer( SQLID = None):
     output['wedgesWon']['red'] = False
     output['wedgesWon']['green'] = False
 
+    output['wedgesUpdate'] = False
+
     return output

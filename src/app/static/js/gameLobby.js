@@ -101,6 +101,36 @@ let PlayerColor_p4 = iron
     //Received playyer Data :: player3 :: zxc :: 0 :: 0
   });
   
+  socket.on("updatePlayerwedges", function (msg) {
+    console.log("recived wedge data");
+    if (msg.player_num == 1){
+      blue_wedge_p1 = msg.blue; 
+      red_wedge_p1 = msg.red; 
+      green_wedge_p1 = msg.green; 
+      yellow_wedge_p1 = msg.yellow; 
+      refresh_board();
+    } else if (msg.player_num == 2){
+      blue_wedge_p1 = msg.blue; 
+      red_wedge_p1 = msg.red; 
+      green_wedge_p1 = msg.green; 
+      yellow_wedge_p1 = msg.yellow; 
+      refresh_board();
+    }else if (msg.player_num == 3){
+      blue_wedge_p3 = msg.blue; 
+      red_wedge_p3 = msg.red; 
+      green_wedge_p3 = msg.green; 
+      yellow_wedge_p4 = msg.yellow; 
+      refresh_board();
+    }else if (msg.player_num == 4){
+      blue_wedge_p4 = msg.blue; 
+      red_wedge_p4 = msg.red; 
+      green_wedge_p4 = msg.green; 
+      yellow_wedge_p4 = msg.yellow; 
+      refresh_board();
+    }
+   
+  });
+
   //recive a new question from the server
   socket.on("newQuestion", function (msg) {
     console.log("Received new question :: " + msg.question + " :: " + msg.answer1+ " :: " + msg.answer2+ " :: " + msg.answer3);
