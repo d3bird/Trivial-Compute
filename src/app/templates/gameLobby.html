@@ -64,7 +64,19 @@
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/gameLobby.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 
-  <input id="roll" type="button" value="roll dice" onclick="const rollDice = new WebSocket('ws://' + location.host + '/rollDice');rollDice.send(12);" />
+  <script>
+    const ws = new WebSocket('ws://' + location.host + '/rollDice');
+    ws.onmessage = function(event) {
+      document.getElementById("result").innerText = "You rolled: " + event.data;
+    };
+
+    function rollDice() {
+      ws.send('roll');
+    }
+
+  </script>
+
+  <input id="roll" type="button" value="roll dice" onclick="rollDice()" />
   <input id="left_dir" type="button" value="go left" onclick="
   var socket = io();
     socket.on('connect', function() {
@@ -85,6 +97,8 @@
     socket.on('connect', function() {
         socket.emit('message', {data:  movePlayer(current_user_id ,3)});
     });" />
+    
+  <p id="result">You rolled: -</p>
 
 
   <input id="rewNewQuestion" type="button" value="request new question" onclick="const socket = new WebSocket('ws://' + location.host + '/requestNewQuestion');socket.send(12);" />

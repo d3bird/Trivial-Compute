@@ -1,5 +1,6 @@
 import app.gameLogic.gameData as gameData
 from app.gameLogic.game import Game
+import random
 
 class gameMaster:
     def __init__(self, numOfServers):
@@ -46,6 +47,7 @@ class gameMaster:
             if str(player['name']) == str(playerData['name']):
                 print("setting user answer wrong")
                 self.getGameInfo(gameID)['players'][player_key]['questionGottenRight'] +=1
+        return roll
 
     def increasePlayerRight(self, gameID, playerData ):
         player_data = self.getGameInfo(gameID)['players']

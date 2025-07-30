@@ -95,13 +95,16 @@ def rollDice(sock):
 
     
     current_player_data = create_current_player_data()
-    allGames.rollDice(gameId, current_player_data)
+    roll = allGames.rollDice(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
 
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
     while True:
         data = sock.receive()
-        sock.send(data)
+        if data == 'roll':
+            # remove roll when uncommenting above
+            # roll = random.randint(1, 6)
+            sock.send(roll)
 
 @socketio.on('message')
 def movePlayer(data):

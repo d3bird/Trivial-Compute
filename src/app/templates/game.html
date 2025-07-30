@@ -30,13 +30,26 @@
 
   <div>
     <p>roll dice and move</p>
-    <input id="roll" type="button" value="roll dice" onclick="const rollDice = new WebSocket('ws://' + location.host + '/rollDice');rollDice.send(12);" />
+    <input id="roll" type="button" value="roll dice" onclick="rollDice()" />
     <input id="left_dir" type="button" value="go left" onclick="movePlayer(1)" />
     <input id="right_dir" type="button" value="go right" onclick="movePlayer(2)" />
     <input id="up_dir" type="button" value="go up" onclick="movePlayer(0)" />
     <input id="down_dir" type="button" value="go down" onclick="movePlayer(3)" />
+    <p id="result">You rolled: -</p>
 
   </div>
+
+  <script>
+    const ws = new WebSocket('ws://' + location.host + '/rollDice');
+    ws.onmessage = function(event) {
+      document.getElementById("result").innerText = "You rolled: " + event.data;
+    };
+
+    function rollDice() {
+      ws.send('roll');
+    }
+
+  </script>
 
 
   
