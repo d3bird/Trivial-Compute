@@ -15,18 +15,26 @@ white = "rgb(255 255 255)";//white
 //player colors
 pink = "rgb(255 0 255)";//red
 purple = "rgb(75 0 130)";//green
-light_red = "rgba(189 90 107)";//light red
-iron = "rgba(59 54 50 1)";//iron
+light_red = "rgb(189 90 107)";//light red
+iron = "rgb(59 54 50 1)";//iron
+
+//misc numbers needed for determing if a button was clicked on
+let startButtonX = -1;
+let startButtonY = -1;
+let startButtonWidth = -1;
+let startButtonHeight = -1;
 
 //thses are the player inforamtion to control the graphics objetcs
 playerName_p1="player 1"
-blue_wedge_p1 = false; 
-red_wedge_p1 = false; 
-green_wedge_p1 = false; 
-yellow_wedge_p1 = false; 
+blue_wedge_p1 = true; 
+red_wedge_p1 = true; 
+green_wedge_p1 = true; 
+yellow_wedge_p1 = true; 
 let playerXLoc_p1 = 4;
 let playerYLoc_p1 = 4;
 let PlayerColor_p1 = purple
+let Player1_connected = false
+
 
 playerName_p2="player 2"
 blue_wedge_p2 = false; 
@@ -36,6 +44,7 @@ yellow_wedge_p2 = false;
 let playerXLoc_p2 = 4;
 let playerYLoc_p2 = 4;
 let PlayerColor_p2 = pink
+let Player2_connected = false
 
 playerName_p3="player 3"
 blue_wedge_p3 = false; 
@@ -45,6 +54,7 @@ yellow_wedge_p3 = false;
 let playerXLoc_p3 = 4;
 let playerYLoc_p3 = 4;
 let PlayerColor_p3 = light_red
+let Player3_connected = false
 
 playerName_p4="player 4"
 blue_wedge_p4 = false; 
@@ -54,7 +64,14 @@ yellow_wedge_p4 = false;
 let playerXLoc_p4 = 4;
 let playerYLoc_p4 = 4;
 let PlayerColor_p4 = iron
+let Player4_connected = false
 
+//determines what to display
+//0 lobby
+//1 gameboard
+//2 question
+//3 choice
+let gameState = 0;
 
 //this handles all of the connections
   $(document).ready(function () {
@@ -85,16 +102,20 @@ let PlayerColor_p4 = iron
 
     if (row == 1){
       playerName_p1 = msg.username;
-      refresh_board();
+      Player1_connected = true;
+      display_game();
     } else if (row == 2){
       playerName_p2 = msg.username;
-      refresh_board();
+      Player2_connected = true;
+      display_game();
     }else if (row == 3){
       playerName_p3 = msg.username;
-      refresh_board();
+      Player3_connected = true;
+      display_game();
     }else if (row == 4){
       playerName_p4 = msg.username;
-      refresh_board();
+      Player4_connected = true;
+      display_game();
     }
 
     //Received playyer Data :: none :: guest :: 0 :: 0
@@ -110,22 +131,22 @@ let PlayerColor_p4 = iron
       console.log("p1 updated")
       playerXLoc_p1 = msg.X;
       playerYLoc_p1 = msg.Y;
-      refresh_board();
+      display_game();
     } else if (String(msg.player)  == String(playerName_p2)){
       console.log("p2 updated")
       playerXLoc_p2 = msg.X;
       playerYLoc_p2 = msg.Y;
-      refresh_board();
+      display_game();
     }else if (String(msg.player)  == String(playerName_p3)){
       console.log("p3 updated")
       playerXLoc_p3 = msg.X;
       playerYLoc_p3 = msg.Y;
-      refresh_board();
+      display_game();
     }else {//if (String(msg.player)  == String(playerName_p4)){
       console.log("p4 updated")
       playerXLoc_p4 = msg.X;
       playerYLoc_p4 = msg.Y;
-      refresh_board();
+      display_game();
     }
 
     //Received playyer Data :: none :: guest :: 0 :: 0
@@ -139,28 +160,59 @@ let PlayerColor_p4 = iron
       red_wedge_p1 = msg.red; 
       green_wedge_p1 = msg.green; 
       yellow_wedge_p1 = msg.yellow; 
-      refresh_board();
+      display_game();
     } else if (msg.player_num == 2){
       blue_wedge_p1 = msg.blue; 
       red_wedge_p1 = msg.red; 
       green_wedge_p1 = msg.green; 
       yellow_wedge_p1 = msg.yellow; 
-      refresh_board();
+      display_game();
     }else if (msg.player_num == 3){
       blue_wedge_p3 = msg.blue; 
       red_wedge_p3 = msg.red; 
       green_wedge_p3 = msg.green; 
       yellow_wedge_p4 = msg.yellow; 
-      refresh_board();
+      display_game();
     }else if (msg.player_num == 4){
       blue_wedge_p4 = msg.blue; 
       red_wedge_p4 = msg.red; 
       green_wedge_p4 = msg.green; 
       yellow_wedge_p4 = msg.yellow; 
-      refresh_board();
+      display_game();
     }
    
   });
+
+  function getCursorPosition(canvas, event) {
+      const rect = canvas.getBoundingClientRect()
+      const x = event.clientX - rect.left
+      const y = event.clientY - rect.top
+      console.log("x: " + x + " y: " + y)
+
+      //all the possible button clicks for the loby screen
+      if (gameState == 0){
+        //check to see if the start button was clicked 
+        if (startButtonX != -1 &&
+          startButtonY != -1 &&
+          startButtonWidth != -1 &&
+          startButtonHeight != -1 )
+        {
+
+        if ((x >= startButtonX && x <= (startButtonX + startButtonWidth)) &&
+          (y >= startButtonY && y <= (startButtonY + startButtonHeight))){
+          console.log("start button was clicked")
+            
+        }
+        }
+      }
+
+
+  }
+
+  const canvas_envents = document.querySelector('#gl-canvas')
+  canvas_envents.addEventListener('mousedown', function(e) {
+      getCursorPosition(canvas_envents, e)
+  })
 
   //recive a new question from the server
   socket.on("newQuestion", function (msg) {
@@ -174,9 +226,17 @@ let PlayerColor_p4 = iron
   });
 });
 
+display_game();
 
-refresh_board();
 
+
+function display_game(){
+
+  if (gameState == 0){
+    draw_lobby_waiting();
+  }
+  
+}
 
 function refresh_board(){
   const canvas = document.querySelector("#gl-canvas");
@@ -188,10 +248,16 @@ function refresh_board(){
   draw_score_text(2);
   draw_score_text(3);
   draw_score_text(4);
+  console.log("p1");
   drawPlayers(playerXLoc_p1, playerYLoc_p1, PlayerColor_p1);
+  console.log("p2");
   drawPlayers(playerXLoc_p2, playerYLoc_p2, PlayerColor_p2);
+  console.log("p3");
   drawPlayers(playerXLoc_p3, playerYLoc_p3, PlayerColor_p3);
+  console.log("p4");
   drawPlayers(playerXLoc_p4, playerYLoc_p4, PlayerColor_p4);
+  console.log("end");
+
 }
 
 function drawBoard() {
@@ -410,7 +476,6 @@ function drawBoard() {
   context.fillRect(x, y, width, height);
   context.fillStyle = "rgb(0 0 0 )";
   context.fillText(roll_text,x+ (width/8),y +(height/2))
-  drawPlayers();
 }
 
 function movePlayer(username, direction){
@@ -560,7 +625,7 @@ function movePlayer(username, direction){
   console.log("x cord = " + xloc);
   console.log("y cord = " + yloc);
 
-  refresh_board();
+  display_game();
 
   output = xloc + "," + yloc
   return output
@@ -570,6 +635,8 @@ function drawPlayers(playerX, playerY, PlayerColor){
   const canvas = document.querySelector("#gl-canvas");
   // Initialize the GL context
   const context = canvas.getContext("2d");
+
+  console.log("player color : " + String(PlayerColor) )
 
   context.beginPath();
   const endAngle = Math.PI + (Math.PI * 3) / 2
@@ -658,9 +725,54 @@ function draw_score_text(player_num){
 
 }
 
+function draw_lobby_waiting(){
+  const canvas = document.querySelector("#gl-canvas");
+  const context = canvas.getContext("2d");
+  context.fillStyle = "green";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  
+  xText = 20;
+  yText =15;
+  
+  p1Text = "player 1 : " + playerName_p1;
+  p2Text = "player 2 : " + playerName_p2;
+  p3Text = "player 3 : " + playerName_p3;
+  p4Text = "player 4 : " + playerName_p4;
+  context.fillStyle = "rgb(255 255 255)";
+  context.fillText(p1Text,xText,yText);
+
+  yText+=15
+  context.fillText(p2Text,xText,yText);
+
+  yText+=15
+  context.fillText(p3Text,xText,yText);
+
+  yText+=15
+  context.fillText(p4Text,xText,yText);
+
+  //one is here for testing
+  if (Player4_connected ){
+  //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected){
+    yText+=15
+
+    startButtonX = xText;
+    startButtonY = yText;
+    startButtonWidth = 80;
+    startButtonHeight = 40;
+
+    context.fillStyle = "rgb(255 0 0)";
+    context.fillRect(xText, yText, startButtonWidth, startButtonHeight);
+    yText+=15
+    context.fillStyle = "rgb(0 0 0)";
+    context.fillText("click to start",xText,yText);
+  }
+}
+
 function calculateSquareIDFromCords(x,y){
   let output = ""
 
   console.log("y cord = " + playerYLoc_p1);
   return output
 }
+
+
