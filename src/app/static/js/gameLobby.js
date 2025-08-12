@@ -255,8 +255,17 @@ $(document).ready(function () {
 
         if (was_space_clicked(x, y, startButtonX, startButtonY, startButtonWidth, startButtonHeight)) {
           console.log("start button was clicked")
-
         }
+      }
+    } else if (gameState == 2) {
+      if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
+        console.log("answer 1 was clicked")
+      }else 
+      if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+        console.log("answer 2 was clicked")
+      }else
+      if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
+        console.log("answer 3 was clicked")
       }
     }
 
@@ -858,55 +867,74 @@ function draw_question_card() {
   const canvas = document.querySelector("#gl-canvas");
   const context = canvas.getContext("2d");
 
-  //questButtonColor = "rgb(222 179 25)"
-  //questBackgroundColor = "rgb(0 190 156)"
+  //needed for the button click selection
+  resetDirButtons();
 
-  //quest = "";
-  //answer1 = "";
-  //answer2 = "";
-  //answer3 = "";
-
- 
-
-  //const width = 50
-  //const height = 50
-  
   boardSizeX = (width * 9);
-  boardSizeY = (height *9);
+  boardSizeY = (height * 9);
   cardSizeX = boardSizeX / 2
-  cardSizeY = (boardSizeY / 2) + (boardSizeY/6)
-  backX = (boardSizeX/2)/2;
-  backY = (boardSizeY/2)/2;
+  cardSizeY = (boardSizeY / 2) + (boardSizeY / 6)
+  backX = (boardSizeX / 2) / 2;
+  backY = (boardSizeY / 2) / 2;
 
-  buttonLength = (cardSizeX - (cardSizeX/8));
+  buttonLength = (cardSizeX - (cardSizeX / 8));
   buttonHeight = 50;
   buttonSpacing = 10;
 
   context.fillStyle = questBackgroundColor;
   context.fillRect(backX, backY, cardSizeX, cardSizeY);
 
+  dirButton1Width = buttonLength;
+  dirButton1Height = buttonHeight;
 
-  backX+= (cardSizeX/16)
+  dirButton2Width = buttonLength;
+  dirButton2Height = buttonHeight;
+
+  dirButton3Width = buttonLength;
+  dirButton3Height = buttonHeight;
+
+  //-------------------------for question-------------------------------------
+  backX += (cardSizeX / 16)
   backY += (buttonSpacing);
 
   context.fillStyle = questColor;
   context.fillRect(backX, backY, buttonLength, buttonHeight);
 
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(quest, backX + 10, backY + (buttonHeight / 2))
+  //--------------------------for button 1-----------------------------------
   backY += (buttonHeight);
   backY += (buttonHeight + buttonSpacing);
 
+  dirButton1X = backX;
+  dirButton1Y = backY;
+
   context.fillStyle = questButtonColor;
   context.fillRect(backX, backY, buttonLength, buttonHeight);
-
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(answer1, backX + 10, backY + (buttonHeight / 2))
+  //----------------------------for button 2--------------------------------
   backY += (buttonHeight + buttonSpacing);
 
+  dirButton2X = backX;
+  dirButton2Y = backY;
+
   context.fillStyle = questButtonColor;
   context.fillRect(backX, backY, buttonLength, buttonHeight);
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(answer2, backX + 10, backY + (buttonHeight / 2))
+
+
+  //-----------------------------for button 3-----------------------------------
   backY += (buttonHeight + buttonSpacing);
 
+  dirButton3X = backX;
+  dirButton3Y = backY;
+
   context.fillStyle = questButtonColor;
   context.fillRect(backX, backY, buttonLength, buttonHeight);
-
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(answer3, backX + 10, backY + (buttonHeight / 2))
 }
 
 function calculateSquareIDFromCords(x, y) {
