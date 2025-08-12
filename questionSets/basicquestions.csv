@@ -1,151 +1,151 @@
-id,category_id,question,correct_answer,incorrect_1,incorrect_2,incorrect_3,difficulty
-1,9,What is the nickname of the US state of California?,Golden State,Sunshine State,Bay State,Treasure State,easy
-2,9,What are Panama hats made out of?,Straw,Silk,Hemp,Flax,easy
-3,9,What is the official language of Brazil?,Portuguese,Brazilian,Spanish,English,easy
-4,9,Which of the following languages does NOT use gender as a part of its grammar?,Turkish,German,Danish,Polish,hard
-5,9,What is the currency of Poland?,Złoty,Ruble,Euro,Krone,medium
-6,9,"What is the romanized Chinese word for ""airplane""?",Feiji,Qiche,Zongxian,Huojian,hard
-7,9,"In ""Katamari Damacy"", you control a character known as:",The Prince,Fujio,Ichigo ,Foomin,easy
-8,9,How long did it take the motorized window washers of the original World Trade Center to clean the entire exterior of the building?,1 Month,3 Weeks,1 Week,2 Months,hard
-9,9,"In ""Resident Evil 3"", how many inventory slots does Jill have at the start of the game?",8,6,10,12,hard
-10,9,"Linus Pauling, one of the only winners of multiple Nobel Prizes, earned his Nobel Prizes in Chemistry and what?",Peace,Physics,Economics,Physiology/Medicine,medium
-11,9,"The word ""astasia"" means which of the following?",The inability to stand up,The inability to make decisions,The inability to concentrate on anything,A feverish desire to rip one's clothes off,hard
-12,9,Which company did Valve cooperate with in the creation of the Vive?,HTC,Oculus,Google,Razer,easy
-13,9,What is the famous Papa John's last name?,Schnatter,Chowder,Williams,ANDERSON,easy
-14,9,What kind of aircraft was developed by Igor Sikorsky in the United States in 1942?,Helicopter,Stealth Blimp,Jet,Space Capsule,easy
-15,9,Bob and Mike Bryan were well known brothers in which sport?,Tennis,Basketball,Football,Baseball,medium
-16,9,"In past times, what would a gentleman keep in his fob pocket?",Watch,Money,Keys,Notebook,easy
-17,9,What is the name of the antagonist group in Danganronpa Another Episode: Ultra Despair Girls?,Warriors of Hope,The Monokubs,Warriors of Despair,The Ultimate Despair,easy
-18,9,What geometric shape is generally used for stop signs?,Octagon,Hexagon,Circle,Triangle,easy
-19,9,What is the first book of the Old Testament?,Genesis,Exodus,Leviticus,Numbers,easy
-20,9,Sciophobia is the fear of what?,Shadows,Eating,Bright lights,Transportation,hard
-21,9,The “fairy” type made it’s debut in which generation of the Pokemon core series games?,6th,2nd,7th,4th,easy
-22,9,"What is the romanized Russian word for ""winter""?",Zima,Leto,Vesna,Osen',medium
-23,9,What word represents the letter 'T' in the NATO phonetic alphabet?,Tango,Target,Taxi,Turkey,easy
-24,9,"The website ""Shut Up & Sit Down"" reviews which form of media?",Board Games,Television Shows,Video Games,Films,medium
-25,9,"On a dartboard, what number is directly opposite No. 1?",19,20,12,15,easy
-26,9,The architect known as Le Corbusier was an important figure in what style of architecture?,Modernism,Neoclassical,Baroque,Gothic Revival,medium
-27,9,Which item of clothing is usually worn by a Scotsman at a wedding?,Kilt,Skirt,Dress,Rhobes,medium
-28,9,Which American-owned brewery led the country in sales by volume in 2015?,"D. G. Yuengling and Son, Inc",Anheuser Busch,Boston Beer Company,Miller Coors,easy
-29,9,"What is the profession of Elon Musk's mom, Maye Musk?",Model,Professor,Biologist,Musician,easy
-30,9,What was Mountain Dew's original slogan?,Yahoo! Mountain Dew... It'll tickle your innards!,Give Me A Dew,Do The Dew,Get' that barefoot feelin' drinkin' Mountain Dew,medium
-31,9,What is a dead mall?,A mall with high vacancy rates or low consumer foot traffic,A mall with no stores,A mall that has been condemed,A mall after business hours,medium
-32,9,Nephelococcygia is the practice of doing what?,Finding shapes in clouds,Sleeping with your eyes open,Breaking glass with your voice,Swimming in freezing water,hard
-33,9,What direction does the Statue of Liberty face?,Southeast,Southwest,Northwest,Northeast,medium
-34,9,What zodiac sign is represented by a pair of scales?,Libra,Aries,Capricorn,Sagittarius,easy
-35,9,The likeness of which president is featured on the rare $2 bill of USA currency?,Thomas Jefferson,Martin Van Buren,Ulysses Grant,John Quincy Adams,easy
-36,9,"In ""Battle Cats"", what is Moneko / MISS Moneko's critical percentage rate?",15%,20%,10%,25%,hard
-37,9,Which one of these is not a typical European sword design?,Scimitar,Falchion,Ulfberht,Flamberge,easy
-38,9,What year was Apple Inc. founded?,1976,1978,1980,1974,medium
-39,9,Which of the General Mills Corporation's monster cereals was the last to be released in the 1970's?,Fruit Brute,Count Chocula,Franken Berry,Boo-Berry,medium
-40,9,Amsterdam Centraal station is twinned with what station?,London Liverpool Street,Frankfurt (Main) Hauptbahnhof,Paris Gare du Nord,Brussels Midi,medium
-41,9,"What is ""dabbing""?",A dance,A medical procedure,A sport,A language,easy
-42,9,"What was the nickname given to the Hughes H-4 Hercules, a heavy transport flying boat which achieved flight in 1947?",Spruce Goose,Noah's Ark,Fat Man,Trojan Horse,easy
-43,9," Which chemical element, number 11 in the Periodic table, has the symbol Na?",Sodium,Carbon,Lead,Nitrogen,easy
-44,9,The Hyundai Motor Company was founded in which country?,South Korea,Russia,Japan,China,easy
-45,9,Which of the following buildings is example of a structure primarily built in the Art Deco architectural style?,Niagara Mohawk Building,Taipei 101,One Detroit Center,Westendstrasse 1,medium
-46,9,How many furlongs are there in a mile?,Eight,Two,Four,Six,easy
-47,9,"What was the original name of the search engine ""Google""?",BackRub,CatMassage,SearchPro,Netscape Navigator,medium
-48,9,Where is Apple Inc. headquartered?,"Cupertino, California","Redwood City, California","Redmond, Washington","Santa Monica, CA",hard
-49,9,What step in cellular respiration forms ATP?,Oxidative Phosphorylation,Glycolysis,Pyruvate Oxidation,Calvin Cycle,easy
-50,9,Whose greyscale face is on the kappa emoticon on Twitch?,Josh DeSeno,Justin DeSeno,John DeSeno,Jimmy DeSeno,medium
-51,18,Which data structure does FILO apply to?,Stack,Queue,Heap,Tree,hard
-52,18,"When Gmail first launched, how much storage did it provide for your email?",1GB,512MB,5GB,Unlimited,easy
-53,18,Which RAID array type is associated with data mirroring?,RAID 1,RAID 0,RAID 10,RAID 5,hard
-54,18,"On a standard American QWERTY keyboard, what symbol will you enter if you hold the shift key and press 1?",Exclamation Mark,Dollar Sign,Percent Sign,Asterisk,easy
-55,18,What language does Node.js use?,JavaScript,Java,Java Source,Joomla Source Code,easy
-56,18,What does RAID stand for?,Redundant Array of Independent Disks,Rapid Access for Indexed Devices,Range of Applications with Identical Designs,Randomized Abstract Identification Description,medium
-57,18,How many bits make up the significand portion of a single precision floating point number?,23,8,53,15,medium
-58,18,Unix Time is defined as the number of seconds that have elapsed since when?,"Midnight, January 1, 1970","Midnight, July 4, 1976",Midnight on the creator of Unix's birthday,"Midnight, July 4, 1980",medium
-59,18,"What is known as ""the brain"" of the Computer?",Central Processing Unit,Motherboard,Graphics Processing Unit,Keyboard,medium
-60,18,What does the computer software acronym JVM stand for?,Java Virtual Machine,Java Vendor Machine,Java Visual Machine,Just Virtual Machine,easy
-61,18,All of the following programs are classified as raster graphics editors EXCEPT:,Inkscape,Paint.NET,GIMP,Adobe Photoshop,medium
-62,18,What does the 'S' in the RSA encryption algorithm stand for?,Shamir,Secure,Schottky,Stable,medium
-63,18,"Generally, which component of a computer draws the most power?",Video Card,Hard Drive,Processor,Power Supply,medium
-64,18,The numbering system with a radix of 16 is more commonly referred to as ,Hexidecimal,Binary,Duodecimal,Octal,easy
-65,18,"Released in 2001, the first edition of Apple's Mac OS X operating system (version 10.0) was given what animal code name?",Cheetah,Puma,Tiger,Leopard,hard
-66,18,Who is the founder of Palantir?,Peter Thiel,Mark Zuckerberg,Marc Benioff,Jack Dorsey,hard
-67,18,"In web design, what does CSS stand for?",Cascading Style Sheet,Counter Strike: Source,Corrective Style Sheet,Computer Style Sheet,easy
-68,18,Which of these is not a layer in the OSI model for data communications?,Connection Layer,Application Layer,Transport Layer,Physical Layer,hard
-69,18,Laserjet and inkjet printers are both examples of what type of printer?,Non-impact printer,Impact printer,Daisywheel printer,Dot matrix printer,medium
-70,18,"The acronym ""RIP"" stands for which of these?",Routing Information Protocol,Runtime Instance Processes,Regular Interval Processes,Routine Inspection Protocol,hard
-71,18,If you were to code software in this language you'd only be able to type 0's and 1's.,Binary,JavaScript,C++,Python,easy
-72,18,Which of these is not a key value of Agile software development?,Comprehensive documentation,Individuals and interactions,Customer collaboration,Responding to change,hard
-73,18,What was the name of the security vulnerability found in Bash in 2014?,Shellshock,Heartbleed,Bashbug,Stagefright,hard
-74,18,What major programming language does Unreal Engine 4 use?,C++,Assembly,C#,ECMAScript,hard
-75,18,The teapot often seen in many 3D modeling applications is called what?,Utah Teapot,Pixar Teapot,3D Teapot,Tennessee Teapot,medium
-76,18,What does AD stand for in relation to Windows Operating Systems? ,Active Directory,Alternative Drive,Automated Database,Active Department,medium
-77,18,"What does the ""MP"" stand for in MP3?",Moving Picture,Music Player,Multi Pass,Micro Point,easy
-78,18,What was the name given to Android 4.3?,Jelly Bean,Lollipop,Nutella,Froyo,medium
-79,18,Which of these Cherry MX mechanical keyboard switches is both tactile and clicky?,Cherry MX Blue,Cherry MX Black,Cherry MX Red,Cherry MX Brown,hard
-80,18,Which of these programming languages is a low-level language?,Assembly,Python,C#,Pascal,medium
-81,18,What did the name of the Tor Anonymity Network orignially stand for?,The Onion Router,The Only Router,The Orange Router,The Ominous Router,medium
-82,18,"When did the online streaming service ""Mixer"" launch?",2016,2013,2009,2011,medium
-83,18,Nvidia's headquarters are based in which Silicon Valley city?,Santa Clara,Palo Alto,Cupertino,Mountain View,medium
-84,18,Which of the following computer components can be built using only NAND gates?,ALU,CPU,RAM,Register,hard
-85,18,"In computing, what does LAN stand for?",Local Area Network,Long Antenna Node,Light Access Node,Land Address Navigation,easy
-86,18,In the server hosting industry IaaS stands for...,Infrastructure as a Service,Internet as a Service,Internet and a Server,Infrastructure as a Server,medium
-87,18,"Which company was established on April 1st, 1976 by Steve Jobs, Steve Wozniak and Ronald Wayne?",Apple,Microsoft,Atari,Commodore,easy
-88,18,Which of these people was NOT a founder of Apple Inc?,Jonathan Ive,Steve Jobs,Ronald Wayne,Steve Wozniak,medium
-89,18,How many bytes are in a single Kibibyte?,1024,2400,1000,1240,medium
-90,18,On which day did the World Wide Web go online?,"December 20, 1990","December 17, 1996","November 12, 1990","November 24, 1995",medium
-91,18,What does LTS stand for in the software market?,Long Term Support,Long Taco Service,Ludicrous Transfer Speed,Ludicrous Turbo Speed,easy
-92,18,Which coding language was the #1 programming language in terms of usage on GitHub in 2015?,JavaScript,C#,Python,PHP,medium
-93,18,This mobile OS held the largest market share in 2012.,iOS,Android,BlackBerry,Symbian,easy
-94,18,"The Electron computer was released in Britain during 1983 for the home computing market, by which company? ",Acorn Computers,Sinclair Research,Amstrad PLC,Commodore Business Machines,easy
-95,18,"While Apple was formed in California, in which western state was Microsoft founded?",New Mexico,Washington,Colorado,Arizona,medium
-96,18,What programming language was GitHub written in?,Ruby,JavaScript,Python,Lua,easy
-97,18,What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?,Transport,Session,Data link,Network,hard
-98,18,How many kilobytes in one gigabyte (in decimal)?,1000000,1024,1000,1048576,easy
-99,18,How many values can a single byte represent?,256,8,1,1024,easy
-100,18,"Australia, Japan, and Southeast Asia are in which ITU Region?",Region 3,Region 1,Region 2,Region 4,hard
-101,27,What type of creature is a Bonobo?,Ape,Lion,Parrot,Wildcat,hard
-102,27,What is the collective noun for rats?,Mischief,Pack,Race,Drift,medium
-103,27,"""Decapods"" are an order of ten-footed crustaceans.  Which of these are NOT decapods?",Krill,Lobsters,Shrimp,Crabs,medium
-104,27,"The dish Fugu, is made from what family of fish?",Pufferfish,Bass,Salmon,Mackerel,medium
-105,27,Which of the following is true when alligators are behaving territorially?,They bellow while showing their tail and neck,Open their jaws while making a clicking noise,They run full force at the threat,Slap their tails on the ground,medium
-106,27,Hippocampus is the Latin name for which marine creature?,Seahorse,Dolphin,Whale,Octopus,easy
-107,27,What is the common term for bovine spongiform encephalopathy (BSE)?,Mad Cow disease,Weil's disease,Milk fever,Foot-and-mouth disease,medium
-108,27,What is the collective noun for bears?,Sloth,Drove,Tribe,Husk,medium
-109,27,What was the name of the Ethiopian Wolf before they knew it was related to wolves?,Simien Jackel,Ethiopian Coyote,Amharic Fox,Canis Simiensis,hard
-110,27,What is the name of a rabbit's abode?,Burrow,Nest,Den,Dray,easy
-111,27,"To which biological phylum do all mammals, birds and reptiles belong?",Chordata,Echinodermata,Annelida,Placazoa,hard
-112,27,Which animal was part of an Russian domestication experiment in 1959?,Foxes,Pigeons,Bears,Alligators,medium
-113,27,What is Grumpy Cat's real name?,Tardar Sauce,Sauce,Minnie,Broccoli,easy
-114,27,What is the scientific name of the Common Chimpanzee?,Pan troglodytes,Gorilla gorilla,Pan paniscus,Panthera leo,medium
-115,27,What is the collective noun for a group of crows?,Murder,Pack,Gaggle,Herd,easy
-116,27,What are the scales on all snakes and most lizards are made of?,Keratin,Ecdysis,Epidermis,Ankyloglossia,medium
-117,27,What is the name of the copper-rich protein that creates the blue blood in the Antarctic octopus?,Hemocyanin,Cytochrome,Iron,Methionine,hard
-118,27,Which of the following is NOT a venomous snake?,Reticulated python,Malayan Krait,Yellow bellied sea snake,Black mamba,medium
-119,27,How many known living species of hyenas are there?,4,8,2,6,hard
-120,27,What bird is born with claws on its wing digits?,Hoatzin,Cormorant,Cassowary,Secretary bird,hard
-121,27,What colour is the female blackbird?,Brown,Black,White,Yellow,easy
-122,27,What is the name of the family that the domestic cat is a member of?,Felidae,Felinae,Felis,Cat,medium
-123,27,What type of animal is a natterjack?,Toad,Bird,Fish,Insect,medium
-124,27,What is the fastest animal?,Peregrine Falcon,Golden Eagle,Cheetah,Horsefly,medium
-125,27,What do you call a baby bat?,Pup,Cub,Chick,Kid,easy
-126,27,Which species of Brown Bear is not extinct?,Syrian Brown Bear,California Grizzly Bear,Atlas Bear,Mexican Grizzly Bear,hard
-127,27,How many teeth does an adult rabbit have?,28,30,26,24,easy
-128,27,What is the scientific name for modern day humans?,Homo Sapiens,Homo Ergaster,Homo Erectus,Homo Neanderthalensis,easy
-129,27,What color/colour is a polar bear's skin?,Black,White,Pink,Green,medium
-130,27,"The now extinct species ""Thylacine"" was native to where?","Tasmania, Australia","Baluchistan, Pakistan","Wallachia, Romania","Oregon, United States",medium
-131,27,Which class of animals are newts members of?,Amphibian,Fish,Reptiles,Mammals,easy
-132,27,Which of these species is not extinct?,Komodo dragon,Japanese sea lion,Tasmanian tiger,Saudi gazelle,medium
-133,27,"What is the scientific name for the ""Polar Bear""?",Ursus Maritimus,Polar Bear,Ursus Spelaeus,Ursus Arctos,medium
-134,27,"The Kākāpō is a large, flightless, nocturnal parrot native to which country?",New Zealand,South Africa,Australia,Madagascar,easy
-135,27,"What does ""hippopotamus"" mean and in what langauge?",River Horse (Greek),River Horse (Latin),Fat Pig (Greek),Fat Pig (Latin),medium
-136,27,What is the scientific name of the cheetah?,Acinonyx jubatus,Panthera onca,Lynx rufus,Felis catus,hard
-137,27,"Which species is a ""mountain chicken""?",Frog,Chicken,Horse,Fly,hard
-138,27,"A carnivorous animal eats flesh, what does a nucivorous animal eat?",Nuts,Nothing,Fruit,Seaweed,medium
-139,27,"By definition, where does an abyssopelagic animal live?",At the bottom of the ocean,In the desert,On top of a mountain,Inside a tree,easy
-140,27,"Which of the following is another name for the ""Poecilotheria Metallica Tarantula""?",Gooty,Hopper,Silver Stripe,Woebegone,hard
-141,27,What is the world's longest venomous snake?,King Cobra,Green Anaconda,Inland Taipan,Yellow Bellied Sea Snake,medium
-142,27,What scientific suborder does the family Hyaenidae belong to?,Feliformia,Haplorhini,Caniformia,Ciconiiformes,hard
-143,27,What is the scientific name of the Budgerigar?,Melopsittacus undulatus,Nymphicus hollandicus,Pyrrhura molinae,Ara macao,hard
-144,27,"For what reason would a spotted hyena ""laugh""?",Nervousness,Excitement,Aggression,Exhaustion,medium
-145,27,What dog breed is one of the oldest breeds of dog and has flourished since before 400 BCE.,Pugs,Bulldogs,Boxers,Chihuahua,medium
-146,27,Which of these is a colony of polyps and not a jellyfish?,Portuguese Man-of-War,Sea Wasp,Irukandji,Sea Nettle,hard
-147,27,What is the Gray Wolf's scientific name?,Canis Lupus,Canis Aureus,Canis Latrans,Canis Lupus Lycaon,hard
-148,27,What is the collective noun for vultures?,Wake,Ambush,Building,Gaze,hard
-149,27,What is the name for a male bee that comes from an unfertilized egg?,Drone,Soldier,Worker,Male,medium
-150,27,What is the fastest  land animal?,Cheetah,Lion,Thomson’s Gazelle,Pronghorn Antelope,easy
+id,category_id,category_name,question,correct_answer,incorrect_1,incorrect_2,incorrect_3,difficulty
+1,1,Geography,What is the nickname of the US state of California?,Golden State,Sunshine State,Bay State,Treasure State,easy
+2,1,Geography,What is the official language of Brazil?,Portuguese,Brazilian,Spanish,English,easy
+3,1,Geography,What is the currency of Poland?,Złoty,Ruble,Euro,Krone,medium
+4,1,Geography,How long did it take the motorized window washers of the original World Trade Center to clean the entire exterior of the building?,1 Month,3 Weeks,1 Week,2 Months,hard
+5,1,Geography,"Linus Pauling (one of the only winners of multiple Nobel Prizes) earned his Nobel Prizes in Chemistry and what?",Peace,Physics,Economics,Physiology/Medicine,medium
+6,1,Geography,"The word ""astasia"" means which of the following?",The inability to stand up,The inability to make decisions,The inability to concentrate on anything,A feverish desire to rip one's clothes off,hard
+7,1,Geography,What direction does the Statue of Liberty face?,Southeast,Southwest,Northwest,Northeast,medium
+8,1,Geography,Where is Apple Inc. headquartered?,"Cupertino, California","Redwood City, California","Redmond, Washington","Santa Monica, CA",hard
+9,2,Language,"What is the romanized Chinese word for ""airplane""?",Feiji,Qiche,Zongxian,Huojian,hard
+10,2,Language,Which of the following languages does NOT use gender as a part of its grammar?,Turkish,German,Danish,Polish,hard
+11,2,Language,"What is the romanized Russian word for ""winter""?",Zima,Leto,Vesna,Osen',medium
+12,3,Video Games,Which company did Valve cooperate with in the creation of the Vive?,HTC,Oculus,Google,Razer,easy
+13,3,Video Games,"In ""Resident Evil 3"" how many inventory slots does Jill have at the start of the game?",8,6,10,12,hard
+14,3,Video Games,"In ""Katamari Damacy"" you control a character known as:",The Prince,Fujio,Ichigo,Foomin,easy
+15,3,Video Games,The “fairy” type made it’s debut in which generation of the Pokemon core series games?,6th,2nd,7th,4th,easy
+16,3,Video Games,"In ""Battle Cats"" what is Moneko / MISS Moneko's critical percentage rate?",15%,20%,10%,25%,hard
+17,4,Science,How many furlongs are there in a mile?,Eight,Two,Four,Six,easy
+18,4,Science,Sciophobia is the fear of what?,Shadows,Eating,Bright lights,Transportation,hard
+19,4,Science,What step in cellular respiration forms ATP?,Oxidative Phosphorylation,Glycolysis,Pyruvate Oxidation,Calvin Cycle,easy
+20,4,Science," Which chemical element (number 11 in the Periodic table) has the symbol Na?",Sodium,Carbon,Lead,Nitrogen,easy
+21,5,Culture,What is the famous Papa John's last name?,Schnatter,Chowder,Williams,ANDERSON,easy
+22,5,Culture,What kind of aircraft was developed by Igor Sikorsky in the United States in 1942?,Helicopter,Stealth Blimp,Jet,Space Capsule,easy
+23,5,Culture,Bob and Mike Bryan were well known brothers in which sport?,Tennis,Basketball,Football,Baseball,medium
+24,5,Culture,"In past times, what would a gentleman keep in his fob pocket?",Watch,Money,Keys,Notebook,easy
+25,5,Culture,What is the name of the antagonist group in Danganronpa Another Episode: Ultra Despair Girls?,Warriors of Hope,The Monokubs,Warriors of Despair,The Ultimate Despair,easy
+26,5,Culture,What geometric shape is generally used for stop signs?,Octagon,Hexagon,Circle,Triangle,easy
+27,5,Culture,What is the first book of the Old Testament?,Genesis,Exodus,Leviticus,Numbers,easy
+28,5,Culture,What are Panama hats made out of?,Straw,Silk,Hemp,Flax,easy
+29,5,Culture,What word represents the letter 'T' in the NATO phonetic alphabet?,Tango,Target,Taxi,Turkey,easy
+30,5,Culture,"The website ""Shut Up & Sit Down"" reviews which form of media?",Board Games,Television Shows,Video Games,Films,medium
+31,5,Culture,"On a dartboard what number is directly opposite No. 1?",19,20,12,15,easy
+32,5,Culture,The architect known as Le Corbusier was an important figure in what style of architecture?,Modernism,Neoclassical,Baroque,Gothic Revival,medium
+33,5,Culture,Which item of clothing is usually worn by a Scotsman at a wedding?,Kilt,Skirt,Dress,Rhobes,medium
+34,5,Culture,Which American-owned brewery led the country in sales by volume in 2015?,"D. G. Yuengling and Son, Inc",Anheuser Busch,Boston Beer Company,Miller Coors,easy
+35,5,Culture,"What is the profession of Elon Musk's mom Maye Musk?",Model,Professor,Biologist,Musician,easy
+36,5,Culture,What was Mountain Dew's original slogan?,Yahoo! Mountain Dew... It'll tickle your innards!,Give Me A Dew,Do The Dew,Get' that barefoot feelin' drinkin' Mountain Dew,medium
+37,5,Culture,What is a dead mall?,A mall with high vacancy rates or low consumer foot traffic,A mall with no stores,A mall that has been condemed,A mall after business hours,medium
+38,5,Culture,Nephelococcygia is the practice of doing what?,Finding shapes in clouds,Sleeping with your eyes open,Breaking glass with your voice,Swimming in freezing water,hard
+39,5,Culture,What zodiac sign is represented by a pair of scales?,Libra,Aries,Capricorn,Sagittarius,easy
+40,5,Culture,The likeness of which president is featured on the rare $2 bill of USA currency?,Thomas Jefferson,Martin Van Buren,Ulysses Grant,John Quincy Adams,easy
+41,5,Culture,Which one of these is not a typical European sword design?,Scimitar,Falchion,Ulfberht,Flamberge,easy
+42,5,Culture,What year was Apple Inc. founded?,1976,1978,1980,1974,medium
+43,5,Culture,Which of the General Mills Corporation's monster cereals was the last to be released in the 1970's?,Fruit Brute,Count Chocula,Franken Berry,Boo-Berry,medium
+44,5,Culture,Amsterdam Centraal station is twinned with what station?,London Liverpool Street,Frankfurt (Main) Hauptbahnhof,Paris Gare du Nord,Brussels Midi,medium
+45,5,Culture,"What is ""dabbing""?",A dance,A medical procedure,A sport,A language,easy
+46,5,Culture,"What was the nickname given to the Hughes H-4 Hercules a heavy transport flying boat which achieved flight in 1947?",Spruce Goose,Noah's Ark,Fat Man,Trojan Horse,easy
+47,5,Culture,The Hyundai Motor Company was founded in which country?,South Korea,Russia,Japan,China,easy
+48,5,Culture,Which of the following buildings is example of a structure primarily built in the Art Deco architectural style?,Niagara Mohawk Building,Taipei 101,One Detroit Center,Westendstrasse 1,medium
+49,5,Culture,"What was the original name of the search engine ""Google""?",BackRub,CatMassage,SearchPro,Netscape Navigator,medium
+50,5,Culture,Whose greyscale face is on the kappa emoticon on Twitch?,Josh DeSeno,Justin DeSeno,John DeSeno,Jimmy DeSeno,medium
+51,6,Technology,Which data structure does FILO apply to?,Stack,Queue,Heap,Tree,hard
+52,6,Technology,"When Gmail first launched how much storage did it provide for your email?",1GB,512MB,5GB,Unlimited,easy
+53,6,Technology,Which RAID array type is associated with data mirroring?,RAID 1,RAID 0,RAID 10,RAID 5,hard
+54,6,Technology,"On a standard American QWERTY keyboard what symbol will you enter if you hold the shift key and press 1?",Exclamation Mark,Dollar Sign,Percent Sign,Asterisk,easy
+55,6,Technology,What language does Node.js use?,JavaScript,Java,Java Source,Joomla Source Code,easy
+56,6,Technology,What does RAID stand for?,Redundant Array of Independent Disks,Rapid Access for Indexed Devices,Range of Applications with Identical Designs,Randomized Abstract Identification Description,medium
+57,6,Technology,How many bits make up the significand portion of a single precision floating point number?,23,8,53,15,medium
+58,6,Technology,Unix Time is defined as the number of seconds that have elapsed since when?,"Midnight, January 1, 1970","Midnight, July 4, 1976",Midnight on the creator of Unix's birthday,"Midnight, July 4, 1980",medium
+59,6,Technology,"What is known as ""the brain"" of the Computer?",Central Processing Unit,Motherboard,Graphics Processing Unit,Keyboard,medium
+60,6,Technology,What does the computer software acronym JVM stand for?,Java Virtual Machine,Java Vendor Machine,Java Visual Machine,Just Virtual Machine,easy
+61,6,Technology,All of the following programs are classified as raster graphics editors EXCEPT:,Inkscape,Paint.NET,GIMP,Adobe Photoshop,medium
+62,6,Technology,What does the 'S' in the RSA encryption algorithm stand for?,Shamir,Secure,Schottky,Stable,medium
+63,6,Technology,"Generally which component of a computer draws the most power?",Video Card,Hard Drive,Processor,Power Supply,medium
+64,6,Technology,The numbering system with a radix of 16 is more commonly referred to as,Hexidecimal,Binary,Duodecimal,Octal,easy
+65,6,Technology,"Released in 2001 the first edition of Apple's Mac OS X operating system (version 10.0) was given what animal code name?",Cheetah,Puma,Tiger,Leopard,hard
+66,6,Technology,Who is the founder of Palantir?,Peter Thiel,Mark Zuckerberg,Marc Benioff,Jack Dorsey,hard
+67,6,Technology,"In web design what does CSS stand for?",Cascading Style Sheet,Counter Strike: Source,Corrective Style Sheet,Computer Style Sheet,easy
+68,6,Technology,Which of these is not a layer in the OSI model for data communications?,Connection Layer,Application Layer,Transport Layer,Physical Layer,hard
+69,6,Technology,Laserjet and inkjet printers are both examples of what type of printer?,Non-impact printer,Impact printer,Daisywheel printer,Dot matrix printer,medium
+70,6,Technology,"The acronym ""RIP"" stands for which of these?",Routing Information Protocol,Runtime Instance Processes,Regular Interval Processes,Routine Inspection Protocol,hard
+71,6,Technology,If you were to code software in this language you'd only be able to type 0's and 1's.,Binary,JavaScript,C++,Python,easy
+72,6,Technology,Which of these is not a key value of Agile software development?,Comprehensive documentation,Individuals and interactions,Customer collaboration,Responding to change,hard
+73,6,Technology,What was the name of the security vulnerability found in Bash in 2014?,Shellshock,Heartbleed,Bashbug,Stagefright,hard
+74,6,Technology,What major programming language does Unreal Engine 4 use?,C++,Assembly,C#,ECMAScript,hard
+75,6,Technology,The teapot often seen in many 3D modeling applications is called what?,Utah Teapot,Pixar Teapot,3D Teapot,Tennessee Teapot,medium
+76,6,Technology,What does AD stand for in relation to Windows Operating Systems?,Active Directory,Alternative Drive,Automated Database,Active Department,medium
+77,6,Technology,"What does the ""MP"" stand for in MP3?",Moving Picture,Music Player,Multi Pass,Micro Point,easy
+78,6,Technology,What was the name given to Android 4.3?,Jelly Bean,Lollipop,Nutella,Froyo,medium
+79,6,Technology,Which of these Cherry MX mechanical keyboard switches is both tactile and clicky?,Cherry MX Blue,Cherry MX Black,Cherry MX Red,Cherry MX Brown,hard
+80,6,Technology,Which of these programming languages is a low-level language?,Assembly,Python,C#,Pascal,medium
+81,6,Technology,What did the name of the Tor Anonymity Network orignially stand for?,The Onion Router,The Only Router,The Orange Router,The Ominous Router,medium
+82,6,Technology,"When did the online streaming service ""Mixer"" launch?",2016,2013,2009,2011,medium
+83,6,Technology,Nvidia's headquarters are based in which Silicon Valley city?,Santa Clara,Palo Alto,Cupertino,Mountain View,medium
+84,6,Technology,Which of the following computer components can be built using only NAND gates?,ALU,CPU,RAM,Register,hard
+85,6,Technology,"In computing, what does LAN stand for?",Local Area Network,Long Antenna Node,Light Access Node,Land Address Navigation,easy
+86,6,Technology,In the server hosting industry IaaS stands for...,Infrastructure as a Service,Internet as a Service,Internet and a Server,Infrastructure as a Server,medium
+87,6,Technology,"Which company was established on April 1st 1976 by Steve Jobs Steve Wozniak and Ronald Wayne?",Apple,Microsoft,Atari,Commodore,easy
+88,6,Technology,Which of these people was NOT a founder of Apple Inc?,Jonathan Ive,Steve Jobs,Ronald Wayne,Steve Wozniak,medium
+89,6,Technology,How many bytes are in a single Kibibyte?,1024,2400,1000,1240,medium
+90,6,Technology,On which day did the World Wide Web go online?,20-Dec-90,17-Dec-96,12-Nov-90,24-Nov-95,medium
+91,6,Technology,What does LTS stand for in the software market?,Long Term Support,Long Taco Service,Ludicrous Transfer Speed,Ludicrous Turbo Speed,easy
+92,6,Technology,Which coding language was the #1 programming language in terms of usage on GitHub in 2015?,JavaScript,C#,Python,PHP,medium
+93,6,Technology,This mobile OS held the largest market share in 2012.,iOS,Android,BlackBerry,Symbian,easy
+94,6,Technology,"The Electron computer was released in Britain during 1983 for the home computing market by which company? ",Acorn Computers,Sinclair Research,Amstrad PLC,Commodore Business Machines,easy
+95,6,Technology,"While Apple was formed in California in which western state was Microsoft founded?",New Mexico,Washington,Colorado,Arizona,medium
+96,6,Technology,What programming language was GitHub written in?,Ruby,JavaScript,Python,Lua,easy
+97,6,Technology,What is the name given to layer 4 of the Open Systems Interconnection (ISO) model?,Transport,Session,Data link,Network,hard
+98,6,Technology,How many kilobytes in one gigabyte (in decimal)?,1000000,1024,1000,1048576,easy
+99,6,Technology,How many values can a single byte represent?,256,8,1,1024,easy
+100,6,Technology,"Australia Japan and Southeast Asia are in which ITU Region?",Region 3,Region 1,Region 2,Region 4,hard
+101,7,Animals and Nature,What type of creature is a Bonobo?,Ape,Lion,Parrot,Wildcat,hard
+102,7,Animals and Nature,What is the collective noun for rats?,Mischief,Pack,Race,Drift,medium
+103,7,Animals and Nature,"""Decapods"" are an order of ten-footed crustaceans.  Which of these are NOT decapods?",Krill,Lobsters,Shrimp,Crabs,medium
+104,7,Animals and Nature,"The dish Fugu is made from what family of fish?",Pufferfish,Bass,Salmon,Mackerel,medium
+105,7,Animals and Nature,Which of the following is true when alligators are behaving territorially?,They bellow while showing their tail and neck,Open their jaws while making a clicking noise,They run full force at the threat,Slap their tails on the ground,medium
+106,7,Animals and Nature,Hippocampus is the Latin name for which marine creature?,Seahorse,Dolphin,Whale,Octopus,easy
+107,7,Animals and Nature,What is the common term for bovine spongiform encephalopathy (BSE)?,Mad Cow disease,Weil's disease,Milk fever,Foot-and-mouth disease,medium
+108,7,Animals and Nature,What is the collective noun for bears?,Sloth,Drove,Tribe,Husk,medium
+109,7,Animals and Nature,What was the name of the Ethiopian Wolf before they knew it was related to wolves?,Simien Jackel,Ethiopian Coyote,Amharic Fox,Canis Simiensis,hard
+110,7,Animals and Nature,What is the name of a rabbit's abode?,Burrow,Nest,Den,Dray,easy
+111,7,Animals and Nature,"To which biological phylum do all mammals, birds and reptiles belong?",Chordata,Echinodermata,Annelida,Placazoa,hard
+112,7,Animals and Nature,Which animal was part of an Russian domestication experiment in 1959?,Foxes,Pigeons,Bears,Alligators,medium
+113,7,Animals and Nature,What is Grumpy Cat's real name?,Tardar Sauce,Sauce,Minnie,Broccoli,easy
+114,7,Animals and Nature,What is the scientific name of the Common Chimpanzee?,Pan troglodytes,Gorilla gorilla,Pan paniscus,Panthera leo,medium
+115,7,Animals and Nature,What is the collective noun for a group of crows?,Murder,Pack,Gaggle,Herd,easy
+116,7,Animals and Nature,What are the scales on all snakes and most lizards are made of?,Keratin,Ecdysis,Epidermis,Ankyloglossia,medium
+117,7,Animals and Nature,What is the name of the copper-rich protein that creates the blue blood in the Antarctic octopus?,Hemocyanin,Cytochrome,Iron,Methionine,hard
+118,7,Animals and Nature,Which of the following is NOT a venomous snake?,Reticulated python,Malayan Krait,Yellow bellied sea snake,Black mamba,medium
+119,7,Animals and Nature,How many known living species of hyenas are there?,4,8,2,6,hard
+120,7,Animals and Nature,What bird is born with claws on its wing digits?,Hoatzin,Cormorant,Cassowary,Secretary bird,hard
+121,7,Animals and Nature,What colour is the female blackbird?,Brown,Black,White,Yellow,easy
+122,7,Animals and Nature,What is the name of the family that the domestic cat is a member of?,Felidae,Felinae,Felis,Cat,medium
+123,7,Animals and Nature,What type of animal is a natterjack?,Toad,Bird,Fish,Insect,medium
+124,7,Animals and Nature,What is the fastest animal?,Peregrine Falcon,Golden Eagle,Cheetah,Horsefly,medium
+125,7,Animals and Nature,What do you call a baby bat?,Pup,Cub,Chick,Kid,easy
+126,7,Animals and Nature,Which species of Brown Bear is not extinct?,Syrian Brown Bear,California Grizzly Bear,Atlas Bear,Mexican Grizzly Bear,hard
+127,7,Animals and Nature,How many teeth does an adult rabbit have?,28,30,26,24,easy
+128,7,Animals and Nature,What is the scientific name for modern day humans?,Homo Sapiens,Homo Ergaster,Homo Erectus,Homo Neanderthalensis,easy
+129,7,Animals and Nature,What color/colour is a polar bear's skin?,Black,White,Pink,Green,medium
+130,7,Animals and Nature,"The now extinct species ""Thylacine"" was native to where?","Tasmania, Australia","Baluchistan, Pakistan","Wallachia, Romania","Oregon, United States",medium
+131,7,Animals and Nature,Which class of animals are newts members of?,Amphibian,Fish,Reptiles,Mammals,easy
+132,7,Animals and Nature,Which of these species is not extinct?,Komodo dragon,Japanese sea lion,Tasmanian tiger,Saudi gazelle,medium
+133,7,Animals and Nature,"What is the scientific name for the ""Polar Bear""?",Ursus Maritimus,Polar Bear,Ursus Spelaeus,Ursus Arctos,medium
+134,7,Animals and Nature,"The Kākāpō is a large flightless nocturnal parrot native to which country?",New Zealand,South Africa,Australia,Madagascar,easy
+135,7,Animals and Nature,"What does ""hippopotamus"" mean and in what langauge?",River Horse (Greek),River Horse (Latin),Fat Pig (Greek),Fat Pig (Latin),medium
+136,7,Animals and Nature,What is the scientific name of the cheetah?,Acinonyx jubatus,Panthera onca,Lynx rufus,Felis catus,hard
+137,7,Animals and Nature,"Which species is a ""mountain chicken""?",Frog,Chicken,Horse,Fly,hard
+138,7,Animals and Nature,"A carnivorous animal eats flesh; what does a nucivorous animal eat?",Nuts,Nothing,Fruit,Seaweed,medium
+139,7,Animals and Nature,"By definition where does an abyssopelagic animal live?",At the bottom of the ocean,In the desert,On top of a mountain,Inside a tree,easy
+140,7,Animals and Nature,"Which of the following is another name for the ""Poecilotheria Metallica Tarantula""?",Gooty,Hopper,Silver Stripe,Woebegone,hard
+141,7,Animals and Nature,What is the world's longest venomous snake?,King Cobra,Green Anaconda,Inland Taipan,Yellow Bellied Sea Snake,medium
+142,7,Animals and Nature,What scientific suborder does the family Hyaenidae belong to?,Feliformia,Haplorhini,Caniformia,Ciconiiformes,hard
+143,7,Animals and Nature,What is the scientific name of the Budgerigar?,Melopsittacus undulatus,Nymphicus hollandicus,Pyrrhura molinae,Ara macao,hard
+144,7,Animals and Nature,"For what reason would a spotted hyena ""laugh""?",Nervousness,Excitement,Aggression,Exhaustion,medium
+145,7,Animals and Nature,What dog breed is one of the oldest breeds of dog and has flourished since before 400 BCE.,Pugs,Bulldogs,Boxers,Chihuahua,medium
+146,7,Animals and Nature,Which of these is a colony of polyps and not a jellyfish?,Portuguese Man-of-War,Sea Wasp,Irukandji,Sea Nettle,hard
+147,7,Animals and Nature,What is the Gray Wolf's scientific name?,Canis Lupus,Canis Aureus,Canis Latrans,Canis Lupus Lycaon,hard
+148,7,Animals and Nature,What is the collective noun for vultures?,Wake,Ambush,Building,Gaze,hard
+149,7,Animals and Nature,What is the name for a male bee that comes from an unfertilized egg?,Drone,Soldier,Worker,Male,medium
+150,7,Animals and Nature,What is the fastest land animal?,Cheetah,Lion,Thomson’s Gazelle,Pronghorn Antelope,easy
