@@ -81,11 +81,11 @@ class gameMaster:
 
     def moveeast(self, gameID, playerData):
         player_data = self.getGameInfo(gameID)['players']
-        self.getGameInfo(gameID)['logicObject'].makeChoose(1)
+        self.getGameInfo(gameID)['logicObject'].makeChoose(2)
 
     def movewest(self, gameID, playerData):
         player_data = self.getGameInfo(gameID)['players']
-        self.getGameInfo(gameID)['logicObject'].makeChoose(2)
+        self.getGameInfo(gameID)['logicObject'].makeChoose(1)
 
     def movesouth(self, gameID, playerData):
         player_data = self.getGameInfo(gameID)['players']

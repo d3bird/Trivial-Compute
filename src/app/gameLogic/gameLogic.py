@@ -173,11 +173,17 @@ class gameLogic:
             self.sendDirChoiece = True
             paths =current_square.get_neighbors()
             index = 0
+            self.north = False
+            self.west = False
+            self.east = False
+            self.south = False
             for item in paths:
                 squareID = item
                 self.dir_x = current_square.get_x()
                 self.dir_y = current_square.get_y()
                 if True:
+
+                    
                     if self.board.get_square(squareID).get_x() == (self.dir_x -1):
                         self.west = True
                         self.westID =self.board.get_square(squareID).get_ID()

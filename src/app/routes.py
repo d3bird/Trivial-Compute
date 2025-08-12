@@ -63,9 +63,6 @@ def selectAnswer1(sock):
     allGames.increasePlayerRight(gameId, current_player_data)
 
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
-    while True:
-        data = sock.receive()
-        sock.send(data)
 
 #@sock.route('/selectAnswer2')
 @socketio.on('answer2')
@@ -75,9 +72,6 @@ def selectAnswer2(sock):
     current_player_data = create_current_player_data()
     allGames.increasePlayerWrong(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
-    while True:
-        data = sock.receive()
-        sock.send(data)
 
 #@sock.route('/selectAnswer3')
 @socketio.on('answer3')
@@ -87,9 +81,6 @@ def selectAnswer3(sock):
     current_player_data = create_current_player_data()
     allGames.increasePlayerWrong(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
-    while True:
-        data = sock.receive()
-        sock.send(data)
 
 #@sock.route('/rollDice')
 @socketio.on('rollDice')
@@ -182,12 +173,13 @@ def game_background_thread():
             right = player['questionGottenRight']
             wrong = player['questionGottenWrong']
             
-            if player['sendUpdateLoc']:
-                print("Sending new location for player : " + str(row_num))
+            if row_num != None and row_num != "none":
+                #print("Sending new location for player : " + str(row_num))
                 x =player['xloc']
                 y =player['yloc']
                 player['sendUpdateLoc'] = False
-                socketio.emit('updatePlayerloc', {'player': username, "X": x, "Y": y})
+                if x != None and y != None:
+                    socketio.emit('updatePlayerloc', {'player': username, "X": x, "Y": y})
 
             if player['wedgesUpdate']:
                 yellow = player['wedgesWon']['yellow']

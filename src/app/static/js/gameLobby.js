@@ -173,7 +173,7 @@ $(document).ready(function () {
   socket.on("choose", function (msg) {
     console.log("Received dir:: " + msg.X + " :: " + msg.Y);
 
-    chooseX = msg.X - 1;
+    chooseX = msg.X;
     chooseY = msg.Y;
     chooseNorth = msg.north;
     choosesouth = msg.south;
@@ -204,9 +204,9 @@ $(document).ready(function () {
 
   socket.on("roll", function (msg) {
     //console.log("Received roll:: " + msg.playerTurn + " :: " + msg.roll + " :: " + msg.move_left);
-    console.log("new xy : " + msg.x + " :: " + msg.y)
 
     if (msg.x != null && msg.y != null) {
+      console.log("new xy : " + msg.x + " :: " + msg.y)
       if (msg.playerTurn == 0) {
         playerXLoc_p1 = msg.x;
         playerYLoc_p1 = msg.y;
@@ -267,8 +267,6 @@ $(document).ready(function () {
 
   socket.on("updatePlayerloc", function (msg) {
     // console.log("Received playyer Data :: " + msg.player + " :: " + msg.X + " :: " + msg.Y);
-
-
 
     if (String(msg.player) == String(playerName_p1)) {
       //console.log("p1 updated")
@@ -382,11 +380,11 @@ $(document).ready(function () {
         console.log("north")
         choose_north();
       } else if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
-        console.log("east")
-        choose_east();
-      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
         console.log("west")
         choose_west();
+      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+        console.log("east")
+        choose_east();
       } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
         console.log("south")
         choose_south();
