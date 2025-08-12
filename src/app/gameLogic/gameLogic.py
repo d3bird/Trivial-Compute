@@ -86,7 +86,7 @@ class gameLogic:
         return roll
 
     def move_one_square(self):
-        square_ID = self.players[self.current_players_turn]['square_currently_on']
+        #square_ID = self.players[self.current_players_turn]['square_currently_on']
         current_square = self.get_current_square()
         self.current_movement_left -= 1
 
@@ -113,9 +113,10 @@ class gameLogic:
 
     def get_player_square(self, playerID):
         square = None
-        if playerID in self.players.keys():
-            space = self.players[playerID]['square_currently_on']
+        if str(playerID) in self.players.keys():
+            space = self.players[str(playerID)]['square_currently_on']
             square = self.board.get_square(space)
+            print("square data : " +str(square))
         else:
             print("cold not find player ID : " + str(playerID))
             print("options are " + str(self.players.keys()))

@@ -119,48 +119,48 @@ $(document).ready(function () {
   //connect to the socket server.
   //   var socket = io.connect("http://" + document.domain + ":" + location.port);
   var socket = io.connect();
-  
-  function start_game(){
+
+  function start_game() {
     socket.emit('start_game', { data: 'need to start' });
   }
 
-  function roll_dice(){
+  function roll_dice() {
     socket.emit('rollDice', { data: 'need to start' });
   }
 
-  function request_question(){
+  function request_question() {
     socket.emit('start_game', { data: 'need to start' });
   }
 
   //yes I know this is hacky, but I am ready for this class to be over to give my best work
   //too bad
-  function answer1_question(){
+  function answer1_question() {
     socket.emit('answer1', { data: 'need to start' });
   }
 
-  function answer2_question(){
+  function answer2_question() {
     socket.emit('answer2', { data: 'need to start' });
   }
 
-  function answer3_question(){
+  function answer3_question() {
     socket.emit('answer3', { data: 'need to start' });
   }
-  
+
   //receive player details from server
   socket.on("stateChange", function (msg) {
     console.log("Received state:: " + msg.playerTurn + " :: " + msg.state);
     gameState = msg.state;
 
-    if (msg.playerTurn  ==0){
+    if (msg.playerTurn == 0) {
       current_user_turn = playerName_p1;
-    }else if (msg.playerTurn == 1){
+    } else if (msg.playerTurn == 1) {
       current_user_turn = playerName_p2;
-    }else if (msg.playerTurn == 2){
+    } else if (msg.playerTurn == 2) {
       current_user_turn = playerName_p3;
-    }else if (msg.playerTurn == 3){
+    } else if (msg.playerTurn == 3) {
       current_user_turn = playerName_p4;
     }
-    
+
   });
 
   socket.on("updatePlayerData", function (msg) {
@@ -894,7 +894,7 @@ function draw_lobby_waiting() {
 
   //one is here for testing
   if (Player4_connected) {
-  //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
+    //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
     yText += 15
 
     startButtonX = xText;
@@ -961,7 +961,16 @@ function draw_question_card() {
   context.fillRect(backX, backY, buttonLength, buttonHeight);
 
   context.fillStyle = "rgb(74 69 67)";
-  context.fillText(quest, backX + 10, backY + (buttonHeight / 2))
+
+  //every 35 chars we need to wrap
+  if (quest.length > 35) {
+    part = quest.substring(0, 35)
+    context.fillText(part, backX + 10, backY + (buttonHeight / 2))
+    part2 = quest.substring(35)
+    context.fillText(part2, backX + 10, backY+10 + (buttonHeight / 2))
+  } else {
+    context.fillText(quest, backX + 10, backY + (buttonHeight / 2))
+  }
   //--------------------------for button 1-----------------------------------
   backY += (buttonHeight);
   backY += (buttonHeight + buttonSpacing);
@@ -972,7 +981,13 @@ function draw_question_card() {
   context.fillStyle = questButtonColor;
   context.fillRect(backX, backY, buttonLength, buttonHeight);
   context.fillStyle = "rgb(74 69 67)";
+
+
   context.fillText(answer1, backX + 10, backY + (buttonHeight / 2))
+
+
+
+  //on which day did the world wide web    go online
   //----------------------------for button 2--------------------------------
   backY += (buttonHeight + buttonSpacing);
 

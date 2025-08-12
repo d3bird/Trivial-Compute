@@ -29,7 +29,7 @@ def createNewGame(gameID, numPlayers =4 ):
 
     counter = 0 
     while counter < numPlayers:
-        playerID = "player" + str(counter)
+        playerID = (counter)
         output['players'][str(playerID)] = createPlayer(playerID)
         output['turnOrder'].append(playerID)
         counter +=1
