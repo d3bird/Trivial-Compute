@@ -105,24 +105,28 @@ def rollDice(sock):
 
 @socketio.on('north')
 def northDir(sock):
+    print("got nortg")
     gameId = 0
     current_player_data = create_current_player_data()
     allGames.moveNorth(gameId, current_player_data)
 
 @socketio.on('east')
 def eastDir(sock):
+    print("got east")
     gameId = 0
     current_player_data = create_current_player_data()
     allGames.moveeast(gameId, current_player_data)
 
 @socketio.on('west')
 def westDir(sock):
+    print("got west")
     gameId = 0
     current_player_data = create_current_player_data()
     allGames.movewest(gameId, current_player_data)
 
 @socketio.on('south')
 def southtDir(sock):
+    print("got south")
     gameId = 0
     current_player_data = create_current_player_data()
     allGames.movesouth(gameId, current_player_data)

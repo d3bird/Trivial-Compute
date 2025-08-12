@@ -75,6 +75,22 @@ class gameMaster:
                 self.getGameInfo(gameID)['players'][player_key]['yloc'] =y
                 self.getGameInfo(gameID)['players'][player_key]['sendUpdateLoc'] =True
 
+    def moveNorth(self, gameID, playerData):
+        player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].makeChoose(0)
+
+    def moveeast(self, gameID, playerData):
+        player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].makeChoose(1)
+
+    def movewest(self, gameID, playerData):
+        player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].makeChoose(2)
+
+    def movesouth(self, gameID, playerData):
+        player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].makeChoose(3)
+
     def playerJoinGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
 

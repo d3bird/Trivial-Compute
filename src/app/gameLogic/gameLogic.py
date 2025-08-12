@@ -40,6 +40,19 @@ class gameLogic:
         self.sendDirChoiece = False
         self.dir_x = 1
         self.dir_y = 1
+
+        self.northID = 0
+        self.westID = 0
+        self.eastID = 0
+        self.southID = 0
+
+        self.Choosemade = False
+        self.ChooseDirmade = -1
+
+        self.over_x = -1
+        self.over_y = -1
+        self.over_ID = -1
+
         #this tells the game what to do  since each one of the functions changes the state
         #has to be done like this because the main loop is rest based
         #can be : 
@@ -53,6 +66,40 @@ class gameLogic:
         self.current_state = "game_start"
 
         self.last_gui_state = 0
+
+    def makeChoose(self, dir):
+        self.Choosemade = True
+        self.ChooseDirmade = dir
+        print("dir picked!")
+        print("north choose was : " + str(self.northID))
+        print("westID choose was : " + str(self.westID))
+        print("eastID choose was : " + str(self.eastID))
+        print("southID choose was : " + str(self.southID))
+        self.need_to_send_roll = True
+        if self.ChooseDirmade == 0:
+            squareID =self.northID
+        if self.ChooseDirmade == 1:
+            squareID =self.westID
+        if self.ChooseDirmade == 2:
+            squareID = self.eastID
+        if self.ChooseDirmade == 3:
+            squareID = self.southID
+
+        square = self.board.get_square(squareID)
+        self.over_x = square.get_x()
+        self.over_y = square.get_y()
+        self.over_ID =squareID
+        self.current_state = "moving"
+        self.players[str(self.current_players_turn)]['square_currently_on'] = squareID
+        self.current_movement_left -= 1
+
+        #make sure to reset
+        self.Choosemade = False
+        self.ChooseDirmade = -1
+        self.northID = 0
+        self.westID = 0
+        self.eastID = 0
+        self.southID = 0
 
     def get_expected_gui_state(self):
         if str(self.current_state) == "game_start":
@@ -105,6 +152,10 @@ class gameLogic:
         last_square = self.players[str(self.current_players_turn)]['square_came_from']
         next_square =None
         
+        #if self.over_ID != -1:
+        #    last_square = self.over_ID 
+        #    last_square = self.players[str(self.current_players_turn)]['square_came_from']
+
         if self.current_movement_left <= 0:
             self.current_state  = "question"
             self.need_to_answer = True
@@ -124,13 +175,17 @@ class gameLogic:
                 if True:
                     if self.board.get_square(squareID).get_x() == (self.dir_x -1):
                         self.west = True
+                        self.westID =self.board.get_square(squareID).get_ID()
                     if self.board.get_square(squareID).get_x() == (self.dir_x +1):
                         self.east = True
+                        self.eastID = self.board.get_square(squareID).get_ID()
                     if self.board.get_square(squareID).get_y() == (self.dir_y -1):
                         self.north = True
+                        self.northID =self.board.get_square(squareID).get_ID()
                     if self.board.get_square(squareID).get_y() == (self.dir_y +1):
                         self.south = True
-
+                        self.southID = self.board.get_square(squareID).get_ID()
+            
                 index += 1
             print("really need to pick a dir")
             return -1
@@ -214,6 +269,7 @@ class gameLogic:
         if str(self.current_state) == "rolling":
             print("waiting for dice roll")
         elif str(self.current_state) == "moving":
+            self.need_to_send_roll = True
             data['move_amount_left'] = self.current_movement_left 
             squareID = self.move_one_square()
             print("squareID " + str(squareID))
@@ -228,6 +284,9 @@ class gameLogic:
                 data['dirBox2'] = self.dirBox2
                 data['dirBox3'] = self.dirBox3
                 data['dirBox4'] = self.dirBox4
+        elif str(self.current_state) == "pick_dir":
+            print("waiting for dir")
+            
 
         elif str(self.current_state) == "question":
             data['need_to_answer_question'] = self.need_to_answer

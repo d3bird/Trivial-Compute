@@ -180,6 +180,7 @@ $(document).ready(function () {
     chooseeast = msg.east;
     choosewest = msg.west;
     gameState = 3
+
   });
 
 
@@ -202,8 +203,25 @@ $(document).ready(function () {
   });
 
   socket.on("roll", function (msg) {
-    console.log("Received roll:: " + msg.playerTurn + " :: " + msg.roll + " :: " + msg.move_left);
+    //console.log("Received roll:: " + msg.playerTurn + " :: " + msg.roll + " :: " + msg.move_left);
     console.log("new xy : " + msg.x + " :: " + msg.y)
+
+    if (msg.x != null && msg.y != null) {
+      if (msg.playerTurn == 0) {
+        playerXLoc_p1 = msg.x;
+        playerYLoc_p1 = msg.y;
+      } else if (msg.playerTurn == 1) {
+        playerXLoc_p2 = msg.x;
+        playerYLoc_p2 = msg.y;
+      } else if (msg.playerTurn == 2) {
+        playerXLoc_p3 = msg.x;
+        playerYLoc_p3 = msg.y;
+      } else if (msg.playerTurn == 3) {
+        playerXLoc_p4 = msg.x;
+        playerYLoc_p5 = msg.y;
+      }
+      gameState = 2;
+    }
   });
 
 
@@ -361,12 +379,16 @@ $(document).ready(function () {
       }
     } else if (gameState == 3) {
       if (was_space_clicked(x, y, startButtonX, startButtonY, startButtonWidth, startButtonHeight)) {
+        console.log("north")
         choose_north();
       } else if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
+        console.log("west")
         choose_west();
       } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+        console.log("east")
         choose_east();
       } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
+        console.log("south")
         choose_south();
       }
     }
@@ -1161,7 +1183,7 @@ function drawChoice(x, y, north, west, east, south) {
     context.fillRect(backX, backY, width, height);
 
     startButtonX = backX;
-    startButtonY = backX;;
+    startButtonY = backY;;
     startButtonWidth = width;
     startButtonHeight = height;
   }
@@ -1173,7 +1195,7 @@ function drawChoice(x, y, north, west, east, south) {
     context.fillRect(backX, backY, width, height);
 
     dirButton1X = backX;
-    dirButton1Y = backX;;
+    dirButton1Y = backY;;
     dirButton1Width = width;
     dirButton1Height = height;
   }
@@ -1185,7 +1207,7 @@ function drawChoice(x, y, north, west, east, south) {
     context.fillRect(backX, backY, width, height);
 
     dirButton2X = backX;
-    dirButton2Y = backX;;
+    dirButton2Y = backY;;
     dirButton2Width = width;
     dirButton2Height = height;
   }
@@ -1197,7 +1219,7 @@ function drawChoice(x, y, north, west, east, south) {
     context.fillRect(backX, backY, width, height);
 
     dirButton3X = backX;
-    dirButton3Y = backX;;
+    dirButton3Y = backY;;
     dirButton3Width = width;
     dirButton3Height = height;
   }
