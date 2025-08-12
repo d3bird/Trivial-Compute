@@ -198,6 +198,8 @@ class gameLogic:
                 next_square = paths[0]
             print("next sqaure should be : " + str(next_square))
 
+
+            
         return next_square
     
     def answer(self, correct):
@@ -273,12 +275,15 @@ class gameLogic:
             data['move_amount_left'] = self.current_movement_left 
             squareID = self.move_one_square()
             print("squareID " + str(squareID))
-            if squareID != -1:
+            if squareID == None:
+                #there is no more movement
+                self.current_state = "question"
+            elif squareID != -1:
+                print("squareID was " + str(squareID))
                 square = self.board.get_square(squareID)
                 data['new_x'] = square.get_x()
                 data['new_y'] = square.get_y()
             else:
-                print("asdads")
                 #there needs to be a choose
                 data['dirBox'] = self.dirBox
                 data['dirBox2'] = self.dirBox2
