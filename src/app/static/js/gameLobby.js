@@ -147,6 +147,22 @@ $(document).ready(function () {
   }
   
   //receive player details from server
+  socket.on("stateChange", function (msg) {
+    console.log("Received state:: " + msg.playerTurn + " :: " + msg.state);
+    gameState = msg.state;
+
+    if (msg.playerTurn  ==0){
+      current_user_turn = playerName_p1;
+    }else if (msg.playerTurn == 1){
+      current_user_turn = playerName_p2;
+    }else if (msg.playerTurn == 2){
+      current_user_turn = playerName_p3;
+    }else if (msg.playerTurn == 3){
+      current_user_turn = playerName_p4;
+    }
+    
+  });
+
   socket.on("updatePlayerData", function (msg) {
     //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
 
@@ -877,8 +893,8 @@ function draw_lobby_waiting() {
   context.fillText(p4Text, xText, yText);
 
   //one is here for testing
-  //if (Player4_connected) {
-  if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
+  if (Player4_connected) {
+  //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
     yText += 15
 
     startButtonX = xText;

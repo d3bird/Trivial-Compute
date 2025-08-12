@@ -101,9 +101,7 @@ def rollDice(sock):
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
 
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
-    while True:
-        data = sock.receive()
-        sock.send(data)
+
 
 @socketio.on('message')
 def movePlayer(data):
@@ -129,15 +127,15 @@ def game_background_thread():
         player_data = allGames.getGameInfo(gameId)['players']
         need_new_question = update_data['need_to_send_question']
 
-        need_dice_roll = allGames.getGameInfo(gameId)['need_to_send_roll']
+        need_dice_roll = allGames.getGameInfo(gameId)['logicObject'].need_to_send_roll
 
-        movement_left = allGames.getGameInfo(gameId)['move_amount_left']
-        last_roll = allGames.getGameInfo(gameId)['last_roll']
+        movement_left = allGames.getGameInfo(gameId)['logicObject'].current_movement_left
+        last_roll = allGames.getGameInfo(gameId)['logicObject'].last_roll
 
-        playerTurn = allGames.getGameInfo(gameId)['player_turn']
+        playerTurn = allGames.getGameInfo(gameId)['logicObject'].currentPlayer_ID
 
-        sendStateUpdate = True
-        state = allGames.getGameInfo(gameId)['gui_state']
+        sendStateUpdate = update_data['need_state_update']
+        state = update_data['gui_state']
         
         #print("sending player data")
         for player_key in player_data.keys():
@@ -184,7 +182,7 @@ def game_background_thread():
         if sendStateUpdate:
             print("there was a state change, new state is " + str(state))
             socketio.emit('stateChange', {'playerTurn': playerTurn, 'state': state})
-        
+
         socketio.sleep(0.25)
 
 """

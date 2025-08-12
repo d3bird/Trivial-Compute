@@ -9,12 +9,14 @@ class gameLogic:
         self.turn_order = []
         self.turn_order_index = 0
 
-        self.currentPlayer_ID = -1
+        self.currentPlayer_ID = 0
 
         self.current_players_turn = -1 # is the player ID to get from players
         self.current_turn_over = False
         self.current_movement_left = 0
         self.last_roll = 0
+
+        self.need_to_send_roll = False
 
         self.game_started = False
 
@@ -37,6 +39,8 @@ class gameLogic:
         #victory    :end of teh game has come
         self.current_state = "game_start"
 
+        self.last_gui_state = 0
+
     def get_expected_gui_state(self):
         if str(self.current_state) == "game_start":
             return 0
@@ -57,14 +61,18 @@ class gameLogic:
         self.game_started = True
 
     def start_next_turn(self):
+        print("self.turn_order_index " + str(self.turn_order_index))
+        print("len(self.turn_order) " + str(len(self.players.keys())))
         self.current_turn_over = False
         #checks to makesure that it is not the first turn before updating the index
         if self.current_players_turn != -1:
             #get the next player's turn
             self.turn_order_index += 1 
-            if self.turn_order_index >= len(self.turn_order):
+            self.currentPlayer_ID += 1 
+            if self.turn_order_index >= len(self.players.keys()):
                 self.turn_order_index = 0
-        self.current_players_turn = self.turn_order[self.turn_order_index]
+                self.currentPlayer_ID = 0
+        self.current_players_turn = self.turn_order_index
         self.current_movement_left = 0
         self.current_state = "rolling"
 
@@ -74,6 +82,7 @@ class gameLogic:
         self.current_movement_left = roll
         self.last_roll = roll
         self.current_state  = "moving"
+        self.need_to_send_roll = True
         return roll
 
     def move_one_square(self):
@@ -85,7 +94,7 @@ class gameLogic:
             self.current_state  = "question"
             self.need_to_answer = True
             self.need_to_send_question = True
-
+            self.need_to_send_roll = False
         #is there a direction to turn
         #if there are 3 options then 
         elif len(current_square.get_neighbors()) > 2:
@@ -175,4 +184,7 @@ class gameLogic:
                 
         data['player_turn'] = self.currentPlayer_ID
         data['gui_state'] = self.get_expected_gui_state()
+        data['need_state_update'] = False
+        if self.last_gui_state != data['gui_state']:
+            data['need_state_update'] = True
         return data
