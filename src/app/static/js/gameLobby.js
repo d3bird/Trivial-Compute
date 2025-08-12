@@ -7,10 +7,20 @@ const height = 50
 
 //the base colors of the board
 red = "rgb(200 0 0)";//red
+red = "rgb(255 109 116)";//red
 green = "rgb(9 200 0)";//green
+green = "rgb(79 221 195)";//green
 blue = "rgb(0 0 200)";//blue
+blue = "rgb(71 96 136)";//blue
 yellow = "rgb(255 255 0)";//yellow
+yellow = "rgb(255 197 98)";//yellow
 white = "rgb(255 255 255)";//white
+
+questColor = "rgb(211 211 211)"
+questButtonColor = "rgb(222 179 25)"
+questBackgroundColor = "rgb(0 190 156)"
+
+victoryBannerColor = "rgb(0 190 156)"
 
 //player colors
 pink = "rgb(255 0 255)";//red
@@ -38,6 +48,11 @@ let dirButton3X = -1;
 let dirButton3Y = -1;
 let dirButton3Width = -1;
 let dirButton3Height = -1;
+
+quest = "example question";
+answer1 = "adsadsdsa";
+answer2 = "jtyjytjkty";
+answer3 = "44535ewerw";
 
 //thses are the player inforamtion to control the graphics objetcs
 playerName_p1 = "player 1"
@@ -88,7 +103,7 @@ let Player4_connected = false
 //3 choice
 //4 roll button
 //5 vicory state
-let gameState = 0;
+let gameState = 2;
 let winner = "this should not be here"
 //this handles all of the connections
 $(document).ready(function () {
@@ -265,6 +280,10 @@ $(document).ready(function () {
   socket.on("newQuestion", function (msg) {
     // console.log("Received new question :: " + msg.question + " :: " + msg.answer1+ " :: " + msg.answer2+ " :: " + msg.answer3);
 
+    quest = msg.question;
+    answer1 = msg.answer1;
+    answer2 = msg.answer2;
+    answer3 = msg.answer3;
     document.getElementById("quest").innerHTML = msg.question;
     document.getElementById("answ1").value = msg.answer1;
     document.getElementById("answ2").value = msg.answer2;
@@ -839,6 +858,54 @@ function draw_question_card() {
   const canvas = document.querySelector("#gl-canvas");
   const context = canvas.getContext("2d");
 
+  //questButtonColor = "rgb(222 179 25)"
+  //questBackgroundColor = "rgb(0 190 156)"
+
+  //quest = "";
+  //answer1 = "";
+  //answer2 = "";
+  //answer3 = "";
+
+ 
+
+  //const width = 50
+  //const height = 50
+  
+  boardSizeX = (width * 9);
+  boardSizeY = (height *9);
+  cardSizeX = boardSizeX / 2
+  cardSizeY = (boardSizeY / 2) + (boardSizeY/6)
+  backX = (boardSizeX/2)/2;
+  backY = (boardSizeY/2)/2;
+
+  buttonLength = (cardSizeX - (cardSizeX/8));
+  buttonHeight = 50;
+  buttonSpacing = 10;
+
+  context.fillStyle = questBackgroundColor;
+  context.fillRect(backX, backY, cardSizeX, cardSizeY);
+
+
+  backX+= (cardSizeX/16)
+  backY += (buttonSpacing);
+
+  context.fillStyle = questColor;
+  context.fillRect(backX, backY, buttonLength, buttonHeight);
+
+  backY += (buttonHeight);
+  backY += (buttonHeight + buttonSpacing);
+
+  context.fillStyle = questButtonColor;
+  context.fillRect(backX, backY, buttonLength, buttonHeight);
+
+  backY += (buttonHeight + buttonSpacing);
+
+  context.fillStyle = questButtonColor;
+  context.fillRect(backX, backY, buttonLength, buttonHeight);
+  backY += (buttonHeight + buttonSpacing);
+
+  context.fillStyle = questButtonColor;
+  context.fillRect(backX, backY, buttonLength, buttonHeight);
 
 }
 
