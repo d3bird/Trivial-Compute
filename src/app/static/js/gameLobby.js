@@ -19,8 +19,9 @@ white = "rgb(255 255 255)";//white
 questColor = "rgb(211 211 211)"
 questButtonColor = "rgb(222 179 25)"
 questBackgroundColor = "rgb(0 190 156)"
+questBackgroundColor = "rgb(137 41 129)"
 
-victoryBannerColor = "rgb(0 190 156)"
+victoryBannerColor = "rgb(241 197 14)"
 
 //player colors
 pink = "rgb(255 0 255)";//red
@@ -53,6 +54,9 @@ quest = "example question";
 answer1 = "adsadsdsa";
 answer2 = "jtyjytjkty";
 answer3 = "44535ewerw";
+
+let current_roll = 0;
+let current_user_turn = "none?";
 
 //thses are the player inforamtion to control the graphics objetcs
 playerName_p1 = "player 1"
@@ -103,7 +107,7 @@ let Player4_connected = false
 //3 choice
 //4 roll button
 //5 vicory state
-let gameState = 5;
+let gameState = 4;
 let winner = "Scott"
 //this handles all of the connections
 $(document).ready(function () {
@@ -260,16 +264,16 @@ $(document).ready(function () {
     } else if (gameState == 2) {
       if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
         console.log("answer 1 was clicked")
-      }else 
-      if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
         console.log("answer 2 was clicked")
-      }else
-      if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
+      } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
         console.log("answer 3 was clicked")
       }
+    } else if (gameState == 4) {
+      if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
+        console.log("roll dice was clicked was clicked")
+      }
     }
-
-
   }
 
   function was_space_clicked(x, y, startX, startY, width, height) {
@@ -966,25 +970,49 @@ function drawRollButton() {
   const context = canvas.getContext("2d");
   resetDirButtons();
 
+  turn_text = "it is currently " + current_user_turn + "'s turn to roll";
+  roll_text = "ROLL THE DICE";
+  boardSizeX = (width * 9);
+  boardSizeY = (height * 9);
 
+  bannerLength = boardSizeX
+  bannerHeight = boardSizeY / 4;
+
+  backX = 0;
+  backY = boardSizeY / 16;
+
+  context.fillStyle = victoryBannerColor;
+  context.fillRect(backX, backY, bannerLength, bannerHeight);
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(turn_text, backX + (bannerLength / 10), backY + (bannerHeight / 2))
+
+  context.fillStyle = questColor;
+
+  dirButton1X = bannerLength / 2;
+  dirButton1Width = bannerLength / 3;
+  dirButton1Height = (bannerHeight / 3) * 2;
+
+  dirButton1Y = backY + (bannerHeight - dirButton1Height) / 2;
+
+  context.fillRect(dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height);
+  context.fillStyle = "rgb(74 69 67)";
+  context.fillText(roll_text, dirButton1X + (dirButton1Width / 10), dirButton1Y + (dirButton1Height / 2))
 }
 
 function draw_victory_banner() {
   const canvas = document.querySelector("#gl-canvas");
   const context = canvas.getContext("2d");
 
-  text = winner +" is the winner";
+  text = winner + " is the winner";
 
   boardSizeX = (width * 9);
   boardSizeY = (height * 9);
 
-  
-
   bannerLength = boardSizeX
-  bannerHeight = boardSizeY/ 4;
+  bannerHeight = boardSizeY / 4;
 
   backX = 0;
-  backY = boardSizeY/16;
+  backY = boardSizeY / 16;
 
   context.fillStyle = victoryBannerColor;
   context.fillRect(backX, backY, bannerLength, bannerHeight);
