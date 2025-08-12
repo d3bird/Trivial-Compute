@@ -237,11 +237,11 @@ $(document).ready(function () {
     row = Number(row) + Number(1)
     // console.log("# of row elms : "+ document.getElementById("playersTable").rows.length)
     //console.log("# of cel elms : " +document.getElementById("playersTable").rows[row].cells.length)
-    document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
-    document.getElementById("playersTable").rows[row].cells[1].innerHTML = msg.sql_id;
-    document.getElementById("playersTable").rows[row].cells[2].innerHTML = row;
-    document.getElementById("playersTable").rows[row].cells[3].innerHTML = msg.wrong;
-    document.getElementById("playersTable").rows[row].cells[4].innerHTML = msg.right;
+   // document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
+    //document.getElementById("playersTable").rows[row].cells[1].innerHTML = msg.sql_id;
+    //document.getElementById("playersTable").rows[row].cells[2].innerHTML = row;
+    //document.getElementById("playersTable").rows[row].cells[3].innerHTML = msg.wrong;
+    //document.getElementById("playersTable").rows[row].cells[4].innerHTML = msg.right;
 
     if (row == 1) {
       playerName_p1 = msg.username;
