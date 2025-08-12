@@ -90,6 +90,7 @@ class gameLogic:
         self.over_y = square.get_y()
         self.over_ID =squareID
         self.current_state = "moving"
+        self.players[str(self.current_players_turn)]['square_came_from'] = self.players[str(self.current_players_turn)]['square_currently_on'] 
         self.players[str(self.current_players_turn)]['square_currently_on'] = squareID
         self.current_movement_left -= 1
 
