@@ -28,7 +28,8 @@ class gameMaster:
 
     def start_game(self, game_ID):
         self.games[str(game_ID)]['started'] = True
-        self.games[str(game_ID)]['logicObject'].game = Game(players=self.games[str(game_ID)]['players'].keys())
+        self.games[str(game_ID)]['logicObject'].start_game()
+        #self.games[str(game_ID)]['logicObject'].game = Game(players=self.games[str(game_ID)]['players'].keys())
     
     def end_game(self, game_ID):
         self.games[str(game_ID)]['started'] = False
@@ -37,18 +38,12 @@ class gameMaster:
         self.games[str(game_ID)] = gameData.createNewGame()
 
     def rollDice(self, gameID, playerData ):
-        roll = random.randint(1,6) +random.randint(1,6)
-        print("rolling dice for player, they got " + str(roll))
-        player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].rollDice()
 
-        for player_key in player_data.keys():
-            player = player_data[player_key]
-            if str(player['name']) == str(playerData['name']):
-                print("setting user answer wrong")
-                self.getGameInfo(gameID)['players'][player_key]['questionGottenRight'] +=1
 
     def increasePlayerRight(self, gameID, playerData ):
         player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].answer(True)
         for player_key in player_data.keys():
             player = player_data[player_key]
             if str(player['name']) == str(playerData['name']):
@@ -57,6 +52,7 @@ class gameMaster:
 
     def increasePlayerWrong(self, gameID, playerData ):
         player_data = self.getGameInfo(gameID)['players']
+        self.getGameInfo(gameID)['logicObject'].answer(False)
         for player_key in player_data.keys():
             player = player_data[player_key]
             if str(player['name']) == str(playerData['name']):

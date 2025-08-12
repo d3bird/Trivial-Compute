@@ -96,8 +96,6 @@ def selectAnswer3(sock):
 def rollDice(sock):
     gameId = 0
     print("rolling the dice")
-
-    
     current_player_data = create_current_player_data()
     allGames.rollDice(gameId, current_player_data)
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
@@ -129,14 +127,17 @@ def game_background_thread():
         allGames.getGameInfo(gameId)['client_inputs'] = gameData.create_updateInforamtion()
 
         player_data = allGames.getGameInfo(gameId)['players']
-        need_new_question = allGames.getGameInfo(gameId)['need_newQuestion']
+        need_new_question = update_data['need_to_send_question']
 
         need_dice_roll = allGames.getGameInfo(gameId)['need_to_send_roll']
-        sendStateUpdate = allGames.getGameInfo(gameId)['send_gui_update']
+
+        movement_left = allGames.getGameInfo(gameId)['move_amount_left']
         last_roll = allGames.getGameInfo(gameId)['last_roll']
 
-        playerTurn = -1
-        state = allGames.getGameInfo(gameId)['logicObject'].get_expected_gui_state()
+        playerTurn = allGames.getGameInfo(gameId)['player_turn']
+
+        sendStateUpdate = True
+        state = allGames.getGameInfo(gameId)['gui_state']
         
         #print("sending player data")
         for player_key in player_data.keys():
@@ -178,12 +179,12 @@ def game_background_thread():
 
         if need_dice_roll:
             print("sent dice roll results")
-            socketio.emit('roll', {'roll': last_roll, 'move_left': move_left})
+            socketio.emit('roll', {'roll': last_roll, 'move_left': movement_left})
 
         if sendStateUpdate:
             print("there was a state change, new state is " + str(state))
             socketio.emit('stateChange', {'playerTurn': playerTurn, 'state': state})
-
+        
         socketio.sleep(0.25)
 
 """
@@ -393,7 +394,9 @@ def answer(id, is_correct):
 
 @socketio.on('start_game')
 def start_the_game(data):
-    print("ASDFIJOPHFDSAKLNFDESKNL")
+    print("recived start command")
+    gameId = 0
+    allGames.start_game(gameId)
 
 @app.route('/game', methods=('GET', 'POST'))
 def gamePage():

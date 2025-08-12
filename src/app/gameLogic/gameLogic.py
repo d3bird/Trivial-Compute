@@ -14,7 +14,10 @@ class gameLogic:
         self.current_players_turn = -1 # is the player ID to get from players
         self.current_turn_over = False
         self.current_movement_left = 0
-        
+        self.last_roll = 0
+
+        self.game_started = False
+
         #inforamtion about the current question 
         self.need_to_send_question = False
         self.need_to_answer = False
@@ -48,6 +51,11 @@ class gameLogic:
         if str(self.current_state) == "endTurn":
             return 2
 
+    def start_game(self):
+        if self.game_started == False:
+            self.start_next_turn()
+        self.game_started = True
+
     def start_next_turn(self):
         self.current_turn_over = False
         #checks to makesure that it is not the first turn before updating the index
@@ -62,7 +70,9 @@ class gameLogic:
 
     def rollDice(self):
         roll = random.randint(1,6) 
+        print("rolling dice for player, they got " + str(roll))
         self.current_movement_left = roll
+        self.last_roll = roll
         self.current_state  = "moving"
         return roll
 
@@ -81,7 +91,7 @@ class gameLogic:
         elif len(current_square.get_neighbors()) > 2:
             self.current_state  = "pick_dir"
 
-    def answer_correct(self, correct):
+    def answer(self, correct):
         print("cool")
         self.need_to_send_question = False
         self.need_to_answer = False
@@ -131,6 +141,7 @@ class gameLogic:
     def update_game(self, client_updates):
         data = {}
         data['move_amount_left'] = 0
+        data['last_roll'] = self.last_roll
         data['need_to_roll_again'] = False
         data['need_to_choose_direction'] = False
         data['need_to_answer_question'] = False
@@ -162,6 +173,6 @@ class gameLogic:
         elif str(self.current_state) == "endTurn":
             self.start_next_turn()
                 
-
+        data['player_turn'] = self.currentPlayer_ID
         data['gui_state'] = self.get_expected_gui_state()
         return data
