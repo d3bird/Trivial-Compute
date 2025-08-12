@@ -237,7 +237,7 @@ $(document).ready(function () {
     row = Number(row) + Number(1)
     // console.log("# of row elms : "+ document.getElementById("playersTable").rows.length)
     //console.log("# of cel elms : " +document.getElementById("playersTable").rows[row].cells.length)
-   // document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
+    // document.getElementById("playersTable").rows[row].cells[0].innerHTML = msg.username;
     //document.getElementById("playersTable").rows[row].cells[1].innerHTML = msg.sql_id;
     //document.getElementById("playersTable").rows[row].cells[2].innerHTML = row;
     //document.getElementById("playersTable").rows[row].cells[3].innerHTML = msg.wrong;
@@ -382,11 +382,11 @@ $(document).ready(function () {
         console.log("north")
         choose_north();
       } else if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
-        console.log("west")
-        choose_west();
-      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
         console.log("east")
         choose_east();
+      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+        console.log("west")
+        choose_west();
       } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
         console.log("south")
         choose_south();
@@ -420,10 +420,10 @@ $(document).ready(function () {
     answer1 = msg.answer1;
     answer2 = msg.answer2;
     answer3 = msg.answer3;
-    document.getElementById("quest").innerHTML = msg.question;
-    document.getElementById("answ1").value = msg.answer1;
-    document.getElementById("answ2").value = msg.answer2;
-    document.getElementById("answ3").value = msg.answer3;
+    //document.getElementById("quest").innerHTML = msg.question;
+    //document.getElementById("answ1").value = msg.answer1;
+    //document.getElementById("answ2").value = msg.answer2;
+    //document.getElementById("answ3").value = msg.answer3;
 
   });
 });

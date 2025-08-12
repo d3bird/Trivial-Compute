@@ -146,10 +146,15 @@ class gameLogic:
         return roll
 
     def move_one_square(self):
+        print("")
+        print("move logic")
         #square_ID = self.players[self.current_players_turn]['square_currently_on']
         current_square = self.get_current_square()
+        print("current_square : ID " + str(current_square.get_ID()))
         
         last_square = self.players[str(self.current_players_turn)]['square_came_from']
+        print("last_square : " + str(last_square))
+        print("self.current_movement_left "+ str(self.current_movement_left))
         next_square =None
         
         #if self.over_ID != -1:
@@ -190,6 +195,7 @@ class gameLogic:
             print("really need to pick a dir")
             return -1
         else:
+            self.players[str(self.current_players_turn)]['square_came_from'] = self.players[str(self.current_players_turn)]['square_currently_on']
             paths =current_square.get_neighbors()
             self.current_movement_left -= 1
             if paths[0] == last_square:
@@ -197,7 +203,7 @@ class gameLogic:
             else:
                 next_square = paths[0]
             print("next sqaure should be : " + str(next_square))
-
+            self.players[str(self.current_players_turn)]['square_currently_on'] = next_square
 
             
         return next_square
