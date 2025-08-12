@@ -27,6 +27,19 @@ class gameLogic:
         self.isCurrentSpot_HQ = False
         self.isCurrentSpot_color = ""
 
+        #dirs
+        self.dirBox = {'x':-1, 'y':-1}
+        self.dirBox2 = {'x':-1, 'y':-1}
+        self.dirBox3 = {'x':-1, 'y':-1}
+        self.dirBox4 = {'x':-1, 'y':-1}
+
+        self.north = False
+        self.west = False
+        self.east = False
+        self.south = False
+        self.sendDirChoiece = False
+        self.dir_x = 1
+        self.dir_y = 1
         #this tells the game what to do  since each one of the functions changes the state
         #has to be done like this because the main loop is rest based
         #can be : 
@@ -88,8 +101,10 @@ class gameLogic:
     def move_one_square(self):
         #square_ID = self.players[self.current_players_turn]['square_currently_on']
         current_square = self.get_current_square()
-        self.current_movement_left -= 1
-
+        
+        last_square = self.players[str(self.current_players_turn)]['square_came_from']
+        next_square =None
+        
         if self.current_movement_left <= 0:
             self.current_state  = "question"
             self.need_to_answer = True
@@ -99,7 +114,37 @@ class gameLogic:
         #if there are 3 options then 
         elif len(current_square.get_neighbors()) > 2:
             self.current_state  = "pick_dir"
+            self.sendDirChoiece = True
+            paths =current_square.get_neighbors()
+            index = 0
+            for item in paths:
+                squareID = item
+                self.dir_x = current_square.get_x()
+                self.dir_y = current_square.get_y()
+                if True:
+                    if self.board.get_square(squareID).get_x() == (self.dir_x -1):
+                        self.west = True
+                    if self.board.get_square(squareID).get_x() == (self.dir_x +1):
+                        self.east = True
+                    if self.board.get_square(squareID).get_y() == (self.dir_y -1):
+                        self.north = True
+                    if self.board.get_square(squareID).get_y() == (self.dir_y +1):
+                        self.south = True
 
+                index += 1
+            print("really need to pick a dir")
+            return -1
+        else:
+            paths =current_square.get_neighbors()
+            self.current_movement_left -= 1
+            if paths[0] == last_square:
+                next_square = paths[1]
+            else:
+                next_square = paths[0]
+            print("next sqaure should be : " + str(next_square))
+
+        return next_square
+    
     def answer(self, correct):
         print("cool")
         self.need_to_send_question = False
@@ -156,18 +201,38 @@ class gameLogic:
         data['need_to_choose_direction'] = False
         data['need_to_answer_question'] = False
         data['need_to_send_question'] = False
+        data['new_x'] = None
+        data['new_y'] = None
         data['endgame'] = False
         data['winner'] = 0
+        data['dirBox'] = {'x':-1, 'y':-1}
+        data['dirBox2'] = {'x':-1, 'y':-1}
+        data['dirBox3'] = {'x':-1, 'y':-1}
+        data['dirBox4'] = {'x':-1, 'y':-1}
 
-        print("the game is being updated")
+        #print("the game is being updated")
         if str(self.current_state) == "rolling":
             print("waiting for dice roll")
         elif str(self.current_state) == "moving":
             data['move_amount_left'] = self.current_movement_left 
-            self.move_one_square()
+            squareID = self.move_one_square()
+            print("squareID " + str(squareID))
+            if squareID != -1:
+                square = self.board.get_square(squareID)
+                data['new_x'] = square.get_x()
+                data['new_y'] = square.get_y()
+            else:
+                print("asdads")
+                #there needs to be a choose
+                data['dirBox'] = self.dirBox
+                data['dirBox2'] = self.dirBox2
+                data['dirBox3'] = self.dirBox3
+                data['dirBox4'] = self.dirBox4
+
         elif str(self.current_state) == "question":
             data['need_to_answer_question'] = self.need_to_answer
             data['need_to_send_question'] = self.need_to_send_question
+            self.need_to_send_question = False
 
             #the question was answered
             if self.need_to_answer == False:

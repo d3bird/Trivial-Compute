@@ -103,6 +103,30 @@ def rollDice(sock):
     #allGames.getGameInfo(gameId)['need_newQuestion'] = True
 
 
+@socketio.on('north')
+def northDir(sock):
+    gameId = 0
+    current_player_data = create_current_player_data()
+    allGames.moveNorth(gameId, current_player_data)
+
+@socketio.on('east')
+def eastDir(sock):
+    gameId = 0
+    current_player_data = create_current_player_data()
+    allGames.moveeast(gameId, current_player_data)
+
+@socketio.on('west')
+def westDir(sock):
+    gameId = 0
+    current_player_data = create_current_player_data()
+    allGames.movewest(gameId, current_player_data)
+
+@socketio.on('south')
+def southtDir(sock):
+    gameId = 0
+    current_player_data = create_current_player_data()
+    allGames.movesouth(gameId, current_player_data)
+
 @socketio.on('message')
 def movePlayer(data):
     gameId = 0
@@ -137,6 +161,14 @@ def game_background_thread():
         sendStateUpdate = update_data['need_state_update']
         state = update_data['gui_state']
         
+        sendDirChoiece = allGames.getGameInfo(gameId)['logicObject'].sendDirChoiece
+        dir_x = allGames.getGameInfo(gameId)['logicObject'].dir_x
+        dir_y = allGames.getGameInfo(gameId)['logicObject'].dir_y
+        north = allGames.getGameInfo(gameId)['logicObject'].north
+        west = allGames.getGameInfo(gameId)['logicObject'].west
+        east = allGames.getGameInfo(gameId)['logicObject'].east
+        south = allGames.getGameInfo(gameId)['logicObject'].south
+
         #print("sending player data")
         for player_key in player_data.keys():
             player = player_data[player_key]
@@ -177,11 +209,16 @@ def game_background_thread():
 
         if need_dice_roll:
             print("sent dice roll results")
-            socketio.emit('roll', {'roll': last_roll, 'move_left': movement_left})
+            print("roll : " + str(last_roll))
+            print("movement_left : " + str(movement_left))
+            socketio.emit('roll', {'playerTurn': playerTurn, 'roll': last_roll, 'move_left': movement_left, "x":update_data['new_x'], "y":update_data['new_y']})
 
         if sendStateUpdate:
             print("there was a state change, new state is " + str(state))
             socketio.emit('stateChange', {'playerTurn': playerTurn, 'state': state})
+
+        if sendDirChoiece:
+            socketio.emit('choose', {'X':dir_x, 'Y':dir_y, 'north':north,'west':west,'east':east,'south':south})
 
         socketio.sleep(0.25)
 

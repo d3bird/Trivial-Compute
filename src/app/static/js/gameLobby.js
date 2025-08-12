@@ -30,21 +30,23 @@ light_red = "rgb(189 90 107)";//light red
 iron = "rgb(59 54 50 1)";//iron
 
 //misc numbers needed for determing if a button was clicked on
+
+//north
 let startButtonX = -1;
 let startButtonY = -1;
 let startButtonWidth = -1;
 let startButtonHeight = -1;
-
+//west
 let dirButton1X = -1;
 let dirButton1Y = -1;
 let dirButton1Width = -1;
 let dirButton1Height = -1;
-
+//east
 let dirButton2X = -1;
 let dirButton2Y = -1;
 let dirButton2Width = -1;
 let dirButton2Height = -1;
-
+//south
 let dirButton3X = -1;
 let dirButton3Y = -1;
 let dirButton3Width = -1;
@@ -57,6 +59,13 @@ answer3 = "44535ewerw";
 
 let current_roll = 0;
 let current_user_turn = "none?";
+
+chooseX = 1
+chooseY = 1
+chooseNorth = false;
+choosesouth = false;
+chooseeast = false;
+choosewest = false;
 
 //thses are the player inforamtion to control the graphics objetcs
 playerName_p1 = "player 1"
@@ -146,6 +155,35 @@ $(document).ready(function () {
     socket.emit('answer3', { data: 'need to start' });
   }
 
+  function choose_north() {
+    socket.emit('north', { data: '' });
+  }
+
+  function choose_west() {
+    socket.emit('west', { data: '' });
+  }
+  function choose_east() {
+    socket.emit('east', { data: '' });
+  }
+  function choose_south() {
+    socket.emit('south', { data: '' });
+  }
+
+
+  socket.on("choose", function (msg) {
+    console.log("Received dir:: " + msg.X + " :: " + msg.Y);
+
+    chooseX = msg.X - 1;
+    chooseY = msg.Y;
+    chooseNorth = msg.north;
+    choosesouth = msg.south;
+    chooseeast = msg.east;
+    choosewest = msg.west;
+    gameState = 3
+  });
+
+
+
   //receive player details from server
   socket.on("stateChange", function (msg) {
     console.log("Received state:: " + msg.playerTurn + " :: " + msg.state);
@@ -162,6 +200,13 @@ $(document).ready(function () {
     }
 
   });
+
+  socket.on("roll", function (msg) {
+    console.log("Received roll:: " + msg.playerTurn + " :: " + msg.roll + " :: " + msg.move_left);
+    console.log("new xy : " + msg.x + " :: " + msg.y)
+  });
+
+
 
   socket.on("updatePlayerData", function (msg) {
     //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
@@ -203,7 +248,7 @@ $(document).ready(function () {
   });
 
   socket.on("updatePlayerloc", function (msg) {
-   // console.log("Received playyer Data :: " + msg.player + " :: " + msg.X + " :: " + msg.Y);
+    // console.log("Received playyer Data :: " + msg.player + " :: " + msg.X + " :: " + msg.Y);
 
 
 
@@ -218,7 +263,7 @@ $(document).ready(function () {
       playerYLoc_p2 = msg.Y;
       display_game();
     } else if (String(msg.player) == String(playerName_p3)) {
-     // console.log("p3 updated")
+      // console.log("p3 updated")
       playerXLoc_p3 = msg.X;
       playerYLoc_p3 = msg.Y;
       display_game();
@@ -314,7 +359,18 @@ $(document).ready(function () {
       } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
         answer3_question();
       }
-    } else if (gameState == 4) {
+    } else if (gameState == 3) {
+      if (was_space_clicked(x, y, startButtonX, startButtonY, startButtonWidth, startButtonHeight)) {
+        choose_north();
+      } else if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
+        choose_west();
+      } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
+        choose_east();
+      } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
+        choose_south();
+      }
+    }
+    else if (gameState == 4) {
       if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
         roll_dice();
       }
@@ -370,7 +426,7 @@ function display_game() {
     if (gameState == 2) {
       draw_question_card();
     } else if (gameState == 3) {
-
+      drawChoice(chooseX, chooseY, chooseNorth, choosewest, chooseeast, choosesouth);
     } else if (gameState == 4) {
       drawRollButton();
     } else if (gameState == 5) {
@@ -392,7 +448,7 @@ function refresh_board() {
   draw_score_text(4);
   //console.log("p1");
   drawPlayers(playerXLoc_p1, playerYLoc_p1, PlayerColor_p1);
- // console.log("p2");
+  // console.log("p2");
   drawPlayers(playerXLoc_p2, playerYLoc_p2, PlayerColor_p2);
   //console.log("p3");
   drawPlayers(playerXLoc_p3, playerYLoc_p3, PlayerColor_p3);
@@ -640,7 +696,7 @@ function movePlayer(username, direction) {
         playerYLoc_p1 -= 1;
       }
     } else if (direction == 1) {
-     // console.log("west");
+      // console.log("west");
       if (playerXLoc_p1 <= 0) {
         playerXLoc_p1 = 0;
       } else {
@@ -679,14 +735,14 @@ function movePlayer(username, direction) {
         playerXLoc_p2 -= 1;
       }
     } else if (direction == 2) {
-     // console.log("east");
+      // console.log("east");
       if (playerXLoc_p2 > 7) {
         playerXLoc_p2 = 8;
       } else {
         playerXLoc_p2 += 1;
       }
     } else if (direction == 3) {
-     // console.log("south");
+      // console.log("south");
       if (playerYLoc_p2 > 7) {
         playerYLoc_p2 = 8;
       } else {
@@ -705,7 +761,7 @@ function movePlayer(username, direction) {
         playerYLoc_p3 -= 1;
       }
     } else if (direction == 1) {
-     // console.log("west");
+      // console.log("west");
       if (playerXLoc_p3 <= 0) {
         playerXLoc_p3 = 0;
       } else {
@@ -731,21 +787,21 @@ function movePlayer(username, direction) {
 
   } else {//if (username ==4){
     if (direction == 0) {
-     // console.log("north");
+      // console.log("north");
       if (playerYLoc_p4 <= 0) {
         playerYLoc_p4 = 0;
       } else {
         playerYLoc_p4 -= 1;
       }
     } else if (direction == 1) {
-     // console.log("west");
+      // console.log("west");
       if (playerXLoc_p4 <= 0) {
         playerXLoc_p4 = 0;
       } else {
         playerXLoc_p4 -= 1;
       }
     } else if (direction == 2) {
-     // console.log("east");
+      // console.log("east");
       if (playerXLoc_p4 > 7) {
         playerXLoc_p4 = 8;
       } else {
@@ -778,7 +834,7 @@ function drawPlayers(playerX, playerY, PlayerColor) {
   // Initialize the GL context
   const context = canvas.getContext("2d");
 
- // console.log("player color : " + String(PlayerColor))
+  // console.log("player color : " + String(PlayerColor))
 
   context.beginPath();
   const endAngle = Math.PI + (Math.PI * 3) / 2
@@ -967,7 +1023,7 @@ function draw_question_card() {
     part = quest.substring(0, 35)
     context.fillText(part, backX + 10, backY + (buttonHeight / 2))
     part2 = quest.substring(35)
-    context.fillText(part2, backX + 10, backY+10 + (buttonHeight / 2))
+    context.fillText(part2, backX + 10, backY + 10 + (buttonHeight / 2))
   } else {
     context.fillText(quest, backX + 10, backY + (buttonHeight / 2))
   }
@@ -1093,4 +1149,56 @@ function draw_victory_banner() {
   const match = /(?<value>\d+\.?\d*)/;
   context.font = context.font.replace(match, 20);
   context.fillText(text, backX + (bannerLength / 4), backY + (bannerHeight / 2))
+}
+
+function drawChoice(x, y, north, west, east, south) {
+  const canvas = document.querySelector("#gl-canvas");
+  const context = canvas.getContext("2d");
+  if (north == true) {
+    backX = (x) * width;
+    backY = (y - 1) * height;
+    context.fillStyle = "black";
+    context.fillRect(backX, backY, width, height);
+
+    startButtonX = backX;
+    startButtonY = backX;;
+    startButtonWidth = width;
+    startButtonHeight = height;
+  }
+
+  if (west == true) {
+    backX = (x - 1) * width;
+    backY = (y) * height;
+    context.fillStyle = "black";
+    context.fillRect(backX, backY, width, height);
+
+    dirButton1X = backX;
+    dirButton1Y = backX;;
+    dirButton1Width = width;
+    dirButton1Height = height;
+  }
+
+  if (east == true) {
+    backX = (x + 1) * width;
+    backY = (y) * height;
+    context.fillStyle = "black";
+    context.fillRect(backX, backY, width, height);
+
+    dirButton2X = backX;
+    dirButton2Y = backX;;
+    dirButton2Width = width;
+    dirButton2Height = height;
+  }
+
+  if (south == true) {
+    backX = (x) * width;
+    backY = (y + 1) * height;
+    context.fillStyle = "black";
+    context.fillRect(backX, backY, width, height);
+
+    dirButton3X = backX;
+    dirButton3Y = backX;;
+    dirButton3Width = width;
+    dirButton3Height = height;
+  }
 }
