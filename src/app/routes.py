@@ -166,7 +166,7 @@ def game_background_thread():
 
 
 
-        socketio.sleep(1)
+        socketio.sleep(0.25)
 
 """
 Serve root index file
