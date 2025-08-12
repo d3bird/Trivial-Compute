@@ -188,4 +188,5 @@ class gameLogic:
         data['need_state_update'] = False
         if self.last_gui_state != data['gui_state']:
             data['need_state_update'] = True
+            self.last_gui_state = data['gui_state']
         return data

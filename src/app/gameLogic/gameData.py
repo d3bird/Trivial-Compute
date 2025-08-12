@@ -54,8 +54,8 @@ def createPlayer( SQLID = None):
     output['questionGottenRight'] = 0
     output['questionGottenWrong'] = 0
 
-    output['square_currently_on'] = -1
-    output['square_came_from'] = -1
+    output['square_currently_on'] = 22
+    output['square_came_from'] = 22
 
     output['sendUpdateLoc'] = False
     output['xloc'] = 4

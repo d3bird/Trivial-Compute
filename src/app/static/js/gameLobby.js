@@ -203,27 +203,27 @@ $(document).ready(function () {
   });
 
   socket.on("updatePlayerloc", function (msg) {
-    console.log("Received playyer Data :: " + msg.player + " :: " + msg.X + " :: " + msg.Y);
+   // console.log("Received playyer Data :: " + msg.player + " :: " + msg.X + " :: " + msg.Y);
 
 
 
     if (String(msg.player) == String(playerName_p1)) {
-      console.log("p1 updated")
+      //console.log("p1 updated")
       playerXLoc_p1 = msg.X;
       playerYLoc_p1 = msg.Y;
       display_game();
     } else if (String(msg.player) == String(playerName_p2)) {
-      console.log("p2 updated")
+      //console.log("p2 updated")
       playerXLoc_p2 = msg.X;
       playerYLoc_p2 = msg.Y;
       display_game();
     } else if (String(msg.player) == String(playerName_p3)) {
-      console.log("p3 updated")
+     // console.log("p3 updated")
       playerXLoc_p3 = msg.X;
       playerYLoc_p3 = msg.Y;
       display_game();
     } else {//if (String(msg.player)  == String(playerName_p4)){
-      console.log("p4 updated")
+      //console.log("p4 updated")
       playerXLoc_p4 = msg.X;
       playerYLoc_p4 = msg.Y;
       display_game();
@@ -291,7 +291,7 @@ $(document).ready(function () {
     const rect = canvas.getBoundingClientRect()
     const x = event.clientX - rect.left
     const y = event.clientY - rect.top
-    console.log("x: " + x + " y: " + y)
+    //console.log("x: " + x + " y: " + y)
 
     //all the possible button clicks for the loby screen
     if (gameState == 0) {
@@ -390,15 +390,15 @@ function refresh_board() {
   draw_score_text(2);
   draw_score_text(3);
   draw_score_text(4);
-  console.log("p1");
+  //console.log("p1");
   drawPlayers(playerXLoc_p1, playerYLoc_p1, PlayerColor_p1);
-  console.log("p2");
+ // console.log("p2");
   drawPlayers(playerXLoc_p2, playerYLoc_p2, PlayerColor_p2);
-  console.log("p3");
+  //console.log("p3");
   drawPlayers(playerXLoc_p3, playerYLoc_p3, PlayerColor_p3);
-  console.log("p4");
+  //console.log("p4");
   drawPlayers(playerXLoc_p4, playerYLoc_p4, PlayerColor_p4);
-  console.log("end");
+  //console.log("end");
 
 }
 
@@ -626,35 +626,35 @@ function movePlayer(username, direction) {
   // 2 =                east
   // 3 =                south
 
-  console.log("moving " + username)
+  //console.log("moving " + username)
 
   xloc = -1
   yloc = -1
 
   if (username == 1) {
     if (direction == 0) {
-      console.log("north");
+      //console.log("north");
       if (playerYLoc_p1 <= 0) {
         playerYLoc_p1 = 0;
       } else {
         playerYLoc_p1 -= 1;
       }
     } else if (direction == 1) {
-      console.log("west");
+     // console.log("west");
       if (playerXLoc_p1 <= 0) {
         playerXLoc_p1 = 0;
       } else {
         playerXLoc_p1 -= 1;
       }
     } else if (direction == 2) {
-      console.log("east");
+      //console.log("east");
       if (playerXLoc_p1 > 7) {
         playerXLoc_p1 = 8;
       } else {
         playerXLoc_p1 += 1;
       }
     } else if (direction == 3) {
-      console.log("south");
+      //console.log("south");
       if (playerYLoc_p1 > 7) {
         playerYLoc_p1 = 8;
       } else {
@@ -665,28 +665,28 @@ function movePlayer(username, direction) {
     yloc = playerYLoc_p1
   } else if (username == 2) {
     if (direction == 0) {
-      console.log("north");
+      //console.log("north");
       if (playerYLoc_p2 <= 0) {
         playerYLoc_p2 = 0;
       } else {
         playerYLoc_p2 -= 1;
       }
     } else if (direction == 1) {
-      console.log("west");
+      //console.log("west");
       if (playerXLoc_p2 <= 0) {
         playerXLoc_p2 = 0;
       } else {
         playerXLoc_p2 -= 1;
       }
     } else if (direction == 2) {
-      console.log("east");
+     // console.log("east");
       if (playerXLoc_p2 > 7) {
         playerXLoc_p2 = 8;
       } else {
         playerXLoc_p2 += 1;
       }
     } else if (direction == 3) {
-      console.log("south");
+     // console.log("south");
       if (playerYLoc_p2 > 7) {
         playerYLoc_p2 = 8;
       } else {
@@ -698,28 +698,28 @@ function movePlayer(username, direction) {
 
   } else if (username == 3) {
     if (direction == 0) {
-      console.log("north");
+      //console.log("north");
       if (playerYLoc_p3 <= 0) {
         playerYLoc_p3 = 0;
       } else {
         playerYLoc_p3 -= 1;
       }
     } else if (direction == 1) {
-      console.log("west");
+     // console.log("west");
       if (playerXLoc_p3 <= 0) {
         playerXLoc_p3 = 0;
       } else {
         playerXLoc_p3 -= 1;
       }
     } else if (direction == 2) {
-      console.log("east");
+      //console.log("east");
       if (playerXLoc_p3 > 7) {
         playerXLoc_p3 = 8;
       } else {
         playerXLoc_p3 += 1;
       }
     } else if (direction == 3) {
-      console.log("south");
+      //console.log("south");
       if (playerYLoc_p3 > 7) {
         playerYLoc_p3 = 8;
       } else {
@@ -731,28 +731,28 @@ function movePlayer(username, direction) {
 
   } else {//if (username ==4){
     if (direction == 0) {
-      console.log("north");
+     // console.log("north");
       if (playerYLoc_p4 <= 0) {
         playerYLoc_p4 = 0;
       } else {
         playerYLoc_p4 -= 1;
       }
     } else if (direction == 1) {
-      console.log("west");
+     // console.log("west");
       if (playerXLoc_p4 <= 0) {
         playerXLoc_p4 = 0;
       } else {
         playerXLoc_p4 -= 1;
       }
     } else if (direction == 2) {
-      console.log("east");
+     // console.log("east");
       if (playerXLoc_p4 > 7) {
         playerXLoc_p4 = 8;
       } else {
         playerXLoc_p4 += 1;
       }
     } else if (direction == 3) {
-      console.log("south");
+      //console.log("south");
       if (playerYLoc_p4 > 7) {
         playerYLoc_p4 = 8;
       } else {
@@ -764,8 +764,8 @@ function movePlayer(username, direction) {
 
   }
 
-  console.log("x cord = " + xloc);
-  console.log("y cord = " + yloc);
+  //console.log("x cord = " + xloc);
+  //console.log("y cord = " + yloc);
 
   display_game();
 
@@ -778,7 +778,7 @@ function drawPlayers(playerX, playerY, PlayerColor) {
   // Initialize the GL context
   const context = canvas.getContext("2d");
 
-  console.log("player color : " + String(PlayerColor))
+ // console.log("player color : " + String(PlayerColor))
 
   context.beginPath();
   const endAngle = Math.PI + (Math.PI * 3) / 2
@@ -1015,7 +1015,7 @@ function draw_question_card() {
 function calculateSquareIDFromCords(x, y) {
   let output = ""
 
-  console.log("y cord = " + playerYLoc_p1);
+  //console.log("y cord = " + playerYLoc_p1);
   return output
 }
 
