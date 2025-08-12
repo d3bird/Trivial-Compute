@@ -278,6 +278,9 @@ class gameLogic:
             if squareID == None:
                 #there is no more movement
                 self.current_state = "question"
+                data['need_state_update'] = True
+                self.need_to_send_roll = False
+                self.sendDirChoiece = False
             elif squareID != -1:
                 print("squareID was " + str(squareID))
                 square = self.board.get_square(squareID)
@@ -297,7 +300,7 @@ class gameLogic:
             data['need_to_answer_question'] = self.need_to_answer
             data['need_to_send_question'] = self.need_to_send_question
             self.need_to_send_question = False
-
+            self.sendDirChoiece = False
             #the question was answered
             if self.need_to_answer == False:
                 endGame = self.check_if_game_is_over()

@@ -209,6 +209,8 @@ def game_background_thread():
             answer2 = answers[2]
             answer3 = answers[3]
             socketio.emit('newQuestion', {'question': question, "answer1": answer1, "answer2": answer2, "answer3": answer3})
+            socketio.emit('stateChange', {'playerTurn': playerTurn, 'state': 2})
+
             allGames.getGameInfo(gameId)['need_newQuestion'] = False
 
         if need_dice_roll:
