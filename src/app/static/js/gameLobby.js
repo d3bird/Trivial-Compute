@@ -103,8 +103,8 @@ let Player4_connected = false
 //3 choice
 //4 roll button
 //5 vicory state
-let gameState = 2;
-let winner = "this should not be here"
+let gameState = 5;
+let winner = "Scott"
 //this handles all of the connections
 $(document).ready(function () {
 
@@ -862,7 +862,6 @@ function draw_lobby_waiting() {
 }
 
 function draw_question_card() {
-  resetDirButtons();
 
   const canvas = document.querySelector("#gl-canvas");
   const context = canvas.getContext("2d");
@@ -963,10 +962,35 @@ function resetDirButtons() {
 
 
 function drawRollButton() {
+  const canvas = document.querySelector("#gl-canvas");
+  const context = canvas.getContext("2d");
+  resetDirButtons();
+
 
 }
 
 function draw_victory_banner() {
+  const canvas = document.querySelector("#gl-canvas");
+  const context = canvas.getContext("2d");
 
+  text = winner +" is the winner";
 
+  boardSizeX = (width * 9);
+  boardSizeY = (height * 9);
+
+  
+
+  bannerLength = boardSizeX
+  bannerHeight = boardSizeY/ 4;
+
+  backX = 0;
+  backY = boardSizeY/16;
+
+  context.fillStyle = victoryBannerColor;
+  context.fillRect(backX, backY, bannerLength, bannerHeight);
+  context.fillStyle = "rgb(74 69 67)";
+
+  const match = /(?<value>\d+\.?\d*)/;
+  context.font = context.font.replace(match, 20);
+  context.fillText(text, backX + (bannerLength / 4), backY + (bannerHeight / 2))
 }
