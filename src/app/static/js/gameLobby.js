@@ -107,9 +107,11 @@ let Player4_connected = false
 //3 choice
 //4 roll button
 //5 vicory state
-let gameState = 4;
+let gameState = 0;
 let winner = "Scott"
 //this handles all of the connections
+
+
 $(document).ready(function () {
 
 
@@ -117,7 +119,33 @@ $(document).ready(function () {
   //connect to the socket server.
   //   var socket = io.connect("http://" + document.domain + ":" + location.port);
   var socket = io.connect();
+  
+  function start_game(){
+    socket.emit('start_game', { data: 'need to start' });
+  }
 
+  function roll_dice(){
+    socket.emit('rollDice', { data: 'need to start' });
+  }
+
+  function request_question(){
+    socket.emit('start_game', { data: 'need to start' });
+  }
+
+  //yes I know this is hacky, but I am ready for this class to be over to give my best work
+  //too bad
+  function answer1_question(){
+    socket.emit('answer1', { data: 'need to start' });
+  }
+
+  function answer2_question(){
+    socket.emit('answer2', { data: 'need to start' });
+  }
+
+  function answer3_question(){
+    socket.emit('answer3', { data: 'need to start' });
+  }
+  
   //receive player details from server
   socket.on("updatePlayerData", function (msg) {
     //console.log("Received playyer Data :: " + msg.row_num + " :: " + msg.username+ " :: " + msg.right+ " :: " + msg.wrong);
@@ -259,19 +287,20 @@ $(document).ready(function () {
 
         if (was_space_clicked(x, y, startButtonX, startButtonY, startButtonWidth, startButtonHeight)) {
           console.log("start button was clicked")
+          start_game();
         }
       }
     } else if (gameState == 2) {
       if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
-        console.log("answer 1 was clicked")
+        answer1_question();
       } else if (was_space_clicked(x, y, dirButton2X, dirButton2Y, dirButton2Width, dirButton2Height)) {
-        console.log("answer 2 was clicked")
+        answer2_question();
       } else if (was_space_clicked(x, y, dirButton3X, dirButton3Y, dirButton3Width, dirButton3Height)) {
-        console.log("answer 3 was clicked")
+        answer3_question();
       }
     } else if (gameState == 4) {
       if (was_space_clicked(x, y, dirButton1X, dirButton1Y, dirButton1Width, dirButton1Height)) {
-        console.log("roll dice was clicked was clicked")
+        roll_dice();
       }
     }
   }
@@ -848,8 +877,8 @@ function draw_lobby_waiting() {
   context.fillText(p4Text, xText, yText);
 
   //one is here for testing
-  if (Player4_connected) {
-    //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected){
+  //if (Player4_connected) {
+  if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
     yText += 15
 
     startButtonX = xText;
@@ -862,6 +891,18 @@ function draw_lobby_waiting() {
     yText += 15
     context.fillStyle = "rgb(0 0 0)";
     context.fillText("click to start", xText, yText);
+  } else {
+    yText += 15
+    //the off case while the loby waits for people to connect
+    falseStartButtonWidth = 200;
+    falseSartButtonHeight = 40;
+    context.fillStyle = "rgb(255 0 0)";
+    context.fillRect(xText, yText, falseStartButtonWidth, falseSartButtonHeight);
+
+    yText += 15
+    context.fillStyle = "rgb(0 0 0)";
+    context.fillText("waiting for people to join", xText, yText);
+
   }
 }
 

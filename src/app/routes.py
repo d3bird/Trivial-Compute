@@ -53,7 +53,8 @@ def requestNewQuestion(sock):
 
 
 #this needs to be a better solution than to have one for every question type
-@sock.route('/selectAnswer1')
+#@sock.route('/selectAnswer1')
+@socketio.on('answer1')
 def selectAnswer1(sock):
     gameId = 0
     print("selecting answer1 (right)")
@@ -66,7 +67,8 @@ def selectAnswer1(sock):
         data = sock.receive()
         sock.send(data)
 
-@sock.route('/selectAnswer2')
+#@sock.route('/selectAnswer2')
+@socketio.on('answer2')
 def selectAnswer2(sock):
     gameId = 0
     print("selecting answer2 (wrong)")
@@ -77,7 +79,8 @@ def selectAnswer2(sock):
         data = sock.receive()
         sock.send(data)
 
-@sock.route('/selectAnswer3')
+#@sock.route('/selectAnswer3')
+@socketio.on('answer3')
 def selectAnswer3(sock):
     gameId = 0
     print("selecting answer3 (wrong)")
@@ -88,10 +91,11 @@ def selectAnswer3(sock):
         data = sock.receive()
         sock.send(data)
 
-@sock.route('/rollDice')
+#@sock.route('/rollDice')
+@socketio.on('rollDice')
 def rollDice(sock):
     gameId = 0
-    print("selecting answer1 (right)")
+    print("rolling the dice")
 
     
     current_player_data = create_current_player_data()
@@ -372,6 +376,9 @@ def answer(id, is_correct):
     else:
         game.next_turn()
 
+@socketio.on('start_game')
+def start_the_game(data):
+    print("ASDFIJOPHFDSAKLNFDESKNL")
 
 @app.route('/game', methods=('GET', 'POST'))
 def gamePage():
