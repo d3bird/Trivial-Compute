@@ -1,6 +1,15 @@
 import random
 import app.gameLogic.gameLogic as gameLogic
 
+#these are all the updates from the client to update the game
+def create_updateInforamtion():
+    data = {}
+    data['need_newQuestion'] = False
+    data['need_to_send_roll'] = False
+    data['last_roll'] = 0
+    data['gui_state'] = 0
+    data['send_gui_update'] = False
+    return data
 
 def createNewGame(gameID, numPlayers =4 ):
     output = {}
@@ -16,8 +25,8 @@ def createNewGame(gameID, numPlayers =4 ):
     output['connectedPlayers'] = 0
     output['status'] = "pre-game"
     
-    output['need_newQuestion'] = False
-    
+    output['client_inputs'] = create_updateInforamtion()
+
     counter = 0 
     while counter < numPlayers:
         playerID = "player" + str(counter)

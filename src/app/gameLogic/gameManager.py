@@ -79,7 +79,6 @@ class gameMaster:
                 self.getGameInfo(gameID)['players'][player_key]['yloc'] =y
                 self.getGameInfo(gameID)['players'][player_key]['sendUpdateLoc'] =True
 
-
     def playerJoinGame(self, playerData, gameID):
         print("player : " + str(playerData['name']) + " is joining game " + str(gameID))
 

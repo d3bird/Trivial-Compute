@@ -122,11 +122,22 @@ def game_background_thread():
     print("starting background thread to update clients when someone has joined")
     gameId = 0
     while True:
+        client_updates = allGames.getGameInfo(gameId)['client_inputs'] 
+        update_data = allGames.getGameInfo(gameId)['logicObject'].update_game(client_updates)
+        
+        #reset the given inputs
+        allGames.getGameInfo(gameId)['client_inputs'] = gameData.create_updateInforamtion()
+
         player_data = allGames.getGameInfo(gameId)['players']
         need_new_question = allGames.getGameInfo(gameId)['need_newQuestion']
 
-        need_dice_roll = False
+        need_dice_roll = allGames.getGameInfo(gameId)['need_to_send_roll']
+        sendStateUpdate = allGames.getGameInfo(gameId)['send_gui_update']
+        last_roll = allGames.getGameInfo(gameId)['last_roll']
 
+        playerTurn = -1
+        state = allGames.getGameInfo(gameId)['logicObject'].get_expected_gui_state()
+        
         #print("sending player data")
         for player_key in player_data.keys():
             player = player_data[player_key]
@@ -166,13 +177,17 @@ def game_background_thread():
             allGames.getGameInfo(gameId)['need_newQuestion'] = False
 
         if need_dice_roll:
-            print("send dice roll results")
+            print("sent dice roll results")
+            socketio.emit('roll', {'roll': last_roll, 'move_left': move_left})
 
-
+        if sendStateUpdate:
+            print("there was a state change, new state is " + str(state))
+            socketio.emit('stateChange', {'playerTurn': playerTurn, 'state': state})
 
         socketio.sleep(0.25)
 
 """
+
 Serve root index file
 """
 @app.route('/constRandom')
