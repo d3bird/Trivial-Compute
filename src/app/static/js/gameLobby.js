@@ -969,8 +969,8 @@ function draw_lobby_waiting() {
   context.fillText(p4Text, xText, yText);
 
   //one is here for testing
-  if (Player4_connected) {
-    //if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
+  //if (Player4_connected) {
+    if (Player1_connected && Player2_connected && Player3_connected && Player4_connected) {
     yText += 15
 
     startButtonX = xText;
